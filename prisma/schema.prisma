@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model GameMetrics {
+  id          Int      @id @default(autoincrement())
+  userId      String
+  startTime   DateTime
+  endTime     DateTime
+  timeSpent   Float
+  deviceType  String
+  channel     String
+  createdAt   DateTime @default(now())
+}
+
+model PageViews {
+  id           Int      @id @default(autoincrement())
+  userId       String
+  page         String
+  views        Int      @default(0)
+  deviceType   String
+  channel      String
+  createdAt    DateTime @default(now())
+
+  @@unique([page, userId, deviceType, channel])  // Composite unique constraint
+}
+
+model PageResponseTimes {
+  id           Int      @id @default(autoincrement())
+  userId       String   // User ID to track response times per user
+  page         String   // The page name (e.g., '/main', '/result')
+  responseTime Float    // Response time in milliseconds
+  deviceType   String   // Device type (e.g., 'mobile', 'desktop')
+  channel      String   // Channel (e.g., 'organic', 'direct')
+  createdAt    DateTime @default(now())
+}
+
+model QuestionResponses {
+  id              Int      @id @default(autoincrement())
+  questionId      String
+  selectedAnswer  String
+  userId          String
+  createdAt       DateTime @default(now())
+}
+
+model Admin {
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  password  String   // Store hashed passwords
+  createdAt DateTime @default(now())
+}
+
+
+model OutputRepetitions {
+  id         Int      @id @default(autoincrement())
+  output_id  Int      @unique // Make this unique to use it in the upsert
+  output_name String   @default("")
+  count      Int      @default(0)
+  updated_at DateTime @default(now())
+}
