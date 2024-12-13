@@ -33,7 +33,7 @@ const QuizPage: React.FC = () => {
   }, []);
 
   const handleClick = () => {
-    router.push("/question1_perfume"); // Navigates to /question1
+    router.push("/question1"); // Navigates to /question1
   };
 
   const getUniqueUserId = () => {
@@ -94,40 +94,36 @@ const QuizPage: React.FC = () => {
           rel="stylesheet"
         />
       </Head>
-      <div onClick={handleClick} className="relative min-h-screen bg-green-500 flex items-center justify-center">
-        <div className="relative w-full max-w-md h-screen bg-white shadow-md overflow-hidden flex flex-col">
-          <div className="relative flex-grow">
+      <div className="flex overflow-hidden flex-col pb-32 mx-auto w-full text-white bg-white max-w-[480px]">
+        <div className="flex relative flex-col w-full min-h-[805px] pt-[551px]">
             <img
-              src="/images/quiz.png"
+              src="/images_perfume/quiz/background.png"
               alt="Start"
-              className="w-full h-full object-cover"
+              className={`object-cover absolute inset-0 size-full`}
             />
             
-            <div className="absolute inset-0 flex flex-col justify-center items-center">
-              <div className="text-center text-white space-y-6 pt-20">
-                <h1 className={`text-5xl font-bold ${wendyone.className}`}>
-                  {translations[language].quiz.title}
-                </h1>
-              </div>
-              
-              <div className="text-center text-white space-y-6 mt-32 mr-20">
-                <h1 className={`text-3xl font-bold ${wendyone.className}`}>
-                  {translations[language].quiz.questions}
-                </h1>
-              </div>
-              <div className="text-center text-white space-y-6 mt-2">
-                <h1 className={`text-8xl font-bold ${wendyone.className}`}>
-                  {translations[language].quiz.totalQuestions}
-                </h1>
-              </div>
-              <div className="text-center text-white space-y-6 mt-10">
-                <h1 className={`text-3xl font-bold ${wendyone.className}`}>
-                  {translations[language].quiz.startButton}
-                </h1>
+            <div className="flex relative z-10 flex-col px-20 pt-14 pb-7 mb-0 w-full bg-slate-900">
+              <h1 className={`text-5xl font-bold ${wendyone.className}`}>
+                {translations[language].quiz.title}
+              </h1>
+              <button
+                onClick={handleClick}
+                className={`flex flex-col justify-center py-1 text-2xl leading-none text-center bg-purple-300 rounded-full text-slate-900 text-opacity-90 mt-10 mr-2.5 ml-3.5`}
+                tabIndex={0}
+                >
+                <div className="px-14 py-8 rounded-full border border-purple-300 border-solid">
+                  <p
+                    onClick={handleClick}
+                    className={`relative text-2xl text-black px-6 py-2 font-bold h-12 ${wendyone.className} hover:text-white hover:scale-110 transition-transform duration-200 cursor-pointer`}
+                  >
+                    {translations[language].quiz.startButton}
+                  </p>
+                </div>
+              </button>
+              <div className="mt-12 text-xs text-center">
+                Copyright © {translations[language].quiz.copyright}. All rights reserved.
               </div>
             </div>
-          
-          </div>
         </div>
       </div>
     </>

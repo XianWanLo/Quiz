@@ -1,7 +1,7 @@
 const translations = {
     English: {
       main: {
-        title: "If I Entered A Dog Beauty Pageant, I Would Be...",
+        title: "Discover Your Scent-Based Personality",
         subtitle: "Discover The Breed That Speaks To Your Soul",
         startButton: "Let's Start"
       },
@@ -18,19 +18,20 @@ const translations = {
       },
       quiz: {
         title: "Discover Your Scent-Based Personality",
+        startButton: "Let's Start",
         questions: "Qs",
-        totalQuestions: "8",
-        startButton: "Tap To Start",
-      }, 
+        totalQuestions: "7",
+        copyright: "Visonvirse",
+      },
       quiz1: {
-        question: "You Hope To Choose A Dog As A Family Member. What Aspect Do You Value More?",
-        option1: "Obedient and easy to train",
-        option2: "Friendly and sociable",
+        question: "You enter a perfume shop and, while testing fragrances, you tend to",
+        option1: "Reflect alone on the feel of each perfume, internally assessing",
+        option2: "Discuss the characteristics and sensations of each perfume with salespeople or friends"
       },
       quiz2: {
-        question: "You come home and find that the dog has bitten the sofa. What is your first reaction?",
-        option1: "Set rules to prevent it from happening again",
-        option2: "Try to understand the dog's needs first"
+        question: "Each perfume comes with its own poetic description. When reading these descriptions, you pay more attention to",
+        option1: "The emotional expression and aesthetic rhythm of the poetry",
+        option2: "The linguistic skill and structural layout of the poetry"
       },
       quiz3: {
         question: "You are ready to start training your dog. Which method do you prefer?",
@@ -115,6 +116,7 @@ const translations = {
         questions: "问题",
         totalQuestions: "8",
         startButton: "点击开始",
+        copyright: "Visonvirse",
       },
       quiz1: {
         question: "您希望选择一只狗作为家庭成员。您更看重哪一方面？",

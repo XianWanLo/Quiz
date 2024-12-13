@@ -30,7 +30,6 @@ const userId = getUniqueUserId();  // Get or create a unique user ID
 
 const QuizPage: React.FC = () => {
   const router = useRouter();
-  usePageTracking('/question2');  // Track the question 2 page
   const [language, setLanguage] = useState<'English' | 'Chinese'>('English'); // Default language
 
   // Load language from localStorage on component mount
@@ -51,7 +50,7 @@ const QuizPage: React.FC = () => {
       answer="Try to understand the dog's needs first";    }
 
     // Store the selected numbers in localStorage
-    localStorage.setItem('question2', JSON.stringify(numbersToSave));
+    localStorage.setItem('question2_perfume', JSON.stringify(numbersToSave));
 
     // Send response to the backend
     fetch('/api/question-response', {

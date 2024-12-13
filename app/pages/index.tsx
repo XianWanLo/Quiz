@@ -158,9 +158,6 @@ const MainPage: React.FC = () => {
                 <h1 className={`text-4xl font-bold ${wendyone.className}`}>
                   {translations[language].main.title}
                 </h1>
-                <p className="text-md">
-                  {translations[language].main.subtitle}
-                </p>
                 <div className="relative flex justify-center items-center top-20">
                   <img
                     src="/images/ellipse1.svg"
