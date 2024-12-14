@@ -33,7 +33,7 @@ const QuizPage: React.FC = () => {
   }, []);
 
   const handleClick = () => {
-    router.push("/question1"); // Navigates to /question1
+    router.push("/question1_perfume"); // Navigates to /question1
   };
 
   const getUniqueUserId = () => {

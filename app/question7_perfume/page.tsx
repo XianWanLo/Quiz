@@ -1,15 +1,11 @@
 "use client";
 import { useRouter } from "next/navigation";
 import Head from "next/head";
-import { Wendy_One } from "next/font/google";
+import { wendyone, stintultra, patrickhand } from "../components/font";
 import { useEffect, useState } from "react";
 import { usePageTracking } from "../hooks/usePageTracking";
 import translations from "../components/translations"; // Import translations
 
-const wendyone = Wendy_One({
-  weight: "400",
-  subsets: ["latin"],
-});
 
 const getUniqueUserId = () => {
   let userId = localStorage.getItem('uniqueUserId');
@@ -59,7 +55,7 @@ const QuizPage: React.FC = () => {
       }),
     });
 
-    router.push("/question8");
+    router.push("/question8_cutscene");
   };
 
   // Page view tracking
@@ -104,62 +100,77 @@ const QuizPage: React.FC = () => {
   return (
     <>
       <Head>
-        <link href="https://fonts.googleapis.com/css2?family=Wendy+One&display=swap" rel="stylesheet" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Wendy+One&display=swap"
+          rel="stylesheet"
+        />
       </Head>
-
-      <div className="relative min-h-screen bg-green-500 flex items-center justify-center">
-        <div className="relative w-full max-w-md h-screen bg-white shadow-md overflow-hidden flex flex-col">
-          <div className="relative flex-grow">
-            <img
-              src="/images/quiz7.png"
-              alt="Quiz"
-              className="w-full h-full object-cover"
-            />
+      {/*Main Container*/}
+      <div className="flex overflow-hidden flex-col mx-auto w-full bg-white max-w-[480px]">
+        
+        <div className="relative w-full bg-slate-900">
             
-            {/* Question at the top */}
-            <div className="absolute inset-0 flex flex-col justify-start items-center p-6 -mt-3">
-              <div className="text-center text-white space-y-6 mt-8">
-                <h2 className={`text-3xl font-bold ${wendyone.className}`}>
-                  {translations[language].quiz7.question}  {/* Translated question */}
-                </h2>
+          <div className="absolute z-0 w-full">
+            <img
+              src="/images_perfume/question7/background.png"
+              className="object-cover w-full h-full"
+              alt="Option background"
+            />
+          </div>
+
+          <div className="relative z-10 pt-5 pr-5 pl-2.5 mt-4">
+
+            {/* Question at the top - added fixed width/height container */}
+            <div className="w-[400px] h-[94px] mx-auto flex items-center justify-center mb-12">
+              <h1 className={`text-3xl font-bold text-center text-white ${patrickhand.className}`}>
+                {translations[language].quiz7.question}
+              </h1>
+            </div>
+
+            {/* Options container*/}
+            <div className="flex flex-col justify-center gap-8 mb-6">
+              
+              {/* Option 1 */}
+              <div className="flex items-center justify-center">
+                <img
+                  src="/images_perfume/question7/option1.png"
+                  alt="Option 1"
+                />
+              </div>
+
+              <div 
+                onClick={() => handleOptionClick("Option 1")}
+                className="px-14 py-6 bg-[#9B80B4] hover:bg-[#8A71A3] rounded-[35px] cursor-pointer text-white text-sm text-center transition-colors"
+              >
+                {translations[language].quiz7.option1}
+              </div>
+
+              {/* Option 2 */}
+              <div className="flex items-center justify-center mt-4">
+                <img
+                  src="/images_perfume/question7/option2.png"
+                  alt="Option 2"
+                />
+              </div>
+
+              <div 
+                onClick={() => handleOptionClick("Option 2")}
+                className="px-14 py-6 bg-[#9B80B4] hover:bg-[#8A71A3] rounded-[35px] cursor-pointer text-white text-sm text-center transition-colors"
+              >
+                {translations[language].quiz7.option2}
               </div>
             </div>
 
-            {/* Options */}
-            <div className="absolute inset-x-0 bottom-20 flex flex-col justify-end items-center space-y-6 mb-6">
-              <div className="flex justify-between items-center w-full px-6">
-                <div
-                  onClick={() => handleOptionClick("Option 1")}
-                  className="cursor-pointer p-4 bg-[#192E2B] border-2 border-yellow-100 rounded-2xl text-white text-center transition-colors duration-300 ease-in-out hover:bg-white hover:text-[#21322E] flex items-center justify-center option-button"
-                >
-                  <p>{translations[language].quiz7.option1}</p>  {/* Translated option 1 */}
-                </div>
-                <div
-                  onClick={() => handleOptionClick("Option 2")}
-                  className="cursor-pointer p-4 bg-[#192E2B] border-2 border-yellow-100 rounded-2xl text-white text-center transition-colors duration-300 ease-in-out hover:bg-white hover:text-[#21322E] flex items-center justify-center option-button"
-                >
-                  <p>{translations[language].quiz7.option2}</p>  {/* Translated option 2 */}
-                </div>
-              </div>
-
-              <div className="flex justify-between items-center w-full px-6 pt-5">
-                <div
-                  onClick={() => handleOptionClick("Option 3")}
-                  className="cursor-pointer p-4 bg-[#192E2B] border-2 border-yellow-100 rounded-2xl text-white text-center transition-colors duration-300 ease-in-out hover:bg-white hover:text-[#21322E] flex items-center justify-center option-button"
-                >
-                  <p>{translations[language].quiz7.option3}</p>  {/* Translated option 3 */}
-                </div>
-                <div
-                  onClick={() => handleOptionClick("Option 4")}
-                  className="cursor-pointer p-4 bg-[#192E2B] border-2 border-yellow-100 rounded-2xl text-white text-center transition-colors duration-300 ease-in-out hover:bg-white hover:text-[#21322E] flex items-center justify-center option-button"
-                >
-                  <p>{translations[language].quiz7.option4}</p>  {/* Translated option 4 */}
-                </div>
-              </div>
+            {/* Question counter - aligned to bottom right */}
+            <div className="flex justify-end text-7xl leading-none text-white">
+                  <span className={`text-purple-300 ${stintultra.className}`}>7
+                  </span>
+                  <span className={` ${stintultra.className}`}>/8
+                  </span>
             </div>
           </div>
         </div>
-      </div>
+    </div>
     </>
   );
 };

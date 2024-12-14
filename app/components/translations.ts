@@ -24,7 +24,7 @@ const translations = {
         copyright: "Visonvirse",
       },
       quiz1: {
-        question: "You enter a perfume shop and, while testing fragrances, you tend to",
+        question: "You Enter A Perfume Shop and, While Testing Fragrances, You Tend To",
         option1: "Reflect alone on the feel of each perfume, internally assessing",
         option2: "Discuss the characteristics and sensations of each perfume with salespeople or friends"
       },
@@ -34,40 +34,46 @@ const translations = {
         option2: "The linguistic skill and structural layout of the poetry"
       },
       quiz3: {
-        question: "You are ready to start training your dog. Which method do you prefer?",
-        option1: "Strict training and guidance",
-        option2: "Learning through games"
+        question: "When choosing a fragrance for your room, you prefer",
+        option1: "Selecting novel scents to create a special atmosphere",
+        option2: "Choosing traditional scents to create a familiar and tranquil environment"
       },
       quiz4: {
-        question: "If the dog gradually becomes independent and no longer hides behind you when scared, how do you feel?",
-        option1: "The emotional expression of the poetry",
-        option2: "The emotional expression of the poetry",
+        question: "When deciding to buy a perfume, during the decision-making process, you tend to",
+        option1: "Make decisions quickly, preferring clear conclusions",
+        option2: "Keep options open, considering different possibilities",
       },
       quiz5: {
-        question: "When you want to take your dog for a walk and play outside together, what condition do you prefer?",
-        option1: "Able to obey commands",
-        option2: "Freely exploring the surroundings",
+        question: "Suddenly, a shop assistant approaches and asks about your preference in choosing everyday perfumes",
+        option1: "Opting for unique,  fragrances, enjoying unusual combinations",
+        option2: "Choosing classic scents, preferring comfortable smells",
       },
       quiz6: {
-        question: "When selecting toys for your dog, which type do you prefer?",
-        option1: "Strong functionality, intellectual development",
-        option2: "Promoting interaction and deepening relationships",
-        option3: "Durable and simple, long-lasting use",
-        option4: "Innovative and interesting, sparking curiosity",
+        question: "Suddenly, you smell a fragrance in the store that catches your attention because",
+        option1: "The perfume triggers an emotional response and personal memories",
+        option2: "The ingredients, longevity, and the brand's history of the perfume",
+        option3: "  ",
+        option4: "  ",
       },
       quiz7: {
-        question: "Your habit when walking with your dog is?",
-        option1: "Always following the same route",
-        option2: "Finding new routes and environments",
-        option3: "Prioritizing places where other dogs can be encountered",
-        option4: "Choosing times and places with fewer people",
+        question: "With your carefully selected perfume, when you're home relaxing, you prefer",
+        option1: "Enjoying the quiet alone, savoring the scent, reading, or meditating",
+        option2: "Inviting friends over to enjoy a pleasant time together in the fragrance's ambiance",
+        option3: " ",
+        option4: " ",
+      },
+      cutscene: {
+        content1: "You fall asleep while relaxing at home with your new perfume",
+        content2: "Zzz..."
       },
       quiz8: {
-        question: "If you have the opportunity to participate in an activity with your dog, what interests you the most?",
-        option1: "Training courses",
-        option2: "Dog gatherings",
-        option3: "Charity run",
-        option4: "Adventure hiking",
+        question: "Which factor is most likely to influence an individual's choice of a daily fragrance?",
+        option1: "Personal preference",
+        option2: "Seasonal changes",
+        option3: "Cultural background",
+        option4: "Current fashion trends",
+        option5: "Celebrity endorsements",
+        option6: "Mood and emotions"
       },
       output: {
         imageAlt: "Quiz result image",
@@ -157,12 +163,18 @@ const translations = {
         option3: "优先选择可以遇到其他狗的地方",
         option4: "选择人少的时间和地点",
       },
+      cutscene: {
+        content1: "You fall asleep while relaxing at home with your new perfume",
+        content2: "Zzz..."
+      },
       quiz8: {
-        question: "如果你有机会与狗狗一起参加活动，你最感兴趣的是什么？",
-        option1: "训练课程",
-        option2: "狗狗聚会",
-        option3: "慈善跑",
-        option4: "冒险徒步",
+        question: "Which factor is most likely to influence an individual's choice of a daily fragrance?",
+        option1: "Personal preference",
+        option2: "Seasonal changes",
+        option3: "Cultural background",
+        option4: "Current fashion trends",
+        option5: "Celebrity endorsements",
+        option6: "Mood and emotions"
       },
       output: {
         imageAlt: "测验结果图片",

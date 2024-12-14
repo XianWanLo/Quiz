@@ -1,6 +1,7 @@
 // File: pages/quiz.tsx
 "use client";
 import { useRouter } from "next/navigation";
+import { wendyone, stintultra, patrickhand } from "../components/font";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import translations from "../components/translations";
@@ -17,7 +18,6 @@ const QuizPage: React.FC = () => {
   const router = useRouter();
   const [language, setLanguage] = useState<'English' | 'Chinese'>('English');
   const [selectedChoice, setSelectedChoice] = useState<number | null>(null);
-  usePageTracking();
 
   useEffect(() => {
     const storedLanguage = getLanguageFromLocalStorage();
@@ -63,36 +63,63 @@ const QuizPage: React.FC = () => {
           rel="stylesheet"
         />
       </Head>
-      <div className="flex overflow-hidden flex-col mx-auto w-full text-center text-white bg-white max-w-[480px]">
-        <img
-          src="/images_perfume/question2/background.png"
-          alt="Quiz question visual"
-          className="object-contain w-full aspect-[0.75]"
-        />
-        <div className="flex flex-col py-7 pr-5 pl-9 w-full bg-slate-900">
-          <div className="self-center text-xl leading-7">
-            {translations[language].quiz2.question}
+      {/* Main container*/}
+      <div className="flex overflow-hidden flex-col mx-auto w-full bg-white max-w-[480px]">
+        {/* image */}
+        <div className="h-[630px]">
+          <img
+            src="/images_perfume/question2/background.png"
+            alt="Perfume quiz"
+            className="object-cover w-full"
+          />
+        </div>
+
+        {/* Question container with option background */}
+        <div className="relative pt-5 pr-5 pl-2.5 w-full bg-slate-900">
+          {/* Layer 1: Option background image (positioned absolutely) */}
+          <div className="absolute inset-y-2 left-2 w-2/5">
+            <img
+              src="/images_perfume/question1/option1.png"
+              className="object-cover w-full h-full"
+              alt="Option background"
+            />
           </div>
-          <div className="flex gap-9 self-start mt-6 text-sm leading-4">
-            <button
-              onClick={() => handleOptionClick("Option 1")}
-              className={`p-6 rounded-[35px] transition-colors duration-200 cursor-pointer ${
-                selectedChoice === 0 ? "bg-purple-500" : "bg-zinc-400 hover:bg-zinc-500"
-              }`}
-            >
-              {translations[language].quiz2.option1}
-            </button>
-            <button
-              onClick={() => handleOptionClick("Option 2")}
-              className={`p-6 rounded-[35px] transition-colors duration-200 cursor-pointer ${
-                selectedChoice === 1 ? "bg-purple-500" : "bg-zinc-400 hover:bg-zinc-500"
-              }`}
-            >
-              {translations[language].quiz2.option2}
-            </button>
-          </div>
-          <div className="self-end mt-7 text-7xl leading-none">
-            <span className="text-purple-300">2</span>/8
+
+          {/* Layer 2: Content (positioned relatively to appear above background) */}
+          <div className="relative z-10 inset-y-3">
+            {/* Question at the top - added fixed width/height container */}
+            <div className="w-[360px] h-[94px] mx-auto flex items-center justify-center mb-12">
+              <h1 className={`text-3xl font-bold text-center text-white ${patrickhand.className}`}>
+                {translations[language].quiz2.question}
+              </h1>
+            </div>
+
+            {/* Options container - side by side */}
+            <div className="flex justify-center gap-8 mb-8">
+              {/* Option 1 */}
+              <div 
+                onClick={() => handleOptionClick("Option 1")}
+                className="px-5 py-6 bg-[#9B80B4] hover:bg-[#8A71A3] rounded-[35px] cursor-pointer text-white text-sm text-center transition-colors"
+              >
+                {translations[language].quiz2.option1}
+              </div>
+
+              {/* Option 2 */}
+              <div 
+                onClick={() => handleOptionClick("Option 2")}
+                className="px-5 py-6 bg-[#9B80B4] hover:bg-[#8A71A3] rounded-[35px] cursor-pointer text-white text-sm text-center transition-colors"
+              >
+                {translations[language].quiz2.option2}
+              </div>
+            </div>
+
+            {/* Question counter - aligned to bottom right */}
+            <div className="flex justify-end text-7xl leading-none text-white">
+              <span className={`text-purple-300 ${stintultra.className}`}>2
+              </span>
+              <span className={` ${stintultra.className}`}>/8
+              </span>
+            </div>
           </div>
         </div>
       </div>
