@@ -15,14 +15,14 @@ const wendyone = Wendy_One({
 // Helper function to get language from localStorage
 const getLanguageFromLocalStorage = () => {
   if (typeof window !== 'undefined') {
-    return localStorage.getItem('language') as 'English' | 'Chinese' || 'English'; // Default to English
+    return localStorage.getItem('language') as 'English' | 'Traditional_Chinese' | 'Simplified_Chinese' || 'English'; // Default to English
   }
   return 'English'; // Fallback for SSR
 };
 
 const QuizPage: React.FC = () => {
   const router = useRouter();
-  const [language, setLanguage] = useState<'English' | 'Chinese'>('English'); // Default language
+  const [language, setLanguage] = useState<'English' | 'Traditional_Chinese' | 'Simplified_Chinese'>('English'); // Default language
 
   usePageTracking('/quiz');  // This tracks the quiz page
 
