@@ -150,6 +150,10 @@ const ResultPage: React.FC = () => {
   ? perfumes[highestOccurrenceMBTI]
   : perfumes["ENFJ"]; // Default fallback
 
+  const perfume_link =  highestOccurrenceMBTI
+  ? purchase_link[highestOccurrenceMBTI]
+  : purchase_link["ENFJ"]; // Default fallback
+
 
   // Function to download the image (for Instagram sharing)
   const handleDownload = () => {
@@ -246,7 +250,7 @@ const ResultPage: React.FC = () => {
               </div>
 
               {/* Display images and text, one image per row */}
-              <div className="relative my-10 flex flex-col gap-10">
+              <div className="relative my-10 flex flex-col gap-10 justify-center">
 
                 <div className="absolute z-0 w-full inset-y-1/4">
                   <img
@@ -257,13 +261,24 @@ const ResultPage: React.FC = () => {
                 </div>
 
                 {recommendPerfume.map((src, index) => (
-                    <div key={index} className="relative flex flex-col mx-14 items-center rounded-2xl bg-purple-300 bg-opacity-20">
+                    <div key={index} className="relative flex flex-col gap-2 mx-14 items-center rounded-2xl bg-purple-300 bg-opacity-20">
                       {/* Image: Full width, position relative to contain text */}
                       <img
                         src={src}
                         alt={`Recommended_Perfume ${index + 1}`}
                         className="w-full object-cover rounded-lg"
                       />
+                      <a
+                        href={perfume_link[index]} // Use the corresponding link for each perfume
+                        target="_blank" // Open link in a new tab
+                        rel="noopener noreferrer" // Security best practice
+                        className="mb-2 w-full text-center"
+                      >
+                        {/* Add text or button for the link */}
+                        <span className="border border-gray-300 text-l text-white px-4 py-1 rounded-full hover:bg-gray-200 transition-colors"
+                          >Learn more
+                        </span>
+                      </a>
                     </div>
                   ))}            
               </div>
