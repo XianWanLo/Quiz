@@ -9,14 +9,14 @@ import { usePageTracking } from "../hooks/usePageTracking";
 
 const getLanguageFromLocalStorage = () => {
   if (typeof window !== 'undefined') {
-    return localStorage.getItem('language') as 'English' | 'Chinese' || 'English';
+    return localStorage.getItem('language') as ('English' | 'Traditional_Chinese' | 'Simplified_Chinese') || 'English';  // Default to English if not set
   }
   return 'English';
 };
 
 const QuizPage: React.FC = () => {
   const router = useRouter();
-  const [language, setLanguage] = useState<'English' | 'Chinese'>('English');
+  const [language, setLanguage] = useState<'English' | 'Traditional_Chinese' | 'Simplified_Chinese'>('English');
 
 
   useEffect(() => {
@@ -25,18 +25,20 @@ const QuizPage: React.FC = () => {
   }, []);
 
   const handleOptionClick = (option: string) => {
-    let numbersToSave: number[] = [];
-    let answer = '';
-
-    if (option === 'Option 1') {
-      numbersToSave = [1, 3, 5, 6];
-      answer = 'Reflect alone';
-    } else if (option === 'Option 2') {
-      numbersToSave = [2, 7, 8, 9];
-      answer = 'Discuss with others';
+    
+    if (typeof window !== 'undefined') {
+      // Retrieve current MBTI scores from LocalStorage
+      const mbtiScores = JSON.parse(localStorage.getItem('mbtiScores') || '{}');
+      // Update score according to user's choice 
+      if (option === 'Option 1') {
+        mbtiScores.I += 2;
+      } else if (option === 'Option 2') {
+        mbtiScores.E += 2;
+      }
+      // Update MBTI scores in localStorage
+      localStorage.setItem('mbtiScores', JSON.stringify(mbtiScores));
     }
-
-    localStorage.setItem('question1_perfume', JSON.stringify(numbersToSave));
+    
 
     fetch('/api/question-response', {
       method: 'POST',
@@ -44,7 +46,7 @@ const QuizPage: React.FC = () => {
       body: JSON.stringify({
         userId: localStorage.getItem('uniqueUserId'),
         questionId: translations[language].quiz1.question,
-        selectedAnswer: answer,
+        selectedAnswer: option,
       }),
     });
 
@@ -60,7 +62,7 @@ const QuizPage: React.FC = () => {
         />
       </Head>
       {/*Main Container*/}
-      <div className="flex overflow-hidden flex-col mx-auto w-full bg-white max-w-[480px]">
+      <div className="flex overflow-hidden flex-col mx-auto w-full bg-white min-h-screen max-w-[480px]">
         {/* image */}
         <div className="h-[630px]">
           <img
@@ -91,21 +93,25 @@ const QuizPage: React.FC = () => {
             </div>
 
             {/* Options container - side by side */}
-            <div className="flex justify-center gap-8 mb-8">
+            <div className="flex gap-8 mb-8">
               {/* Option 1 */}
               <div 
                 onClick={() => handleOptionClick("Option 1")}
-                className="px-5 py-6 bg-[#9B80B4] hover:bg-[#8A71A3] rounded-[35px] cursor-pointer text-white text-sm transition-colors"
+                className="flex items-center px-5 py-6 bg-[#9B80B4] hover:bg-[#8A71A3] rounded-[35px] cursor-pointer transition-colors w-1/2"
               >
+                <h1 className={`text-white text-m text-center`}>
                 {translations[language].quiz1.option1}
+                </h1>
               </div>
 
               {/* Option 2 */}
               <div 
                 onClick={() => handleOptionClick("Option 2")}
-                className="px-5 py-6 bg-[#9B80B4] hover:bg-[#8A71A3] rounded-[35px] cursor-pointer text-white text-sm transition-colors"
+                className="flex items-center px-5 py-6 bg-[#9B80B4] hover:bg-[#8A71A3] rounded-[35px] cursor-pointer text-white text-m text-center transition-colors w-1/2"
               >
-                {translations[language].quiz1.option2}
+               <h1 className={`text-white text-m text-center`}>
+                  {translations[language].quiz1.option2}
+                </h1>
               </div>
             </div>
 

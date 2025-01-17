@@ -28,7 +28,7 @@ function getUniqueUserId() {
 
 function getLanguageFromLocalStorage() {
   if (typeof window !== 'undefined') {
-    return localStorage.getItem('language') as 'English' | 'Chinese' | null || 'English';  // Default to English
+    return localStorage.getItem('language') as 'English' | 'Traditional_Chinese' | 'Simplified_Chinese' | null || 'English';  // Default to English
   }
   return 'English';  // Default to English during SSR
 }
@@ -36,7 +36,7 @@ function getLanguageFromLocalStorage() {
 const MainPage: React.FC = () => {
   const router = useRouter();
   const [isMuted, setIsMuted] = useState(false);
-  const [language, setLanguage] = useState<'English' | 'Chinese'>('English');  // Default to English initially
+  const [language, setLanguage] = useState<'English' | 'Traditional_Chinese' | 'Simplified_Chinese'>('English');  // Default to English initially
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {

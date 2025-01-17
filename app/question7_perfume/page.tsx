@@ -13,11 +13,11 @@ const getUniqueUserId = () => {
 };
 
 const getLanguageFromLocalStorage = () => {
-  return localStorage.getItem('language') as 'English' | 'Chinese' || 'English';  // Default to English if not set
+  return localStorage.getItem('language') as ('English' | 'Traditional_Chinese' | 'Simplified_Chinese') || 'English';  // Default to English if not set
 };
 
 const QuizPage: React.FC = () => {
-  const [language, setLanguage] = useState<'English' | 'Chinese'>('English');  // State to store selected language
+  const [language, setLanguage] = useState<'English' | 'Traditional_Chinese' | 'Simplified_Chinese'>('English');  // State to store selected language
   const router = useRouter();
   usePageTracking('/question7');  // This tracks the question7 page
 
@@ -26,24 +26,22 @@ const QuizPage: React.FC = () => {
   }, []);
 
   const handleOptionClick = (option: string) => {
-    let numbersToSave: number[] = [];
-    let answer = '';
+    
+    if (typeof window !== 'undefined') {
+      // Retrieve current MBTI scores from LocalStorage
+      let mbtiScores = JSON.parse(localStorage.getItem('mbtiScores') || '{}');
 
-    if (option === 'Option 1') {
-      numbersToSave = [1, 6];
-      answer='Always following the same route';
-    } else if (option === 'Option 2') {
-      numbersToSave = [5, 7, 8];
-      answer='Finding new routes and environments';
-    } else if (option === 'Option 3') {
-      numbersToSave = [2, 9];
-      answer='Prioritizing places where other dogs can be encountered';
-    } else if (option === 'Option 4') {
-      numbersToSave = [4, 6];
-      answer='Choosing times and places with fewer people';
+      // Update score according to user's choice 
+      if (option === 'Option 1') {
+        mbtiScores.I += 1;
+      } else if (option === 'Option 2') {
+        mbtiScores.E += 1;
+      }
+
+      // Update MBTI scores in localStorage
+      localStorage.setItem('mbtiScores', JSON.stringify(mbtiScores));
     }
-    localStorage.setItem('question7', JSON.stringify(numbersToSave));
-
+    
     // Send response to the backend
     fetch('/api/question-response', {
       method: 'POST',
@@ -51,7 +49,7 @@ const QuizPage: React.FC = () => {
       body: JSON.stringify({
         userId: getUniqueUserId(),
         questionId: 'Your habit when walking with your dog is?',
-        selectedAnswer: answer,
+        selectedAnswer: option,
       }),
     });
 

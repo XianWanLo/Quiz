@@ -31,12 +31,12 @@ const getUniqueUserId = () => {
 
 // Get the current language from localStorage (or default to English)
 const getLanguageFromLocalStorage = () => {
-  return localStorage.getItem('language') as 'English' | 'Chinese' || 'English';  // Default to English if not set
+  return localStorage.getItem('language') as ('English' | 'Traditional_Chinese' | 'Simplified_Chinese') || 'English';  // Default to English if not set
 };
 const MoreResultPage: React.FC = () => {
   const [selectedOptions, setSelectedOptions] = useState<number[][]>([]);
   const [occurrences, setOccurrences] = useState<Record<number, number>>({});
-  const [language, setLanguage] = useState<'English' | 'Chinese'>('English'); // Default language
+  const [language, setLanguage] = useState<'English' | 'Traditional_Chinese' | 'Simplified_Chinese'>('English'); // Default language
 
   const router = useRouter();
   usePageTracking('/more-results');  // Track page view

@@ -16,11 +16,11 @@ const getUniqueUserId = () => {
 const userId = getUniqueUserId();  // Get or create a unique user ID
 
 const getLanguageFromLocalStorage = () => {
-  return localStorage.getItem('language') as 'English' | 'Chinese' || 'English';  // Default to English if not set
+  return localStorage.getItem('language') as ('English' | 'Traditional_Chinese' | 'Simplified_Chinese') || 'English';  // Default to English if not set
 };
 
 const QuizPage: React.FC = () => {
-  const [language, setLanguage] = useState<'English' | 'Chinese'>('English'); // State for language
+  const [language, setLanguage] = useState<'English' | 'Traditional_Chinese' | 'Simplified_Chinese'>('English'); // State for language
   const router = useRouter();
   
   useEffect(() => {
@@ -30,20 +30,22 @@ const QuizPage: React.FC = () => {
   usePageTracking('/question3');  // This tracks the question3 page
 
   const handleOptionClick = (option: string) => {
-    let numbersToSave: number[] = [];
-    let answer = '';
+    
+    if (typeof window !== 'undefined') {
+      // Retrieve current MBTI scores from LocalStorage
+      let mbtiScores = JSON.parse(localStorage.getItem('mbtiScores') || '{}');
 
-    if (option === 'Option 1') {
-      numbersToSave = [1, 3, 8];
-      answer='Strict training and guidance';  
-    } else if (option === 'Option 2') {
-      numbersToSave = [4, 5, 7];
-      answer='Learning through games';
+      // Update score according to user's choice 
+      if (option === 'Option 1') {
+        mbtiScores.N += 1;
+      } else if (option === 'Option 2') {
+        mbtiScores.S += 1;
+      }
+
+      // Update MBTI scores in localStorage
+      localStorage.setItem('mbtiScores', JSON.stringify(mbtiScores));
     }
-
-    // Store the selected numbers in localStorage
-    localStorage.setItem('question3', JSON.stringify(numbersToSave));
-
+    
     // Send response to the backend
     fetch('/api/question-response', {
       method: 'POST',
@@ -51,7 +53,7 @@ const QuizPage: React.FC = () => {
       body: JSON.stringify({
         userId,  
         questionId: 'You are ready to start training your dog. Which method do you prefer?',
-        selectedAnswer: answer,
+        selectedAnswer: option,
       }),
     });
 

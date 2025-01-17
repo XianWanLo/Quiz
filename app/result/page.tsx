@@ -4,12 +4,10 @@ import Head from "next/head";
 import { Wendy_One } from "next/font/google";
 import { useRouter } from "next/navigation";
 import { usePageTracking } from "../hooks/usePageTracking";
+import { listeners } from "process";
+import translations from "../components/translations";
+import {imageMapByLanguage, perfumes, purchase_link} from "../components/perfumes_info";
 
-// Font initialization
-const wendyone = Wendy_One({
-  weight: "400",
-  subsets: ["latin"],
-});
 
 // Helper function to get user ID from localStorage
 const getUniqueUserId = () => {
@@ -17,63 +15,30 @@ const getUniqueUserId = () => {
 };
 
 // Helper function to get the selected language from localStorage
-const getLanguage = (): "English" | "Chinese" => {
-  const lang = localStorage.getItem('language');
-  return lang === "Chinese" ? "Chinese" : "English"; // Default to English if not Chinese
-};
-
-// Priority order for resolving ties in occurrences
-const priorityOrder = [9, 6, 4, 7, 3, 1, 2, 8, 5];
-
-// Image map for both English and Chinese languages
-const imageMapByLanguage: Record<"English" | "Chinese", Record<number, string>> = {
-  English: {
-    1: "/output/option1.png",
-    2: "/output/option2.png",
-    3: "/output/option3.png",
-    4: "/output/option4.png",
-    5: "/output/option5.png",
-    6: "/output/option6.png",
-    7: "/output/option7.png",
-    8: "/output/option8.png",
-    9: "/output/option9.png",
-  },
-  Chinese: {
-    1: "/output/option1_ch.png",
-    2: "/output/option2_ch.png",
-    3: "/output/option3_ch.png",
-    4: "/output/option4_ch.png",
-    5: "/output/option5_ch.png",
-    6: "/output/option6_ch.png",
-    7: "/output/option7_ch.png",
-    8: "/output/option8_ch.png",
-    9: "/output/option9_ch.png",
-  },
+const getLanguage = () => {
+  return localStorage.getItem('language') as ('English' | 'Traditional_Chinese' | 'Simplified_Chinese') || 'English'; 
 };
 
 
-// Map numbers to output names
-const outputNameMap: Record<number, string> = {
-  1: "Border Collie - Perfectionist",
-  2: "Golden Retriever - Helper",
-  3: "Poodle - Achiever",
-  4: "Samoyed - Individualist",
-  5: "Alaskan Malamute - Investigator",
-  6: "Shiba Inu - Loyalist",
-  7: "Cavoodle - Enthusiast",
-  8: "Doberman - Leader",
-  9: "French Bulldog - PeaceMaker",
-};
+
+
+
 
 const ResultPage: React.FC = () => {
-  const [selectedOptions, setSelectedOptions] = useState<number[][]>([]);
-  const [occurrences, setOccurrences] = useState<Record<number, number>>({});
-  const [highestOccurrenceNumber, setHighestOccurrenceNumber] = useState<number | null>(null);
+  
+  const [highestOccurrenceMBTI, setHighestOccurrenceMBTI] = useState<string | null>(null);
   const [showMoreResults, setShowMoreResults] = useState<boolean>(false);
   const [showModal, setShowModal] = useState<boolean>(false);
 
+  // Function to generate combinations
+  const getCombinations = (arrays: string[][]): string[] => {
+    return arrays.reduce<string[]>((acc, curr) => {
+      return acc.flatMap(a => curr.map(c => [...a, c].join(''))); // Spread operator to combine arrays
+    }, ['']); // Change initial value to an array with an empty string
+  };
+
   const router = useRouter();
-  usePageTracking('/more-results');  // Track page view
+  usePageTracking('/result');  // Track page view
 
   useEffect(() => {
     const userId = getUniqueUserId();  // Get user ID
@@ -82,6 +47,45 @@ const ResultPage: React.FC = () => {
     const deviceType = navigator.userAgent.includes('Mobi') ? 'mobile' : 'desktop';
     const channel = document.referrer.includes('google') ? 'organic' : 'direct';
     const startTime = performance.now();
+
+    // Retrieve current MBTI scores from LocalStorage
+    let mbtiScores = JSON.parse(localStorage.getItem('mbtiScores')||'{}')
+
+    // Calculate MBTI string based on scores
+    const mbtiChar: string[][] = [[], [], [], []];;
+  
+    if (mbtiScores.E === mbtiScores.I){
+      mbtiChar[0].push('E');
+      mbtiChar[0].push('I')
+    }else{mbtiScores.E > mbtiScores.I ? mbtiChar[0].push('E') : mbtiChar[0].push('I');}
+
+    if (mbtiScores.N === mbtiScores.S){
+      mbtiChar[1].push('N');
+      mbtiChar[1].push('S')
+    }else{mbtiScores.N > mbtiScores.S ? mbtiChar[1].push('N') : mbtiChar[1].push('S');}
+
+    if (mbtiScores.F === mbtiScores.T){
+      mbtiChar[2].push('F');
+      mbtiChar[2].push('T')
+    }else{mbtiScores.F > mbtiScores.T ? mbtiChar[2].push('F') : mbtiChar[2].push('T');}
+
+    if (mbtiScores.J === mbtiScores.P){
+      mbtiChar[3].push('J');
+      mbtiChar[3].push('P')
+    }else{mbtiScores.J > mbtiScores.P ? mbtiChar[3].push('J') : mbtiChar[3].push('P');};
+
+    // Get all combinations
+    const combinations = getCombinations(mbtiChar);
+    console.log(combinations);
+
+    // Find the best match based on the tie-break order
+    const tieBreakOrder = ["ISFJ", "ESFJ", "ISTJ", "ISFP", "ESTJ", "ESFP", "ENFP", "ISTP", "INFP", "ESTP", "INTP", "ENTP", "ENFJ", "INTJ", "ENTJ", "INFJ"];
+    const bestMatch = combinations.find(combination => tieBreakOrder.includes(combination));
+    console.log(bestMatch);
+    
+    setHighestOccurrenceMBTI(bestMatch||null); // Update the highest occurrence number with MBTI string
+    
+    localStorage.setItem('MBTI', bestMatch||'{}');
 
     // Send game completion data to the server if gameStartTime exists
     if (gameStartTime && userId) {
@@ -103,37 +107,7 @@ const ResultPage: React.FC = () => {
 
       // Clear the game start time after completion
       localStorage.removeItem('gameStartTime');
-    }
-
-    // Collect user answers for questions
-    const options: number[][] = [];
-    let numberCount: Record<number, number> = {};
-
-    for (let i = 1; i <= 8; i++) {
-      const option = localStorage.getItem(`question${i}`);
-      if (option) {
-        const parsedOption = JSON.parse(option);
-        options.push(parsedOption);
-
-        // Count occurrences of each answer
-        parsedOption.forEach((num: number) => {
-          numberCount[num] = (numberCount[num] || 0) + 1;
-        });
-      }
-    }
-
-    setSelectedOptions(options);
-    setOccurrences(numberCount);
-
-    // Find the number with the highest occurrence
-    const maxCount = Math.max(...Object.values(numberCount));
-    const highestNumbers = Object.keys(numberCount)
-      .filter((num) => numberCount[Number(num)] === maxCount)
-      .map(Number);
-
-    // Find the highest priority number from the tie-breaking order
-    const highestPriorityNumber = priorityOrder.find((num) => highestNumbers.includes(num)) ?? null;
-    setHighestOccurrenceNumber(highestPriorityNumber);
+    }  
 
     const sendPageView = () => {
       const responseTime = performance.now() - startTime; // Calculate response time
@@ -158,27 +132,21 @@ const ResultPage: React.FC = () => {
     };
   }, []);
 
+
+
   const language = getLanguage();
+
   // Determine the result image based on the highest occurrence number and language
-  const imageSrc = highestOccurrenceNumber
-  ? imageMapByLanguage[language][highestOccurrenceNumber]
-  : "/images/quiz8.png"; // Default fallback
+  const imageSrc = highestOccurrenceMBTI
+  ? imageMapByLanguage[language][highestOccurrenceMBTI]
+  : "/images_perfume/result/result_en/A3 - ESFP.png"; // Default fallback
 
-  // Define which numbers correspond to 8 or 6 images
-  const showEightImages = [1, 2, 4, 5, 8].includes(highestOccurrenceNumber ?? -1);
-  const showSixImages = [3, 6, 7, 9].includes(highestOccurrenceNumber ?? -1);
+  const recommendPerfume =  highestOccurrenceMBTI
+  ? perfumes[highestOccurrenceMBTI]
+  : perfumes["ENFJ"]; // Default fallback
 
-  // Array of image objects containing image source and corresponding text
-  const imageItems = [
-    { src: "/banner/DogBed1.png", text: "DOG  BED" },
-    { src: "/banner/DogBed2.png", text: "DOG BED" },
-    { src: "/banner/Chewable.png", text: "CHEWABLES" },
-    { src: "/banner/nailGrinder.png", text: "NAIL GRINDER" },
-    { src: "/banner/dogToy.png", text: "DOG TOY" },
-    { src: "/banner/TrainingCollar.png", text: "TRAINING COLLAR" },
-    { src: "/banner/WideDogGates.png", text: "WIDE DOG GATES" },
-    { src: "/banner/dogRamp.png", text: "DOG RAMP" },
-  ];
+  const userFirstName = localStorage.getItem('userName')?.split(' ')[0] || ''; // Save the name to local storage
+  const userNameID = userFirstName + "0001";
 
   // Function to download the image (for Instagram sharing)
   const handleDownload = () => {
@@ -191,7 +159,7 @@ const ResultPage: React.FC = () => {
   // Share based on selected platform
   const handleShare = (platform: string) => {
     const pageUrl = window.location.href;
-    const message = `I played the Doggy Quiz game and got this result! Check yours: ${pageUrl}`;
+    const message = `I played the Perfume Quiz game and got this result! Check yours: ${pageUrl}`;
 
     if (platform === "facebook") {
       const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`;
@@ -203,6 +171,8 @@ const ResultPage: React.FC = () => {
       handleDownload(); // Download the image for Instagram
     }
     setShowModal(false); // Close the modal after sharing
+
+    router.push("/result_afterShare");  // Navigate to the quiz page
   };
 
   // Restart the quiz and clear localStorage
@@ -211,23 +181,7 @@ const ResultPage: React.FC = () => {
     router.push("/");  // Navigate to the quiz page
   };
 
-  useEffect(() => {
-    if (highestOccurrenceNumber) {
-      // Send the outputId and outputName to the API to update the count and name
-      fetch('/api/output-repetition', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          outputId: highestOccurrenceNumber,
-          outputName: outputNameMap[highestOccurrenceNumber],
-        }),
-      })
-        .then(response => response.json())
-        .then(data => console.log('Output repetition updated:', data))
-        .catch(error => console.error('Error updating output repetition:', error));
-    }
-  }, [highestOccurrenceNumber]);
-
+  
   return (
     <>
       <Head>
@@ -236,9 +190,27 @@ const ResultPage: React.FC = () => {
           rel="stylesheet"
         />
       </Head>
-      <div className="relative min-h-screen flex flex-col bg-green-500 justify-between overflow-hidden items-center">
+      <div className="relative min-h-screen flex flex-col bg-[#080C1D] overflow-hidden items-center">
         {/* Scrollable content container */}
-        <div className="flex-grow w-full max-w-md bg-[#070A2E] shadow-md overflow-y-scroll">
+
+        <div className="flex-grow w-full max-w-md shadow-md">
+
+          {/* Top section */}
+          <div className="relative flex w-full items-center justify-between">
+            <h1
+              className="mt-4 ml-8 text-l text-gray-500 hover:bg-gray-200"
+            >
+              No. {userNameID}
+            </h1>
+
+            <h1
+              className="mt-4 mr-8 text-l text-gray-500 font-bold hover:bg-gray-200"
+            >
+            {translations[language].resultPage.prompt}
+            </h1>
+          </div>
+          
+          {/* Result image */}
           <div className="relative w-full flex flex-col">
             <img
               src={imageSrc} // Set the result image dynamically
@@ -247,100 +219,90 @@ const ResultPage: React.FC = () => {
             />
           </div>
 
- {/* Bottom section with buttons */}
- <div className="w-full flex justify-around items-center p-4 bg-[#070A2E]">
-            <button
-              onClick={() => setShowModal(true)}
-              className="border border-gray-300 text-white px-4 py-2 rounded-full hover:bg-gray-200 transition-colors"
-            >
-              Share
-            </button>
-            <button
-              onClick={handleRestart}
-              className="border border-gray-300 text-white px-4 py-2 rounded-full hover:bg-gray-200 transition-colors"
-            >
-              Play Again
-            </button>
-            <button
-              onClick={() => router.push("/more-results")}
-              className="border border-gray-300 text-white px-4 py-2 rounded-full hover:bg-gray-200 transition-colors"
-            >
-              {showMoreResults ? "Hide Results" : "More Results"}
-            </button>
-          </div>
-          {/* Display images and text, one image per row */}
-          <div className="mt-4 flex flex-col gap-4 p-4 bg-[#070A2E]">
-            {showEightImages &&
-              imageItems.slice(0, 8).map((item, index) => (
-                <div key={index} className="relative flex flex-col items-center p-0 rounded-lg shadow-md overflow-hidden">
-                  {/* Image: Full width, position relative to contain text */}
+          {/* Bottom section with buttons */}
+          <div className="relative w-full flex justify-around items-center p-4 bg-[#080C1D]">
+
+                <button
+                  onClick={() => setShowModal(true)}
+                  className="border border-gray-300 text-white px-4 py-2 rounded-full hover:bg-gray-200 transition-colors"
+                >
+                  Share
+                </button>
+                <button
+                  onClick={handleRestart}
+                  className="border border-gray-300 text-white px-4 py-2 rounded-full hover:bg-gray-200 transition-colors"
+                >
+                  Play Again
+                </button>
+                <button
+                  onClick={() => router.push("/more-results_perfume")}
+                  className="border border-gray-300 text-white px-4 py-2 rounded-full hover:bg-gray-200 transition-colors"
+                >
+                  {showMoreResults ? "Hide Results" : "More Results"}
+                </button>
+              </div>
+
+              {/* Display images and text, one image per row */}
+              <div className="relative my-10 flex flex-col gap-10">
+
+                <div className="absolute z-0 w-full inset-y-1/4">
                   <img
-                    src={item.src}
-                    alt={`Image ${index + 1}`}
-                    className="w-full h-64 object-cover rounded-lg"
+                    src="/images_perfume/namePage/background.png"
+                    className="object-cover"
+                    alt="Option background"
                   />
-                  {/* Text: Positioned at the bottom, overlapping the image */}
-                  <div className="absolute bottom-0 w-full bg-black bg-opacity-60 text-white text-center py-2 rounded-b-3xl">
-                    <p className="text-center text-xl font-bold">{item.text}</p>
-                  </div>
                 </div>
-              ))}
 
-            {showSixImages &&
-              imageItems.slice(0, 6).map((item, index) => (
-                <div key={index} className="relative flex flex-col items-center p-0 rounded-lg shadow-md overflow-hidden">
-                  {/* Image: Full width, position relative to contain text */}
-                  <img
-                    src={item.src}
-                    alt={`Image ${index + 1}`}
-                    className="w-full h-64 object-cover rounded-lg"
-                  />
-                  {/* Text: Positioned at the bottom, overlapping the image */}
-                  <div className="absolute bottom-0 w-full bg-black bg-opacity-60 text-white text-center py-2 rounded-b-3xl">
-                  <p className="text-center text-xl font-bold">{item.text}</p>
-                  </div>
-                </div>
-              ))}
-          </div>
+                {recommendPerfume.map((src, index) => (
+                    <div key={index} className="relative flex flex-col mx-14 items-center rounded-2xl bg-purple-300 bg-opacity-20">
+                      {/* Image: Full width, position relative to contain text */}
+                      <img
+                        src={src}
+                        alt={`Recommended_Perfume ${index + 1}`}
+                        className="w-full object-cover rounded-lg"
+                      />
+                    </div>
+                  ))}            
+              </div>
 
-         
-        </div>
-
-        {/* Modal for selecting the sharing platform */}
-        {showModal && (
-          <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-            <div className="bg-white rounded-lg shadow-lg p-6 w-80">
-              <h3 className="text-xl font-bold mb-4">Share your result</h3>
-              <p className="text-gray-700 mb-6">Choose a platform to share your quiz result:</p>
-              <button
-                onClick={() => handleShare("facebook")}
-                className="bg-blue-600 text-white w-full py-2 rounded-full mb-2"
-              >
-                Share on Facebook
-              </button>
-              <button
-                onClick={() => handleShare("twitter")}
-                className="bg-blue-400 text-white w-full py-2 rounded-full mb-2"
-              >
-                Share on Twitter
-              </button>
-              <button
-                onClick={() => handleShare("instagram")}
-                className="bg-pink-600 text-white w-full py-2 rounded-full"
-              >
-                Share on Instagram
-              </button>
-              <button
-                onClick={() => setShowModal(false)}
-                className="mt-4 w-full py-2 border border-gray-400 text-gray-700 rounded-full hover:bg-gray-100"
-              >
-                Cancel
-              </button>
+            
             </div>
+
+            {/* Modal for selecting the sharing platform */}
+            {showModal && (
+              <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
+                <div className="bg-white rounded-lg shadow-lg p-6 w-80">
+                  <h3 className="text-xl font-bold mb-4">Share your result</h3>
+                  <p className="text-gray-700 mb-6">Choose a platform to share your quiz result:</p>
+                  <button
+                    onClick={() => handleShare("facebook")}
+                    className="bg-blue-600 text-white w-full py-2 rounded-full mb-2"
+                  >
+                    Share on Facebook
+                  </button>
+                  <button
+                    onClick={() => handleShare("twitter")}
+                    className="bg-blue-400 text-white w-full py-2 rounded-full mb-2"
+                  >
+                    Share on Twitter
+                  </button>
+                  <button
+                    onClick={() => handleShare("instagram")}
+                    className="bg-pink-600 text-white w-full py-2 rounded-full"
+                  >
+                    Share on Instagram
+                  </button>
+                  <button
+                    onClick={() => setShowModal(false)}
+                    className="mt-4 w-full py-2 border border-gray-400 text-gray-700 rounded-full hover:bg-gray-100"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+            )}
           </div>
-        )}
-      </div>
-    </>
+        </>
   );
 };
 

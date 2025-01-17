@@ -9,14 +9,14 @@ import { usePageTracking } from "../hooks/usePageTracking";
 
 const getLanguageFromLocalStorage = () => {
   if (typeof window !== 'undefined') {
-    return localStorage.getItem('language') as 'English' | 'Chinese' || 'English';
+    return localStorage.getItem('language') as ('English' | 'Traditional_Chinese' | 'Simplified_Chinese') || 'English';  // Default to English if not set
   }
   return 'English';
 };
 
 const QuizPage: React.FC = () => {
   const router = useRouter();
-  const [language, setLanguage] = useState<'English' | 'Chinese'>('English');
+  const [language, setLanguage] = useState<'English' | 'Traditional_Chinese' | 'Simplified_Chinese'>('English');
   const [selectedChoice, setSelectedChoice] = useState<number | null>(null);
 
   useEffect(() => {
@@ -25,20 +25,21 @@ const QuizPage: React.FC = () => {
   }, []);
 
   const handleOptionClick = (option: string) => {
-    let numbersToSave: number[] = [];
-    let answer = '';
+    
+    if (typeof window !== 'undefined') {
+      // Retrieve current MBTI scores from LocalStorage
+      let mbtiScores = JSON.parse(localStorage.getItem('mbtiScores') || '{}');
 
-    if (option === 'Option 1') {
-      numbersToSave = [1, 3, 6];
-      answer = 'Emotional expression';
-      setSelectedChoice(0);
-    } else if (option === 'Option 2') {
-      numbersToSave = [2, 4, 9];
-      answer = 'Linguistic structure';
-      setSelectedChoice(1);
+      // Update score according to user's choice 
+      if (option === 'Option 1') {
+        mbtiScores.F += 1;
+      } else if (option === 'Option 2') {
+        mbtiScores.T += 1;
+      }
+
+      // Update MBTI scores in localStorage
+      localStorage.setItem('mbtiScores', JSON.stringify(mbtiScores));
     }
-
-    localStorage.setItem('question2', JSON.stringify(numbersToSave));
 
     fetch('/api/question-response', {
       method: 'POST',
@@ -46,7 +47,7 @@ const QuizPage: React.FC = () => {
       body: JSON.stringify({
         userId: localStorage.getItem('uniqueUserId'),
         questionId: translations[language].quiz2.question,
-        selectedAnswer: answer,
+        selectedAnswer: option,
       }),
     });
 
@@ -95,21 +96,25 @@ const QuizPage: React.FC = () => {
             </div>
 
             {/* Options container - side by side */}
-            <div className="flex justify-center gap-8 mb-8">
+            <div className="flex gap-8 mb-8">
               {/* Option 1 */}
               <div 
                 onClick={() => handleOptionClick("Option 1")}
-                className="px-5 py-6 bg-[#9B80B4] hover:bg-[#8A71A3] rounded-[35px] cursor-pointer text-white text-sm text-center transition-colors"
+                className="flex items-center px-5 py-6 bg-[#9B80B4] hover:bg-[#8A71A3] rounded-[35px] cursor-pointer transition-colors w-1/2"
               >
+                <h1 className={`text-white text-m text-center`}>
                 {translations[language].quiz2.option1}
+                </h1>
               </div>
 
               {/* Option 2 */}
               <div 
                 onClick={() => handleOptionClick("Option 2")}
-                className="px-5 py-6 bg-[#9B80B4] hover:bg-[#8A71A3] rounded-[35px] cursor-pointer text-white text-sm text-center transition-colors"
+                className="flex items-center px-5 py-6 bg-[#9B80B4] hover:bg-[#8A71A3] rounded-[35px] cursor-pointer text-white text-m text-center transition-colors w-1/2"
               >
-                {translations[language].quiz2.option2}
+               <h1 className={`text-white text-m text-center`}>
+                  {translations[language].quiz2.option2}
+                </h1>
               </div>
             </div>
 

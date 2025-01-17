@@ -12,11 +12,11 @@ const getUniqueUserId = () => {
   return userId;
 };
 const getLanguageFromLocalStorage = () => {
-  return localStorage.getItem('language') as 'English' | 'Chinese' || 'English';  // Default to English if not set
+  return localStorage.getItem('language') as ('English' | 'Traditional_Chinese' | 'Simplified_Chinese') || 'English';  // Default to English if not set
 };
 
 const QuizPage: React.FC = () => {
-  const [language, setLanguage] = useState<'English' | 'Chinese'>('English');  // State to store selected language
+  const [language, setLanguage] = useState<'English' | 'Traditional_Chinese' | 'Simplified_Chinese'>('English');  // State to store selected language
   const router = useRouter();
   usePageTracking('/question6');  // This tracks the question6 page
 
@@ -25,25 +25,22 @@ const QuizPage: React.FC = () => {
   }, []);
 
   const handleOptionClick = (option: string) => {
-    let numbersToSave: number[] = [];
-    let answer = '';
+    
+    if (typeof window !== 'undefined') {
+      // Retrieve current MBTI scores from LocalStorage
+      let mbtiScores = JSON.parse(localStorage.getItem('mbtiScores') || '{}');
 
-    if (option === "Option 1") {
-      numbersToSave = [1, 5];
-      answer='Strong functionality, intellectual development';
-    } else if (option === "Option 2") {
-      numbersToSave = [2, 9];
-      answer='Promoting interaction and deepening relationships';
-    } else if (option === "Option 3") {
-      numbersToSave = [3, 6];
-      answer='Durable and simple, long-lasting use';
-    } else if (option === "Option 4") {
-      numbersToSave = [4, 7];
-      answer='Innovative and interesting, sparking curiosity';
+      // Update score according to user's choice 
+      if (option === 'Option 1') {
+        mbtiScores.F += 1;
+      } else if (option === 'Option 2') {
+        mbtiScores.T += 1;
+      }
+
+      // Update MBTI scores in localStorage
+      localStorage.setItem('mbtiScores', JSON.stringify(mbtiScores));
     }
-
-    localStorage.setItem("question6", JSON.stringify(numbersToSave));
-
+    
     // Send response to the backend
     fetch('/api/question-response', {
       method: 'POST',
@@ -51,7 +48,7 @@ const QuizPage: React.FC = () => {
       body: JSON.stringify({
         userId: getUniqueUserId(),
         questionId: 'When selecting toys for your dog, which type do you prefer?',
-        selectedAnswer: answer,
+        selectedAnswer: option,
       }),
     });
 
@@ -127,21 +124,25 @@ const QuizPage: React.FC = () => {
             </div>
 
             {/* Options container - side by side */}
-            <div className="flex justify-center gap-8 mb-8">
+            <div className="flex gap-8 mb-8">
               {/* Option 1 */}
               <div 
                 onClick={() => handleOptionClick("Option 1")}
-                className="px-5 py-6 bg-[#9B80B4] hover:bg-[#8A71A3] rounded-[35px] cursor-pointer text-white text-sm text-center transition-colors"
+                className="flex items-center px-5 py-6 bg-[#9B80B4] hover:bg-[#8A71A3] rounded-[35px] cursor-pointer transition-colors w-1/2"
               >
+                <h1 className={`text-white text-m text-center`}>
                 {translations[language].quiz6.option1}
+                </h1>
               </div>
 
               {/* Option 2 */}
               <div 
                 onClick={() => handleOptionClick("Option 2")}
-                className="px-5 py-6 bg-[#9B80B4] hover:bg-[#8A71A3] rounded-[35px] cursor-pointer text-white text-sm text-center transition-colors"
+                className="flex items-center px-5 py-6 bg-[#9B80B4] hover:bg-[#8A71A3] rounded-[35px] cursor-pointer text-white text-m text-center transition-colors w-1/2"
               >
-                {translations[language].quiz2.option2}
+               <h1 className={`text-white text-m text-center`}>
+                  {translations[language].quiz6.option2}
+                </h1>
               </div>
             </div>
 

@@ -13,11 +13,11 @@ const getUniqueUserId = () => {
 };
 
 const getLanguageFromLocalStorage = () => {
-  return localStorage.getItem('language') as 'English' | 'Chinese' || 'English';  // Default to English if not set
+  return localStorage.getItem('language') as ('English' | 'Traditional_Chinese' | 'Simplified_Chinese') || 'English';  // Default to English if not set
 };
 
 const QuizPage: React.FC = () => {
-  const [language, setLanguage] = useState<'English' | 'Chinese'>('English');  // State to store selected language
+  const [language, setLanguage] = useState<'English' | 'Traditional_Chinese' | 'Simplified_Chinese'>('English');  // State to store selected language
   const router = useRouter();
   usePageTracking('/question8');  // This tracks the question8 page
 
@@ -56,7 +56,7 @@ const QuizPage: React.FC = () => {
       }),
     });
 
-    router.push("/output");
+    router.push("/question8_perfume");
   };
   
   // Page view tracking
@@ -107,7 +107,7 @@ const QuizPage: React.FC = () => {
         />
       </Head>
       {/*Main Container*/}
-      <div className="flex overflow-hidden flex-col mx-auto w-full h-[1225px] bg-white max-w-[480px]">
+      <div className="flex overflow-hidden flex-col mx-auto w-full h-[1000px] bg-white max-w-[480px]">
         
         <div className="relative w-full h-full bg-slate-900">
             
@@ -129,11 +129,11 @@ const QuizPage: React.FC = () => {
             </div>
 
             <div 
-                onClick={() => handleOptionClick("Option")}
+                onClick={() => handleOptionClick("Proceed")}
                 className="ml-20 mr-20 px-14 py-6 bg-[#9B80B4] hover:bg-[#8A71A3] rounded-[35px] cursor-pointer text-white text-2xl text-center transition-colors"
               >
                 {translations[language].cutscene.content2}
-              </div>
+            </div>
 
           </div>
         </div>

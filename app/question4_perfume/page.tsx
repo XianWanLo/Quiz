@@ -15,11 +15,11 @@ const getUniqueUserId = () => {
 const userId = getUniqueUserId();  // Get or create a unique user ID
 
 const getLanguageFromLocalStorage = () => {
-  return localStorage.getItem('language') as 'English' | 'Chinese' || 'English';  // Default to English if not set
+  return localStorage.getItem('language') as ('English' | 'Traditional_Chinese' | 'Simplified_Chinese') || 'English';  // Default to English if not set
 };
 
 const QuizPage: React.FC = () => {
-  const [language, setLanguage] = useState<'English' | 'Chinese'>('English');  // State to store selected language
+  const [language, setLanguage] = useState<'English' | 'Traditional_Chinese' | 'Simplified_Chinese'>('English');  // State to store selected language
   const router = useRouter();
 
   useEffect(() => {
@@ -29,19 +29,21 @@ const QuizPage: React.FC = () => {
   usePageTracking('/question4');  // This tracks the question4 page
 
   const handleOptionClick = (option: string) => {
-    let numbersToSave: number[] = [];
-    let answer = '';
-
-    if (option === 'Option 1') {
-      numbersToSave = [5, 7];
-      answer='The emotional expression of the poetry';
-    } else if (option === 'Option 2') {
-      numbersToSave = [2, 4, 6, 8];
-      answer='The emotional expression of the poetry';
-        }
     
-    // Store the selected numbers in localStorage
-    localStorage.setItem('question4', JSON.stringify(numbersToSave));
+    if (typeof window !== 'undefined') {
+      // Retrieve current MBTI scores from LocalStorage
+      let mbtiScores = JSON.parse(localStorage.getItem('mbtiScores') || '{}');
+
+      // Update score according to user's choice 
+      if (option === 'Option 1') {
+        mbtiScores.J += 1;
+      } else if (option === 'Option 2') {
+        mbtiScores.P += 1;
+      }
+
+      // Update MBTI scores in localStorage
+      localStorage.setItem('mbtiScores', JSON.stringify(mbtiScores));
+    }
 
     // Send response to the backend
     fetch('/api/question-response', {
@@ -50,11 +52,11 @@ const QuizPage: React.FC = () => {
       body: JSON.stringify({
         userId,
         questionId: 'If the dog gradually becomes independent and no longer hides behind you when scared, how do you feel?',
-        selectedAnswer: answer
+        selectedAnswer: option
       }),
     });
 
-    router.push("/question6_perfume");
+    router.push("/question5_perfume");
   };
 
   // Page view tracking
@@ -152,7 +154,7 @@ const QuizPage: React.FC = () => {
               {/* Option 2 */}
               <div className="flex items-center justify-center mt-4">
                 <img
-                  src="/images_perfume/question3/option2.png"
+                  src="/images_perfume/question4/option2.png"
                   alt="Option 2"
                 />
               </div>
