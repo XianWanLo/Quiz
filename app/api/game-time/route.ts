@@ -23,10 +23,10 @@ export async function POST(req: NextRequest) { // Changed to NextRequest
     });
 
     // Respond with success
-    res.status(200).json({ success: true });
+    return NextResponse.json({ success: true }); // Updated response
   } catch (error) {
     // Log the error and send a response with failure message
     console.error('Error storing game metrics:', error);
-    res.status(500).json({ success: false, message: 'Error storing game metrics' });
+    return NextResponse.json({ success: false, message: 'Error storing game metrics' }, { status: 500 }); // Updated response
   }
 }
