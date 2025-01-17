@@ -280,7 +280,7 @@ const StatsPage: React.FC = () => {
           </div>
           <div className="ml-6 flex flex-col justify-center">
             {/* Manually display the labels on the right */}
-            {outputRepetitionData.labels.map((label, index) => (
+            {/* {outputRepetitionData.labels.map((label, index) => (
               <div key={index} className="flex items-center mb-2">
                 <span
                   className="w-4 h-4 inline-block mr-2"
@@ -290,7 +290,7 @@ const StatsPage: React.FC = () => {
                 ></span>
                 <span>{label}</span>
               </div>
-            ))}
+            ))} */}
           </div>
         </div>
       
