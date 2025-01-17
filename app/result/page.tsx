@@ -9,18 +9,19 @@ import translations from "../components/translations";
 import {imageMapByLanguage, perfumes, purchase_link} from "../components/perfumes_info";
 
 
-// Helper function to get user ID from localStorage
 const getUniqueUserId = () => {
-  return localStorage.getItem('uniqueUserId');
+  if (typeof window !== 'undefined') {
+    return localStorage.getItem('uniqueUserId');
+  }
+  return null; // Return null or a default value if not in the browser
 };
 
-// Helper function to get the selected language from localStorage
 const getLanguage = () => {
-  return localStorage.getItem('language') as ('English' | 'Traditional_Chinese' | 'Simplified_Chinese') || 'English'; 
+  if (typeof window !== 'undefined') {
+    return localStorage.getItem('language') as ('English' | 'Traditional_Chinese' | 'Simplified_Chinese') || 'English'; 
+  }
+  return 'English'; // Return a default value if not in the browser
 };
-
-
-
 
 
 
