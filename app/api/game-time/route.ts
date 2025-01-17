@@ -1,10 +1,10 @@
-import { NextApiRequest, NextApiResponse } from 'next';
+import { NextRequest, NextResponse } from 'next/server'; // Updated import
 import { prisma } from '@/lib/prisma';
 
 // Named export for POST method
-export async function POST(req: NextApiRequest, res: NextApiResponse) {
-  // Destructure the data from the request body
-  const { userId, startTime, endTime, deviceType, channel } = req.body;
+export async function POST(req: NextRequest) { // Changed to NextRequest
+   // Destructure the data from the request body
+   const { userId, startTime, endTime, deviceType, channel } = await req.json(); // Updated to use req.json()
 
   // Calculate the time spent in seconds
   const timeSpent = (new Date(endTime).getTime() - new Date(startTime).getTime()) / 1000; // in seconds
