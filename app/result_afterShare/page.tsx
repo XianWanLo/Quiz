@@ -20,22 +20,26 @@ const getLanguageFromLocalStorage = () => {
 
 const QuizPage: React.FC = () => {
   const [language, setLanguage] = useState<"English" | "Traditional_Chinese" | "Simplified_Chinese">('English');  // State to store selected language
+  const [MBTI, setMBTI] = useState<string | null>(null);
+  const [nameID, setNameID] = useState<string | null>(null); 
   const router = useRouter();
   usePageTracking('/question8');  // This tracks the question8 page
 
   useEffect(() => {
     setLanguage(getLanguageFromLocalStorage());  // Set language based on localStorage
+    setMBTI(localStorage.getItem('MBTI'));
+
+    const userFirstName = localStorage.getItem('userName')?.split(' ')[0] || ''; // Save the name to local storage
+    setNameID(userFirstName + "0001");
+
   }, []);
 
-  const MBTI = localStorage.getItem('MBTI');
 
   // Determine the result image based on the highest occurrence number and language
   const imageSrc = MBTI
   ? imageMapAfterShare[language][MBTI]
   : "/images_perfume/result/result_en/ESFP_after_en.png"; // Default fallback
 
-  const userFirstName = localStorage.getItem('userName')?.split(' ')[0] || ''; // Save the name to local storage
-  const userNameID = userFirstName + "0001";
 
 
   const handleOptionClick = () => {
@@ -109,7 +113,7 @@ const QuizPage: React.FC = () => {
           <h1
             className="mt-4 ml-8 text-l text-gray-500 hover:bg-gray-200"
           >
-            No. {userNameID}
+            No. {nameID}
           </h1>
 
           <h1

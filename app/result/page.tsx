@@ -29,6 +29,7 @@ const ResultPage: React.FC = () => {
   const [highestOccurrenceMBTI, setHighestOccurrenceMBTI] = useState<string | null>(null);
   const [showMoreResults, setShowMoreResults] = useState<boolean>(false);
   const [showModal, setShowModal] = useState<boolean>(false);
+  const [nameID, setNameID] = useState<string | null>(null); 
 
   // Function to generate combinations
   const getCombinations = (arrays: string[][]): string[] => {
@@ -47,6 +48,9 @@ const ResultPage: React.FC = () => {
     const deviceType = navigator.userAgent.includes('Mobi') ? 'mobile' : 'desktop';
     const channel = document.referrer.includes('google') ? 'organic' : 'direct';
     const startTime = performance.now();
+
+    const userFirstName = localStorage.getItem('userName')?.split(' ')[0] || ''; // Save the name to local storage
+    setNameID(userFirstName + "0001");
 
     // Retrieve current MBTI scores from LocalStorage
     let mbtiScores = JSON.parse(localStorage.getItem('mbtiScores')||'{}')
@@ -145,8 +149,6 @@ const ResultPage: React.FC = () => {
   ? perfumes[highestOccurrenceMBTI]
   : perfumes["ENFJ"]; // Default fallback
 
-  const userFirstName = localStorage.getItem('userName')?.split(' ')[0] || ''; // Save the name to local storage
-  const userNameID = userFirstName + "0001";
 
   // Function to download the image (for Instagram sharing)
   const handleDownload = () => {
@@ -200,7 +202,7 @@ const ResultPage: React.FC = () => {
             <h1
               className="mt-4 ml-8 text-l text-gray-500 hover:bg-gray-200"
             >
-              No. {userNameID}
+              No. {nameID}
             </h1>
 
             <h1

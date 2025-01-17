@@ -114,9 +114,6 @@ const MoreResultPage: React.FC = () => {
     };
   }, []);
 
-  const MBTI = localStorage.getItem('MBTI');
-
-  
 
   // Function to download the image (for Instagram sharing)
   const handleDownload = () => {
