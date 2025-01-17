@@ -9,13 +9,19 @@ import translations from "../components/translations";  // Import translations
 
 
 const getUniqueUserId = () => {
-  let userId = localStorage.getItem('uniqueUserId');
-  return userId;
+  if (typeof window !== 'undefined') {
+    return localStorage.getItem('uniqueUserId');
+  }
+  return null; // Return null or a default value if not in the browser
 };
+
 const userId = getUniqueUserId();  // Get or create a unique user ID
 
 const getLanguageFromLocalStorage = () => {
-  return localStorage.getItem('language') as ('English' | 'Traditional_Chinese' | 'Simplified_Chinese') || 'English';  // Default to English if not set
+  if (typeof window !== 'undefined') {
+    return localStorage.getItem('language') as ('English' | 'Traditional_Chinese' | 'Simplified_Chinese') || 'English'; 
+  }
+  return 'English';   
 };
 
 const QuizPage: React.FC = () => {

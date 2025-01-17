@@ -10,13 +10,19 @@ import { usePageTracking } from "../hooks/usePageTracking";
 
 
 const getUniqueUserId = () => {
-  let userId = localStorage.getItem('uniqueUserId');
-  return userId;
+  if (typeof window !== 'undefined') {
+    let userId = localStorage.getItem('uniqueUserId');
+    return userId;
+  }
+  return null;
 };
 const userId = getUniqueUserId();  // Get or create a unique user ID
 
 const getLanguageFromLocalStorage = () => {
-  return localStorage.getItem('language') as ('English' | 'Traditional_Chinese' | 'Simplified_Chinese') || 'English';  // Default to English if not set
+  if (typeof window !== 'undefined') {
+    return localStorage.getItem('language') as ('English' | 'Traditional_Chinese' | 'Simplified_Chinese') || 'English';  // Default to English if not set
+  }
+  return 'English';
 };
 
 const QuizPage: React.FC = () => {

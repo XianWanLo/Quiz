@@ -11,8 +11,11 @@ const wendyone = Wendy_One({
   subsets: ["latin"],
 });
 const getUniqueUserId = () => {
-  let userId = localStorage.getItem('uniqueUserId');
-  return userId;
+  if (typeof window !== 'undefined') {
+    return localStorage.getItem('uniqueUserId');
+  }
+  return null; // Return null or a default value if not in the browser
+
 };
 const userId = getUniqueUserId();  // Get or create a unique user ID
 
