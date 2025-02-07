@@ -17,6 +17,8 @@ const translations = {
         results: "Test results help personal development and enhance communication",
       },
       quiz: {
+        valentine:"Valentine's Day",
+        year:"2025",
         title: "Discover Your Scent-Based Personality",
         subtitle: "",
         startButton: "Let's Start",
@@ -140,6 +142,8 @@ const translations = {
         results: "測試結果有助於個人發展並增強溝通"
       },
       quiz: {
+        valentine:"Valentine's Day",
+        year:"2025",
         title: "香氣之旅",
         subtitle: "\"尋找屬於自己獨特個性魅力\"",
         questions: "問題",
@@ -259,6 +263,8 @@ const translations = {
         results: "测试结果有助于个人发展并增强沟通"
       },
       quiz: {
+        valentine:"Valentine's Day",
+        year:"2025",
         title: "香气之旅",
         subtitle: "\"寻找属于自己独特个性魅力\"",
         questions: "问题",

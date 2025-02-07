@@ -19,16 +19,12 @@ const getLanguageFromLocalStorage = () => {
 const QuizPage: React.FC = () => {
   const [language, setLanguage] = useState<'English' | 'Traditional_Chinese' | 'Simplified_Chinese'>('English');  // State to store selected language
   const router = useRouter();
-  //usePageTracking('/question8');  // This tracks the question8 page
-
-  useEffect(() => {
-    setLanguage(getLanguageFromLocalStorage());  // Set language based on localStorage
-  }, []);
-
+  
   
   // Page view tracking
   useEffect(() => {
-      
+    
+    setLanguage(getLanguageFromLocalStorage());  // Set language based on localStorage
     const timer = setTimeout(() => {
       router.push('/result');  // Change '/nextPage' to your desired route
     }, 3000);  // 3000 milliseconds = 3 seconds

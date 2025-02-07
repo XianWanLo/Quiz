@@ -1,4 +1,4 @@
-import { Patrick_Hand,Stint_Ultra_Condensed,Wendy_One, Whisper } from "next/font/google";
+import { Patrick_Hand,Stint_Ultra_Condensed,Wendy_One, Whisper, Waterfall } from "next/font/google";
 
 export const patrickhand = Patrick_Hand({
     weight: "400",
@@ -16,6 +16,11 @@ export const wendyone = Wendy_One({
   });
 
   export const whisper = Whisper({
+    weight: "400",
+    subsets: ["latin"],
+  });
+
+  export const waterfall = Waterfall({
     weight: "400",
     subsets: ["latin"],
   });

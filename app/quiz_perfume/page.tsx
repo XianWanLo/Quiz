@@ -2,18 +2,13 @@
 "use client";
 import { useRouter } from "next/navigation";
 import Head from "next/head";
-import { Wendy_One } from "next/font/google";
+import { wendyone, waterfall } from "../components/font";
 import { useEffect, useState } from "react";
 import translations from "../components/translations"; // Import translations
 //import { usePageTracking } from "../hooks/usePageTracking";
 import LanguageSelector from "../components/languageselector";
 import AudioPlayer from '../components/audioPlayer';
 
-
-const wendyone = Wendy_One({
-  weight: "400",
-  subsets: ["latin"],
-});
 
 // Utility to get or generate a unique user ID
 function getUniqueUserId() {
@@ -158,13 +153,25 @@ const QuizPage: React.FC = () => {
             <LanguageSelector />
         </div>
        
+        <div className="relative h-[550px] w-full">
         {/* image */}
-        <div className="relative h-[630px] w-full">
-          <img
-            src="/images_perfume/quiz/background.png"
-            alt="Perfume quiz"
-            className="object-cover w-full"
-          />
+          <div className="absolute">
+            <img
+              src="/images_perfume/quiz/valentine_background.png"
+              alt="Perfume quiz"
+              className="object-cover"
+            />
+          </div>
+
+          <div className="absolute bottom-5 left-0 right-0 text-center font-bold text-white">
+            <pre className={`text-7xl ${waterfall.className}`}>
+            {translations[language].quiz.valentine}
+            </pre>
+            <pre className={`text-3xl ${waterfall.className}`}>
+            {translations[language].quiz.year}
+            </pre>
+          </div>
+          
         </div>
 
 
@@ -178,6 +185,7 @@ const QuizPage: React.FC = () => {
               className="object-cover"
               alt="Option background"
             />
+            
           </div>
 
           {/* Background image 2 */}

@@ -1,7 +1,7 @@
 "use client";
 import { useRouter } from "next/navigation";
 import Head from "next/head";
-import { wendyone, stintultra, patrickhand } from "../components/font";
+import { stintultra, patrickhand } from "../components/font";
 import { useEffect, useState } from "react";
 import translations from "../components/translations";
 //import { usePageTracking } from "../hooks/usePageTracking";
