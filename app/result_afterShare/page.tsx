@@ -21,11 +21,11 @@ const getLanguageFromLocalStorage = () => {
 const QuizPage: React.FC = () => {
   const [language, setLanguage] = useState<"English" | "Traditional_Chinese" | "Simplified_Chinese">('English');  // State to store selected language
   const [MBTI, setMBTI] = useState<string | null>(null);
+  const [firstName, setFirstName] = useState<string | null>(null); 
   const [nameID, setNameID] = useState<string | null>(null); 
   const router = useRouter();
   usePageTracking('/question8');  // This tracks the question8 page
 
-  const userFirstName = localStorage.getItem('userName')?.split(' ')[0] || ''; // Save the name to local storage
   // Determine the result image based on the highest occurrence number and language
   const imageSrc = MBTI
   ? imageMapAfterShare[language][MBTI]
@@ -35,6 +35,8 @@ const QuizPage: React.FC = () => {
   useEffect(() => {
     setLanguage(getLanguageFromLocalStorage());  // Set language based on localStorage
     setMBTI(localStorage.getItem('MBTI'));
+    const userFirstName = localStorage.getItem('userName')?.split(' ')[0] || ''; // Save the name to local storage
+    setFirstName(userFirstName);
     setNameID(userFirstName + "0001");
 
   }, []);
@@ -55,7 +57,7 @@ const QuizPage: React.FC = () => {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ 
               email, 
-              userFirstName, 
+              firstName, 
               imageSrc 
         }),
       });
