@@ -5,7 +5,7 @@ import Head from "next/head";
 import { wendyone, stintultra, patrickhand } from "../components/font";
 import { useEffect, useState } from "react";
 import translations from "../components/translations"; // Import translations
-import { usePageTracking } from "../hooks/usePageTracking";
+//import { usePageTracking } from "../hooks/usePageTracking";
 
 
 
@@ -33,7 +33,7 @@ const QuizPage: React.FC = () => {
     setLanguage(getLanguageFromLocalStorage()); // Get the selected language from localStorage
   }, []);
 
-  usePageTracking('/question3');  // This tracks the question3 page
+  //usePageTracking('/question3');  // This tracks the question3 page
 
   const handleOptionClick = (option: string) => {
     
@@ -67,46 +67,46 @@ const QuizPage: React.FC = () => {
   };
 
   // Page view tracking
-  useEffect(() => {
-    const userId = getUniqueUserId();  
-    const deviceType = navigator.userAgent.includes('Mobi') ? 'mobile' : 'desktop';
-    const channel = document.referrer.includes('google') ? 'organic' : 'direct';
+  // useEffect(() => {
+  //   const userId = getUniqueUserId();  
+  //   const deviceType = navigator.userAgent.includes('Mobi') ? 'mobile' : 'desktop';
+  //   const channel = document.referrer.includes('google') ? 'organic' : 'direct';
     
-    const startTime = performance.now();
+  //   const startTime = performance.now();
 
-    const sendPageView = () => {
-      const responseTime = performance.now() - startTime; 
-      fetch('/api/page-views', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          userId,
-          page: 'Question 3 Page',
-          deviceType,
-          channel,
-          responseTime, 
-        }),
-      });
+  //   const sendPageView = () => {
+  //     const responseTime = performance.now() - startTime; 
+  //     fetch('/api/page-views', {
+  //       method: 'POST',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify({
+  //         userId,
+  //         page: 'Question 3 Page',
+  //         deviceType,
+  //         channel,
+  //         responseTime, 
+  //       }),
+  //     });
 
-      fetch('/api/page-response', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          userId,
-          page: 'Question 3 Page',
-          deviceType,
-          channel,
-          responseTime, 
-        }),
-      });
-    };
+  //     fetch('/api/page-response', {
+  //       method: 'POST',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify({
+  //         userId,
+  //         page: 'Question 3 Page',
+  //         deviceType,
+  //         channel,
+  //         responseTime, 
+  //       }),
+  //     });
+  //   };
 
-    const timeoutId = setTimeout(sendPageView, 300);
+  //   const timeoutId = setTimeout(sendPageView, 300);
 
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, []);
+  //   return () => {
+  //     clearTimeout(timeoutId);
+  //   };
+  // }, []);
 
   return (
     <>

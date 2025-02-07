@@ -5,7 +5,7 @@ import Head from "next/head";
 import { Wendy_One } from "next/font/google";
 import { useEffect, useState } from "react";
 import translations from "../components/translations"; // Import translations
-import { usePageTracking } from "../hooks/usePageTracking";
+//import { usePageTracking } from "../hooks/usePageTracking";
 import LanguageSelector from "../components/languageselector";
 import AudioPlayer from '../components/audioPlayer';
 
@@ -42,7 +42,7 @@ const QuizPage: React.FC = () => {
   const router = useRouter();
   const [language, setLanguage] = useState<'English' | 'Traditional_Chinese' | 'Simplified_Chinese'>('English'); // Default language
 
-  usePageTracking('/quiz');  // This tracks the quiz page
+  //usePageTracking('/quiz');  // This tracks the quiz page
 
   useEffect(() => {
   
@@ -93,55 +93,55 @@ const QuizPage: React.FC = () => {
     router.push("/question1_perfume"); // Navigates to /question1
   };
 
-  useEffect(() => {
-    const userId = getUniqueUserId();  // Get or create a unique user ID
+  // useEffect(() => {
+  //   const userId = getUniqueUserId();  // Get or create a unique user ID
 
-    if (userId) {
-      // Track game start
-      const startTime = new Date().toISOString();
-      localStorage.setItem('gameStartTime', startTime);  // Save the game start time in localStorage
-    }
+  //   if (userId) {
+  //     // Track game start
+  //     const startTime = new Date().toISOString();
+  //     localStorage.setItem('gameStartTime', startTime);  // Save the game start time in localStorage
+  //   }
 
-    const deviceType = navigator.userAgent.includes('Mobi') ? 'mobile' : 'desktop';
-    const channel = document.referrer.includes('google') ? 'organic' : 'direct';
+  //   const deviceType = navigator.userAgent.includes('Mobi') ? 'mobile' : 'desktop';
+  //   const channel = document.referrer.includes('google') ? 'organic' : 'direct';
     
-    // Measure page load response time
-    const startTime = performance.now();
+  //   // Measure page load response time
+  //   const startTime = performance.now();
 
-    const sendPageView = () => {
-      const responseTime = performance.now() - startTime; // Calculate response time
-      fetch('/api/page-views', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          userId,
-          page: 'Start Game Page',
-          deviceType,
-          channel,
-          responseTime, // Include the response time
-        }),
-      });
+  //   const sendPageView = () => {
+  //     const responseTime = performance.now() - startTime; // Calculate response time
+  //     fetch('/api/page-views', {
+  //       method: 'POST',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify({
+  //         userId,
+  //         page: 'Start Game Page',
+  //         deviceType,
+  //         channel,
+  //         responseTime, // Include the response time
+  //       }),
+  //     });
 
-      fetch('/api/page-response', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          userId,
-          page: 'Start Game Page',
-          deviceType,
-          channel,
-          responseTime, // Include the response time
-        }),
-      });
-    };
+  //     fetch('/api/page-response', {
+  //       method: 'POST',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify({
+  //         userId,
+  //         page: 'Start Game Page',
+  //         deviceType,
+  //         channel,
+  //         responseTime, // Include the response time
+  //       }),
+  //     });
+  //   };
 
-    // Debounce the call to avoid multiple requests
-    const timeoutId = setTimeout(sendPageView, 300);
+  //   // Debounce the call to avoid multiple requests
+  //   const timeoutId = setTimeout(sendPageView, 300);
 
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, []);
+  //   return () => {
+  //     clearTimeout(timeoutId);
+  //   };
+  // }, []);
 
   return (
     <>

@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Head from "next/head";
 import { Wendy_One } from "next/font/google";
 import { useRouter } from "next/navigation";
-import { usePageTracking } from "../hooks/usePageTracking";
+//import { usePageTracking } from "../hooks/usePageTracking";
 import { listeners } from "process";
 import translations from "../components/translations";
 import {imageMapByLanguage, perfumes, purchase_link} from "../components/perfumes_info";
@@ -40,15 +40,15 @@ const ResultPage: React.FC = () => {
   };
 
   const router = useRouter();
-  usePageTracking('/result');  // Track page view
+  //usePageTracking('/result');  // Track page view
 
   useEffect(() => {
-    const userId = getUniqueUserId();  // Get user ID
-    const gameStartTime = localStorage.getItem('gameStartTime');  // Retrieve start time
-    const endTime = new Date().toISOString();  // Get current time for game completion
-    const deviceType = navigator.userAgent.includes('Mobi') ? 'mobile' : 'desktop';
-    const channel = document.referrer.includes('google') ? 'organic' : 'direct';
-    const startTime = performance.now();
+    // const userId = getUniqueUserId();  // Get user ID
+    // const gameStartTime = localStorage.getItem('gameStartTime');  // Retrieve start time
+    // const endTime = new Date().toISOString();  // Get current time for game completion
+    // const deviceType = navigator.userAgent.includes('Mobi') ? 'mobile' : 'desktop';
+    // const channel = document.referrer.includes('google') ? 'organic' : 'direct';
+    // const startTime = performance.now();
 
     const userFirstName = localStorage.getItem('userName')?.split(' ')[0] || ''; // Save the name to local storage
     setNameID(userFirstName + "0001");
@@ -93,49 +93,49 @@ const ResultPage: React.FC = () => {
     localStorage.setItem('MBTI', bestMatch||'{}');
 
     // Send game completion data to the server if gameStartTime exists
-    if (gameStartTime && userId) {
-      const timeSpent = (new Date(endTime).getTime() - new Date(gameStartTime).getTime()) / 1000; // Calculate time spent in seconds
+    // if (gameStartTime && userId) {
+    //   const timeSpent = (new Date(endTime).getTime() - new Date(gameStartTime).getTime()) / 1000; // Calculate time spent in seconds
 
-      // Send game completion metrics
-      fetch('/api/game-complete', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          userId,
-          startTime: gameStartTime,
-          endTime,
-          timeSpent,
-          deviceType,
-          channel,
-        }),
-      });
+    //   // Send game completion metrics
+    //   fetch('/api/game-complete', {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify({
+    //       userId,
+    //       startTime: gameStartTime,
+    //       endTime,
+    //       timeSpent,
+    //       deviceType,
+    //       channel,
+    //     }),
+    //   });
 
       // Clear the game start time after completion
-      localStorage.removeItem('gameStartTime');
-    }  
+      // localStorage.removeItem('gameStartTime');
+    // }  
 
-    const sendPageView = () => {
-      const responseTime = performance.now() - startTime; // Calculate response time
-      fetch('/api/page-views', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          userId,
-          page: 'Result Page',
-          deviceType,
-          channel,
-          responseTime, // Include the response time
-        }),
-      });
-    };
+    // const sendPageView = () => {
+    //   const responseTime = performance.now() - startTime; // Calculate response time
+    //   fetch('/api/page-views', {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify({
+    //       userId,
+    //       page: 'Result Page',
+    //       deviceType,
+    //       channel,
+    //       responseTime, // Include the response time
+    //     }),
+    //   });
+    //};
 
     // Debounce the call to avoid multiple requests
-    const timeoutId = setTimeout(sendPageView, 300);
+    // const timeoutId = setTimeout(sendPageView, 300);
 
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, []);
+    // return () => {
+    //   clearTimeout(timeoutId);
+    // };
+   }, []);
 
 
 

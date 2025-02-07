@@ -4,7 +4,7 @@ import Head from "next/head";
 import { wendyone, stintultra, patrickhand } from "../components/font";
 import { useEffect, useState } from "react";
 import translations from "../components/translations";
-import { usePageTracking } from "../hooks/usePageTracking";
+//import { usePageTracking } from "../hooks/usePageTracking";
 import AudioPlayer from '../components/audioPlayer';
 
 
@@ -45,18 +45,17 @@ const QuizPage: React.FC = () => {
         localStorage.setItem('audioCurrentTime', JSON.stringify(audioRef.currentTime));
       }
 
-    }
-    
+    } 
 
-    fetch('/api/question-response', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        userId: localStorage.getItem('uniqueUserId'),
-        questionId: translations[language].quiz1.question,
-        selectedAnswer: option,
-      }),
-    });
+    // fetch('/api/question-response', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({
+    //     userId: localStorage.getItem('uniqueUserId'),
+    //     questionId: translations[language].quiz1.question,
+    //     selectedAnswer: option,
+    //   }),
+    // });
 
     router.push("/question2_perfume");
   };

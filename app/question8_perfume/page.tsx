@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import Head from "next/head";
 import { wendyone, whisper, patrickhand } from "../components/font";
 import { useEffect, useState } from "react";
-import { usePageTracking } from "../hooks/usePageTracking";
+//import { usePageTracking } from "../hooks/usePageTracking";
 import translations from "../components/translations"; // Import translations
 import { SlEarphones } from "react-icons/sl";
 
@@ -20,7 +20,7 @@ const getLanguageFromLocalStorage = () => {
 const QuizPage: React.FC = () => {
   const [language, setLanguage] = useState<'English' | 'Traditional_Chinese' | 'Simplified_Chinese'>('English');  // State to store selected language
   const router = useRouter();
-  usePageTracking('/question8');  // This tracks the question8 page
+  //usePageTracking('/question8');  // This tracks the question8 page
 
   const [showFinishMessage, setShowFinishMessage] = useState(false); // New state for the finish message
   const [selectedOption1, setSelectedOption1] = useState(false); // New state for selected option
@@ -29,10 +29,6 @@ const QuizPage: React.FC = () => {
   const [selectedOption4, setSelectedOption4] = useState(false);
   const [selectedOption5, setSelectedOption5] = useState(false);
   const [selectedOption6, setSelectedOption6] = useState(false);
-
-  useEffect(() => {
-    setLanguage(getLanguageFromLocalStorage());  // Set language based on localStorage
-  }, []);
 
   const handleOptionClick = (option: string) => {
     let numbersToSave: number[] = [];
@@ -97,45 +93,50 @@ const QuizPage: React.FC = () => {
 
     router.push("/question_namePage");
   };
-  
-  // Page view tracking
+
   useEffect(() => {
-    const userId = getUniqueUserId();
-    const deviceType = navigator.userAgent.includes('Mobi') ? 'mobile' : 'desktop';
-    const channel = document.referrer.includes('google') ? 'organic' : 'direct';
-
-    const startTime = performance.now();
-
-    const sendPageView = () => {
-      const responseTime = performance.now() - startTime;
-      fetch('/api/page-views', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          userId,
-          page: 'Question 8 Page',
-          deviceType,
-          channel,
-          responseTime,
-        }),
-      });
-
-      fetch('/api/page-response', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          userId,
-          page: 'Question 8 Page',
-          deviceType,
-          channel,
-          responseTime,
-        }),
-      });
-    };
-
-    const timeoutId = setTimeout(sendPageView, 300);
-    return () => clearTimeout(timeoutId);
+    setLanguage(getLanguageFromLocalStorage());  // Set language based on localStorage
   }, []);
+
+  // Page view tracking
+  // useEffect(() => {
+
+  //   const userId = getUniqueUserId();
+  //   const deviceType = navigator.userAgent.includes('Mobi') ? 'mobile' : 'desktop';
+  //   const channel = document.referrer.includes('google') ? 'organic' : 'direct';
+
+  //   const startTime = performance.now();
+
+  //   const sendPageView = () => {
+  //     const responseTime = performance.now() - startTime;
+  //     fetch('/api/page-views', {
+  //       method: 'POST',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify({
+  //         userId,
+  //         page: 'Question 8 Page',
+  //         deviceType,
+  //         channel,
+  //         responseTime,
+  //       }),
+  //     });
+
+  //     fetch('/api/page-response', {
+  //       method: 'POST',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify({
+  //         userId,
+  //         page: 'Question 8 Page',
+  //         deviceType,
+  //         channel,
+  //         responseTime,
+  //       }),
+  //     });
+  //   };
+
+  //   const timeoutId = setTimeout(sendPageView, 300);
+  //   return () => clearTimeout(timeoutId);
+  // }, []);
 
   return (
     <>

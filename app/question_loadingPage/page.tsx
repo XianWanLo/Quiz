@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import Head from "next/head";
 import { wendyone, stintultra, patrickhand, whisper } from "../components/font";
 import { useEffect, useState } from "react";
-import { usePageTracking } from "../hooks/usePageTracking";
+//import { usePageTracking } from "../hooks/usePageTracking";
 import translations from "../components/translations"; // Import translations
 
 
@@ -19,7 +19,7 @@ const getLanguageFromLocalStorage = () => {
 const QuizPage: React.FC = () => {
   const [language, setLanguage] = useState<'English' | 'Traditional_Chinese' | 'Simplified_Chinese'>('English');  // State to store selected language
   const router = useRouter();
-  usePageTracking('/question8');  // This tracks the question8 page
+  //usePageTracking('/question8');  // This tracks the question8 page
 
   useEffect(() => {
     setLanguage(getLanguageFromLocalStorage());  // Set language based on localStorage

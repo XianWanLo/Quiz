@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import Head from "next/head";
 import { wendyone, stintultra, patrickhand } from "../components/font";
 import { useEffect, useState } from "react";
-import { usePageTracking } from "../hooks/usePageTracking";
+//import { usePageTracking } from "../hooks/usePageTracking";
 import translations from "../components/translations"; // Import translations
 
 
@@ -19,7 +19,7 @@ const getLanguageFromLocalStorage = () => {
 const QuizPage: React.FC = () => {
   const [language, setLanguage] = useState<'English' | 'Traditional_Chinese' | 'Simplified_Chinese'>('English');  // State to store selected language
   const router = useRouter();
-  usePageTracking('/question8');  // This tracks the question8 page
+  //usePageTracking('/question8');  // This tracks the question8 page
 
   useEffect(() => {
     setLanguage(getLanguageFromLocalStorage());  // Set language based on localStorage
@@ -30,58 +30,58 @@ const QuizPage: React.FC = () => {
     const nameInput = (document.getElementById("nameInput") as HTMLInputElement).value; // Get the input value
     localStorage.setItem('userName', nameInput); // Save the name to local storage
     
-    // Send response to the backend
-    fetch('/api/question-response', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        userId: getUniqueUserId(),
-        questionId: 'If you have the opportunity to participate in an activity with your dog, what interests you the most?'
-      }),
-    });
+    // // Send response to the backend
+    // fetch('/api/question-response', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({
+    //     userId: getUniqueUserId(),
+    //     questionId: 'If you have the opportunity to participate in an activity with your dog, what interests you the most?'
+    //   }),
+    // });
 
 
     router.push("/question_loadingPage");
   };
   
   // Page view tracking
-  useEffect(() => {
-    const userId = getUniqueUserId();
-    const deviceType = navigator.userAgent.includes('Mobi') ? 'mobile' : 'desktop';
-    const channel = document.referrer.includes('google') ? 'organic' : 'direct';
+  // useEffect(() => {
+  //   const userId = getUniqueUserId();
+  //   const deviceType = navigator.userAgent.includes('Mobi') ? 'mobile' : 'desktop';
+  //   const channel = document.referrer.includes('google') ? 'organic' : 'direct';
 
-    const startTime = performance.now();
+  //   const startTime = performance.now();
 
-    const sendPageView = () => {
-      const responseTime = performance.now() - startTime;
-      fetch('/api/page-views', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          userId,
-          page: 'Question 8 Page',
-          deviceType,
-          channel,
-          responseTime,
-        }),
-      });
+  //   const sendPageView = () => {
+  //     const responseTime = performance.now() - startTime;
+  //     fetch('/api/page-views', {
+  //       method: 'POST',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify({
+  //         userId,
+  //         page: 'Question 8 Page',
+  //         deviceType,
+  //         channel,
+  //         responseTime,
+  //       }),
+  //     });
 
-      fetch('/api/page-response', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          userId,
-          page: 'Question 8 Page',
-          deviceType,
-          channel,
-          responseTime,
-        }),
-      });
-    };
+  //     fetch('/api/page-response', {
+  //       method: 'POST',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify({
+  //         userId,
+  //         page: 'Question 8 Page',
+  //         deviceType,
+  //         channel,
+  //         responseTime,
+  //       }),
+  //     });
+  //   };
 
-    const timeoutId = setTimeout(sendPageView, 300);
-    return () => clearTimeout(timeoutId);
-  }, []);
+  //   const timeoutId = setTimeout(sendPageView, 300);
+  //   return () => clearTimeout(timeoutId);
+  // }, []);
 
   return (
     <>

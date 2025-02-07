@@ -5,8 +5,8 @@ import { wendyone, stintultra, patrickhand } from "../components/font";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import translations from "../components/translations";
-import { usePageTracking } from "../hooks/usePageTracking";
-import AudioPlayer from "../components/audioPlayer";
+//import { usePageTracking } from "../hooks/usePageTracking";
+
 
 const getLanguageFromLocalStorage = () => {
   if (typeof window !== 'undefined') {
@@ -42,15 +42,15 @@ const QuizPage: React.FC = () => {
       localStorage.setItem('mbtiScores', JSON.stringify(mbtiScores));
     }
 
-    fetch('/api/question-response', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        userId: localStorage.getItem('uniqueUserId'),
-        questionId: translations[language].quiz2.question,
-        selectedAnswer: option,
-      }),
-    });
+    // fetch('/api/question-response', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({
+    //     userId: localStorage.getItem('uniqueUserId'),
+    //     questionId: translations[language].quiz2.question,
+    //     selectedAnswer: option,
+    //   }),
+    // });
 
     setTimeout(() => {
       router.push("/question3_perfume");

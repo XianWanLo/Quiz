@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import Head from "next/head";
 import { wendyone, stintultra, patrickhand } from "../components/font";
 import { useEffect, useState } from "react";
-import { usePageTracking } from "../hooks/usePageTracking";
+//import { usePageTracking } from "../hooks/usePageTracking";
 import translations from "../components/translations";  // Import translations
 
 
@@ -32,7 +32,7 @@ const QuizPage: React.FC = () => {
     setLanguage(getLanguageFromLocalStorage());  // Set language based on localStorage
   }, []);
 
-  usePageTracking('/question4');  // This tracks the question4 page
+  //usePageTracking('/question4');  // This tracks the question4 page
 
   const handleOptionClick = (option: string) => {
     
@@ -66,48 +66,48 @@ const QuizPage: React.FC = () => {
   };
 
   // Page view tracking
-  useEffect(() => {
-    const userId = getUniqueUserId();  
-    const deviceType = navigator.userAgent.includes('Mobi') ? 'mobile' : 'desktop';
-    const channel = document.referrer.includes('google') ? 'organic' : 'direct';
+  // useEffect(() => {
+  //   const userId = getUniqueUserId();  
+  //   const deviceType = navigator.userAgent.includes('Mobi') ? 'mobile' : 'desktop';
+  //   const channel = document.referrer.includes('google') ? 'organic' : 'direct';
     
-    // Measure page load response time
-    const startTime = performance.now();
+  //   // Measure page load response time
+  //   const startTime = performance.now();
 
-    const sendPageView = () => {
-      const responseTime = performance.now() - startTime;  // Calculate response time
-      fetch('/api/page-views', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          userId,
-          page: 'Question 4 Page',
-          deviceType,
-          channel,
-          responseTime,  // Include the response time
-        }),
-      });
+  //   const sendPageView = () => {
+  //     const responseTime = performance.now() - startTime;  // Calculate response time
+  //     fetch('/api/page-views', {
+  //       method: 'POST',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify({
+  //         userId,
+  //         page: 'Question 4 Page',
+  //         deviceType,
+  //         channel,
+  //         responseTime,  // Include the response time
+  //       }),
+  //     });
 
-      fetch('/api/page-response', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          userId,
-          page: 'Question 4 Page',
-          deviceType,
-          channel,
-          responseTime,  // Include the response time
-        }),
-      });
-    };
+  //     fetch('/api/page-response', {
+  //       method: 'POST',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify({
+  //         userId,
+  //         page: 'Question 4 Page',
+  //         deviceType,
+  //         channel,
+  //         responseTime,  // Include the response time
+  //       }),
+  //     });
+  //   };
 
-    // Debounce the call to avoid multiple requests
-    const timeoutId = setTimeout(sendPageView, 300);
+  //   // Debounce the call to avoid multiple requests
+  //   const timeoutId = setTimeout(sendPageView, 300);
 
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, []);
+  //   return () => {
+  //     clearTimeout(timeoutId);
+  //   };
+  // }, []);
 
   return (
     <>

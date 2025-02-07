@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import Head from "next/head";
 import { wendyone, stintultra, patrickhand } from "../components/font";
 import { useEffect, useState } from "react";
-import { usePageTracking } from "../hooks/usePageTracking";
+//import { usePageTracking } from "../hooks/usePageTracking";
 import translations from "../components/translations"; // Import translations
 
 
@@ -18,7 +18,7 @@ const getLanguageFromLocalStorage = () => {
 const QuizPage: React.FC = () => {
   const [language, setLanguage] = useState<'English' | 'Traditional_Chinese' | 'Simplified_Chinese'>('English');  // State to store selected language
   const router = useRouter();
-  usePageTracking('/question6');  // This tracks the question6 page
+  //usePageTracking('/question6');  // This tracks the question6 page
 
   useEffect(() => {
     setLanguage(getLanguageFromLocalStorage());  // Set language based on localStorage
@@ -41,16 +41,16 @@ const QuizPage: React.FC = () => {
       localStorage.setItem('mbtiScores', JSON.stringify(mbtiScores));
     }
     
-    // Send response to the backend
-    fetch('/api/question-response', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        userId: getUniqueUserId(),
-        questionId: 'When selecting toys for your dog, which type do you prefer?',
-        selectedAnswer: option,
-      }),
-    });
+    // // Send response to the backend
+    // fetch('/api/question-response', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({
+    //     userId: getUniqueUserId(),
+    //     questionId: 'When selecting toys for your dog, which type do you prefer?',
+    //     selectedAnswer: option,
+    //   }),
+    // });
 
     router.push("/question7_perfume");
   };

@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import Head from "next/head";
 import { wendyone, stintultra, patrickhand } from "../components/font";
 import { useEffect, useState } from "react";
-import { usePageTracking } from "../hooks/usePageTracking";
+//import { usePageTracking } from "../hooks/usePageTracking";
 import translations from "../components/translations"; // Import translations
 
 
@@ -19,7 +19,7 @@ const getLanguageFromLocalStorage = () => {
 const QuizPage: React.FC = () => {
   const [language, setLanguage] = useState<'English' | 'Traditional_Chinese' | 'Simplified_Chinese'>('English');  // State to store selected language
   const router = useRouter();
-  usePageTracking('/question8');  // This tracks the question8 page
+  //usePageTracking('/question8');  // This tracks the question8 page
 
   useEffect(() => {
     setLanguage(getLanguageFromLocalStorage());  // Set language based on localStorage
@@ -59,45 +59,7 @@ const QuizPage: React.FC = () => {
     router.push("/question8_perfume");
   };
   
-  // Page view tracking
-  useEffect(() => {
-    const userId = getUniqueUserId();
-    const deviceType = navigator.userAgent.includes('Mobi') ? 'mobile' : 'desktop';
-    const channel = document.referrer.includes('google') ? 'organic' : 'direct';
-
-    const startTime = performance.now();
-
-    const sendPageView = () => {
-      const responseTime = performance.now() - startTime;
-      fetch('/api/page-views', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          userId,
-          page: 'Question 8 Page',
-          deviceType,
-          channel,
-          responseTime,
-        }),
-      });
-
-      fetch('/api/page-response', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          userId,
-          page: 'Question 8 Page',
-          deviceType,
-          channel,
-          responseTime,
-        }),
-      });
-    };
-
-    const timeoutId = setTimeout(sendPageView, 300);
-    return () => clearTimeout(timeoutId);
-  }, []);
-
+  
   return (
     <>
       <Head>

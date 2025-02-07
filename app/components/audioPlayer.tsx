@@ -7,30 +7,24 @@ const AudioPlayer =   () => {
 
   useEffect(() => {
     
-    if (typeof window !== 'undefined') {
+    const audio = audioRef.current; // store ref in a variable 
+
+    if (typeof window !== 'undefined' && audio) {
 
         if (isPlaying && audioRef.current) {          
-            audioRef.current.play();        
+            audio.play();        
           }
     }
       // Cleanup function to pause audio on unmount
       return () => {
-        if (audioRef.current) {
-          audioRef.current.pause();
+        if (audio) {
+          audio.pause();
         }
       };
-    });
+    },[isPlaying]);
 
   const toggleAudio = () => {
-    if (audioRef.current) {
-      if (isPlaying) {
-        audioRef.current.pause();
-        setIsPlaying(false);
-      } else {
-        audioRef.current.play();
-        setIsPlaying(true);
-      }
-    }
+    setIsPlaying((prev) => !prev);
   };
 
   return (

@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import Head from "next/head";
 import { wendyone, stintultra, patrickhand } from "../components/font";
 import { useEffect, useState } from "react";
-import { usePageTracking } from "../hooks/usePageTracking";
+//import { usePageTracking } from "../hooks/usePageTracking";
 import translations from "../components/translations"; // Import translations
 import {imageMapAfterShare} from "../components/perfumes_info";
 
@@ -24,7 +24,7 @@ const QuizPage: React.FC = () => {
   const [firstName, setFirstName] = useState<string | null>(null); 
   const [nameID, setNameID] = useState<string | null>(null); 
   const router = useRouter();
-  usePageTracking('/question8');  // This tracks the question8 page
+  //usePageTracking('/question8');  // This tracks the question8 page
 
   // Determine the result image based on the highest occurrence number and language
   const imageSrc = MBTI
@@ -76,43 +76,43 @@ const QuizPage: React.FC = () => {
   };
   
   // Page view tracking
-  useEffect(() => {
-    const userId = getUniqueUserId();
-    const deviceType = navigator.userAgent.includes('Mobi') ? 'mobile' : 'desktop';
-    const channel = document.referrer.includes('google') ? 'organic' : 'direct';
+  // useEffect(() => {
+  //   const userId = getUniqueUserId();
+  //   const deviceType = navigator.userAgent.includes('Mobi') ? 'mobile' : 'desktop';
+  //   const channel = document.referrer.includes('google') ? 'organic' : 'direct';
 
-    const startTime = performance.now();
+  //   const startTime = performance.now();
 
-    const sendPageView = () => {
-      const responseTime = performance.now() - startTime;
-      fetch('/api/page-views', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          userId,
-          page: 'Question 8 Page',
-          deviceType,
-          channel,
-          responseTime,
-        }),
-      });
+  //   const sendPageView = () => {
+  //     const responseTime = performance.now() - startTime;
+  //     fetch('/api/page-views', {
+  //       method: 'POST',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify({
+  //         userId,
+  //         page: 'Question 8 Page',
+  //         deviceType,
+  //         channel,
+  //         responseTime,
+  //       }),
+  //     });
 
-      fetch('/api/page-response', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          userId,
-          page: 'Question 8 Page',
-          deviceType,
-          channel,
-          responseTime,
-        }),
-      });
-    };
+  //     fetch('/api/page-response', {
+  //       method: 'POST',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify({
+  //         userId,
+  //         page: 'Question 8 Page',
+  //         deviceType,
+  //         channel,
+  //         responseTime,
+  //       }),
+  //     });
+  //   };
 
-    const timeoutId = setTimeout(sendPageView, 300);
-    return () => clearTimeout(timeoutId);
-  }, []);
+  //   const timeoutId = setTimeout(sendPageView, 300);
+  //   return () => clearTimeout(timeoutId);
+  // }, []);
 
   return (
     <>

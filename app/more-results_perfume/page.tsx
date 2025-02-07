@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Head from "next/head";
 import { useRouter } from "next/navigation";
-import { usePageTracking } from "../hooks/usePageTracking";
+//import { usePageTracking } from "../hooks/usePageTracking";
 import { Wendy_One } from "next/font/google";
 import translations from "../components/translations";
 
@@ -29,90 +29,57 @@ const MoreResultPage: React.FC = () => {
   const [language, setLanguage] = useState<'English' | 'Traditional_Chinese' | 'Simplified_Chinese'>('English'); // Default language
 
   const router = useRouter();
-  usePageTracking('/more-results');  // Track page view
+  //usePageTracking('/more-results');  // Track page view
 
-  useEffect(() => {
-    const userId = getUniqueUserId();  // Get user ID
-    const gameStartTime = localStorage.getItem('gameStartTime');  // Retrieve start time
-    const endTime = new Date().toISOString();  // Get current time for game completion
-    const deviceType = navigator.userAgent.includes('Mobi') ? 'mobile' : 'desktop';
-    const channel = document.referrer.includes('google') ? 'organic' : 'direct';
-    const startTime = performance.now();
-    const storedLanguage = getLanguageFromLocalStorage();
-    setLanguage(storedLanguage);
-    // Send game completion data to the server if gameStartTime exists
-    if (gameStartTime && userId) {
-      const timeSpent = (new Date(endTime).getTime() - new Date(gameStartTime).getTime()) / 1000; // Calculate time spent in seconds
+  // useEffect(() => {
+  //   const userId = getUniqueUserId();  // Get user ID
+  //   const gameStartTime = localStorage.getItem('gameStartTime');  // Retrieve start time
+  //   const endTime = new Date().toISOString();  // Get current time for game completion
+  //   const deviceType = navigator.userAgent.includes('Mobi') ? 'mobile' : 'desktop';
+  //   const channel = document.referrer.includes('google') ? 'organic' : 'direct';
+  //   const startTime = performance.now();
+  //   const storedLanguage = getLanguageFromLocalStorage();
+  //   setLanguage(storedLanguage);
+  //   // Send game completion data to the server if gameStartTime exists
+  //   if (gameStartTime && userId) {
+  //     const timeSpent = (new Date(endTime).getTime() - new Date(gameStartTime).getTime()) / 1000; // Calculate time spent in seconds
 
-      // Send game completion metrics
-      fetch('/api/game-complete', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          userId,
-          startTime: gameStartTime,
-          endTime,
-          timeSpent,
-          deviceType,
-          channel,
-        }),
-      });
+  //     // Send game completion metrics
+  //     fetch('/api/game-complete', {
+  //       method: 'POST',
+  //       headers: { 'Content-Type': 'application/json' },
+  //       body: JSON.stringify({
+  //         userId,
+  //         startTime: gameStartTime,
+  //         endTime,
+  //         timeSpent,
+  //         deviceType,
+  //         channel,
+  //       }),
+  //     });
 
-      // Clear the game start time after completion
-      localStorage.removeItem('gameStartTime');
-    }
+  //     // Clear the game start time after completion
+  //     localStorage.removeItem('gameStartTime');
+  //   }
 
-    // Collect user answers for questions
-    const options: number[][] = [];
-    let numberCount: Record<number, number> = {};
+  //   // Collect user answers for questions
+  //   const options: number[][] = [];
+  //   let numberCount: Record<number, number> = {};
 
-    for (let i = 1; i <= 8; i++) {
-      const option = localStorage.getItem(`question${i}`);
-      if (option) {
-        const parsedOption = JSON.parse(option);
-        options.push(parsedOption);
+  //   for (let i = 1; i <= 8; i++) {
+  //     const option = localStorage.getItem(`question${i}`);
+  //     if (option) {
+  //       const parsedOption = JSON.parse(option);
+  //       options.push(parsedOption);
 
-        // Count occurrences of each answer
-        parsedOption.forEach((num: number) => {
-          numberCount[num] = (numberCount[num] || 0) + 1;
-        });
-      }
-    }
+  //       // Count occurrences of each answer
+  //       parsedOption.forEach((num: number) => {
+  //         numberCount[num] = (numberCount[num] || 0) + 1;
+  //       });
+  //     }
+  //   }
 
-    const sendPageView = () => {
-      const responseTime = performance.now() - startTime; // Calculate response time
-      fetch('/api/page-views', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          userId,
-          page: ' More Result Page',
-          deviceType,
-          channel,
-          responseTime, // Include the response time
-        }),
-      });
-
-      fetch('/api/page-response', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          userId,
-          page: 'More Result Page',
-          deviceType,
-          channel,
-          responseTime, // Include the response time
-        }),
-      });
-    };
-
-    // Debounce the call to avoid multiple requests
-    const timeoutId = setTimeout(sendPageView, 300);
-
-    return () => {
-      clearTimeout(timeoutId);
-    };
-  }, []);
+  // }, []);
 
 
   // Function to download the image (for Instagram sharing)

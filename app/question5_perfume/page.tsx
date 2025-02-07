@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import Head from "next/head";
 import { wendyone, stintultra, patrickhand } from "../components/font";
 import { useEffect, useState } from "react";
-import { usePageTracking } from "../hooks/usePageTracking";
+//import { usePageTracking } from "../hooks/usePageTracking";
 import translations from "../components/translations";  // Import translations
 
 
@@ -32,7 +32,7 @@ const QuizPage: React.FC = () => {
     setLanguage(getLanguageFromLocalStorage());  // Set language based on localStorage
   }, []);
 
-  usePageTracking('/question4');  // This tracks the question4 page
+  //usePageTracking('/question4');  // This tracks the question4 page
 
   const handleOptionClick = (option: string) => {
     
@@ -51,16 +51,16 @@ const QuizPage: React.FC = () => {
       localStorage.setItem('mbtiScores', JSON.stringify(mbtiScores));
     }
     
-    // Send response to the backend
-    fetch('/api/question-response', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        userId,
-        questionId: 'If the dog gradually becomes independent and no longer hides behind you when scared, how do you feel?',
-        selectedAnswer: option
-      }),
-    });
+    // // Send response to the backend
+    // fetch('/api/question-response', {
+    //   method: 'POST',
+    //   headers: { 'Content-Type': 'application/json' },
+    //   body: JSON.stringify({
+    //     userId,
+    //     questionId: 'If the dog gradually becomes independent and no longer hides behind you when scared, how do you feel?',
+    //     selectedAnswer: option
+    //   }),
+    // });
 
     router.push("/question6_perfume");
   };
