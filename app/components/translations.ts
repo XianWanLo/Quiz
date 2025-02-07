@@ -46,8 +46,8 @@ const translations = {
       },
       quiz5: {
         question: "Suddenly, a shop assistant approaches and asks about your preference in choosing everyday perfumes",
-        option1: "Opting for unique,  fragrances, enjoying unusual combinations",
-        option2: "Choosing classic scents, preferring comfortable smells",
+        option1: "Opting for unique,\n fragrances, enjoying\n unusual combinations",
+        option2: "Choosing classic\n scents, preferring\n comfortable smells",
       },
       quiz6: {
         question: "Suddenly, you smell a fragrance in the store that catches your attention because",
@@ -130,61 +130,61 @@ const translations = {
       },
       onboarding: {
         title: "如何玩",
-        instruction: "根据您的喜好，选择相应的选项。（提示：越直观越好。）",
-        singleChoice: "单选题",
-        multipleChoice: "多选题"
+        instruction: "根據您的喜好，選擇相應的選項。（提示：越直觀越好。）",
+        singleChoice: "單選題",
+        multipleChoice: "多選題"
       },
       onboardingnext: {
-        description: "发现每一刻的美丽。我们个性化的卡片是一份小小的珍宝，精心制作，旨在点亮您的生活，提醒您在平凡中找到非凡。",
-    personality: "性格评估加深了对彼此的理解，从而改善人际关系",
-    results: "测试结果有助于个人发展并增强沟通",
+        description: "發現每一刻的美麗。我們個性化的卡片是一份小小的珍寶，精心製作，旨在點亮您的生活，提醒您在平凡中找到非凡。",
+        personality: "性格評估加深了對彼此的理解，從而改善人際關係",
+        results: "測試結果有助於個人發展並增強溝通"
       },
       quiz: {
         title: "香氣之旅",
         subtitle: "\"尋找屬於自己獨特個性魅力\"",
-        questions: "问题",
+        questions: "問題",
         totalQuestions: "8",
         startButton: "開始遊戲",
-        copyright: "Visonvirse",
+        copyright: "Visonvirse"
       },
       quiz1: {
         question: "你來到了一間香水店，當你在試香時，你更傾向於",
         option1: "A. 獨自思考每款香水的感覺",
-        option2: "B. 與銷售人員或朋友討論每種香水的特點和感受",
+        option2: "B. 與銷售人員或朋友討論每種香水的特點和感受"
       },
       quiz2: {
-        question: "每一款香水都有屬於他的詩篇，當你在閱讀詩篇時，你更注重",
+        question: "每一款香水都有屬於它的詩篇，當你在閱讀詩篇時，你更注重",
         option1: "A. 詩歌的情感表達和美學韻律",
         option2: "B. 詩歌的語言技巧和結構佈局"
       },
       quiz3: {
-        question: "在為你的房间选择香薰时，你更倾向于",
+        question: "在為你的房間選擇香薰時，你更傾向於",
         option1: "A. 選擇新穎獨特的香薰，為空間創造一個特別的氛圍",
         option2: "B. 選擇舒適的香薰，創造熟悉和寧靜的環境"
       },
       quiz4: {
-        question: "当你決定要購買香水，在決策的過程中，你更倾向于",
-        option1: "A. 快速做出决定，喜歡有明確的結論",
-        option2: "B. 保持開放選項，考慮不同的可能性",
+        question: "當你決定要購買香水，在決策的過程中，你更傾向於",
+        option1: "A. 快速做出決定，喜歡有明確的結論",
+        option2: "B. 保持開放選項，考慮不同的可能性"
       },
       quiz5: {
-        question: "店員忽然走過來，問你：你在选择日常使用香水时，你更注重",
-        option1: "A. 選擇獨富有創意\n的香氣，喜歡新穎\n和不尋常的組合",
-        option2: "B. 選擇經典的香氣，\n偏好熟悉和舒適\n的味道",
+        question: "店員忽然走過來，問你：你在選擇日常使用香水時，你更注重",
+        option1: "A. 選擇富有創意的香氣，喜歡新穎和不尋常的組合",
+        option2: "B. 選擇經典的香氣，偏好熟悉和舒適的味道"
       },
       quiz6: {
-        question: "突然，你在店裏嗅到了一種引起你注意的香氣，原因是",
+        question: "突然，你在店裡嗅到了一種引起你注意的香氣，原因是",
         option1: "A. 香水引發的情感反應和個人記憶",
         option2: "B. 香水的成分、持久度和品牌歷史故事",
-        option3: "耐用简约，长期使用",
-        option4: "创新有趣，激发好奇心",
+        option3: "耐用簡約，長期使用",
+        option4: "創新有趣，激發好奇心"
       },
       quiz7: {
-        question: "你拿着精心挑選的香水，回家放鬆时，你更喜欢",
+        question: "你拿著精心挑選的香水，回家放鬆時，你更喜歡",
         option1: "A. 獨自享受安靜，享受香氣、閱讀或冥想",
         option2: "B. 邀請朋友來家裡，在香氣下共度愉快時光",
-        option3: "优先选择可以遇到其他狗的地方",
-        option4: "选择人少的时间和地点",
+        option3: "優先選擇可以遇到其他狗的地方",
+        option4: "選擇人少的時間和地點"
       },
       cutscene: {
         content1: "你在家中放鬆地在香氣中入睡",
@@ -192,53 +192,52 @@ const translations = {
       },
       quiz8: {
         question: "哪個因素最可能影響個人對日常香水的選擇？",
-        option1: "A.個人喜好",
+        option1: "A. 個人喜好",
         option2: "B. 換季入手",
         option3: "C. 文化背景",
         option4: "D. 當前流行趨勢",
         option5: "E. 名人代言",
         option6: "F. 心情和情緒",
-        finishButton: "制作你的香水"
+        finishButton: "製作你的香水"
       },
-      namePage:{
+      namePage: {
         prompt: "請輸入你的名字",
-        button:"確認"
+        button: "確認"
       },
-      loadingPage:{
+      loadingPage: {
         prompt: "你的香水正在準備中..."
       },
-      resultPage:{
-        prompt: "你的气味风格"
+      resultPage: {
+        prompt: "你的氣味風格"
       },
-      afterSharePage:{
-        prompt:"请输入您的邮箱地址，我们将发送给您独家签名诗。",
-        button:"确认",
-        returnButton:"回到上页"
+      afterSharePage: {
+        prompt: "請輸入您的郵箱地址，我們將發送給您獨家簽名詩。",
+        button: "確認",
+        returnButton: "回到上頁"
       },
-
       output: {
-        imageAlt: "测验结果图片",
+        imageAlt: "測驗結果圖片",
         shareButton: "分享",
         playAgainButton: "再玩一次",
-        moreResultsButton: "更多结果",
-        hideResultsButton: "隐藏结果",
-        shareTitle: "分享您的结果",
-        sharePrompt: "选择一个平台分享您的测验结果：",
+        moreResultsButton: "更多結果",
+        hideResultsButton: "隱藏結果",
+        shareTitle: "分享您的結果",
+        sharePrompt: "選擇一個平台分享您的測驗結果：",
         shareOnFacebook: "分享到 Facebook",
         shareOnTwitter: "分享到 Twitter",
         shareOnInstagram: "分享到 Instagram",
-        cancelButton: "取消",
+        cancelButton: "取消"
       },
       moreresults: {
         backButton: "返回",
-        imageAlt: "更多结果背景",
-        dogBeautyTitle: "如果我参加狗狗选美大赛，我会是...",
-        dogBreedLabel: "狗品种",
+        imageAlt: "更多結果背景",
+        dogBeautyTitle: "如果我參加狗狗選美大賽，我會是...",
+        dogBreedLabel: "狗品種",
         willFindYour: "找到你的 ...",
-        trainingDifficultyAlt: "训练难度图片",
-        trainingDifficultyText: "以及你的训练难度是",
-        letsTryButton: "让我们尝试",
-        perfumeAdAlt: "香水广告",
+        trainingDifficultyAlt: "訓練難度圖片",
+        trainingDifficultyText: "以及你的訓練難度是",
+        letsTryButton: "讓我們嘗試",
+        perfumeAdAlt: "香水廣告"
       }
     },
 

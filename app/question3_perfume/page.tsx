@@ -117,10 +117,8 @@ const QuizPage: React.FC = () => {
         />
       </Head>
       {/*Main Container*/}
-      <div className="flex overflow-hidden flex-col mx-auto w-full bg-white max-w-[480px]">
-        
-        <div className="relative w-full bg-slate-900">
-            
+      <div className="relative flex overflow-hidden flex-col mx-auto w-full bg-slate-900 max-w-[480px]">
+          
           <div className="absolute z-0 w-full">
             <img
               src="/images_perfume/question3/background.png"
@@ -180,7 +178,6 @@ const QuizPage: React.FC = () => {
                   </span>
             </div>
           </div>
-        </div>
     </div>
     </>
   );

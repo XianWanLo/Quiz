@@ -146,10 +146,10 @@ const QuizPage: React.FC = () => {
 
                 <div 
                   onClick={() => handleOptionClick("Option 1")}
-                  className="flex mt-10 px-10 py-8 bg-[#FCDDA6] hover:bg-[#FCDDA6] cursor-pointer transition-colors"
+                  className="mt-10 px-12 py-8 bg-[#FCDDA6] hover:bg-[#FCDDA6] cursor-pointer transition-colors"
                 >
                   <pre
-                    className={`text-black text-center text-m ${patrickhand.className}`}> 
+                    className={`text-black text-center text-xl ${patrickhand.className}`}> 
                   {translations[language].quiz5.option1}
                   </pre>
                 </div>
@@ -166,7 +166,7 @@ const QuizPage: React.FC = () => {
 
                 <div 
                   onClick={() => handleOptionClick("Option 2")}
-                  className="flex mt-20 px-10 py-8 bg-[#FCDDA6] hover:bg-[#FCDDA6] cursor-pointer transition-colors"
+                  className="flex mt-20 px-12 py-8 bg-[#FCDDA6] hover:bg-[#FCDDA6] cursor-pointer transition-colors"
                 >
                   <pre
                     className={`text-black text-center text-xl ${patrickhand.className}`}> 

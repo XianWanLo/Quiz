@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import translations from "../components/translations"; // Import translations
 import { usePageTracking } from "../hooks/usePageTracking";
 import LanguageSelector from "../components/languageselector";
+import AudioPlayer from '../components/audioPlayer';
+
 
 const wendyone = Wendy_One({
   weight: "400",
@@ -42,7 +44,6 @@ const QuizPage: React.FC = () => {
 
   usePageTracking('/quiz');  // This tracks the quiz page
 
-  // Load language on component mount
   useEffect(() => {
   
     const initialScores = {
@@ -56,7 +57,10 @@ const QuizPage: React.FC = () => {
       P: 0  // Perceiving
     };
     localStorage.setItem('mbtiScores', JSON.stringify(initialScores));
-      
+    
+    localStorage.setItem('audioPlaying', 'false'); // Update local storage
+    localStorage.setItem('audioCurrentTime',JSON.stringify(0)); // Update local storage
+   
     // Only access localStorage after the component has mounted
     if (typeof window !== 'undefined') {
       const storedLanguage = getLanguageFromLocalStorage();
@@ -79,6 +83,13 @@ const QuizPage: React.FC = () => {
 
 
   const handleClick = () => {
+    
+    // Save the audio current time to localStorage
+    const audioRef = document.querySelector('audio'); // Get the audio element
+    if (audioRef) {
+      localStorage.setItem('audioCurrentTime', JSON.stringify(audioRef.currentTime));
+    }
+
     router.push("/question1_perfume"); // Navigates to /question1
   };
 
@@ -140,11 +151,15 @@ const QuizPage: React.FC = () => {
           rel="stylesheet"
         />
       </Head>
-      <div className="flex overflow-hidden flex-col mx-auto w-full min-h-screen bg-slate-900 max-w-[480px]">
+      <div className="relative flex overflow-hidden flex-col mx-auto w-full min-h-screen bg-slate-900 max-w-[480px]">
         
-        
+        {/* Language Selector */}
+        <div className="absolute flex z-10 mt-4 ml-4 justify-between">
+            <LanguageSelector />
+        </div>
+       
         {/* image */}
-        <div className="z-0 h-[630px]">
+        <div className="relative h-[630px] w-full">
           <img
             src="/images_perfume/quiz/background.png"
             alt="Perfume quiz"
@@ -152,10 +167,6 @@ const QuizPage: React.FC = () => {
           />
         </div>
 
-         {/* Language Selector */}
-         <div className="absolute flex mt-4 ml-4">
-          <LanguageSelector />
-        </div>
 
         <div className="relative w-full bg-slate-900">
           

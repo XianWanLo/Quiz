@@ -25,35 +25,50 @@ const QuizPage: React.FC = () => {
   const router = useRouter();
   usePageTracking('/question8');  // This tracks the question8 page
 
-  useEffect(() => {
-    setLanguage(getLanguageFromLocalStorage());  // Set language based on localStorage
-    setMBTI(localStorage.getItem('MBTI'));
-
-    const userFirstName = localStorage.getItem('userName')?.split(' ')[0] || ''; // Save the name to local storage
-    setNameID(userFirstName + "0001");
-
-  }, []);
-
-
+  const userFirstName = localStorage.getItem('userName')?.split(' ')[0] || ''; // Save the name to local storage
   // Determine the result image based on the highest occurrence number and language
   const imageSrc = MBTI
   ? imageMapAfterShare[language][MBTI]
   : "/images_perfume/result/result_en/ESFP_after_en.png"; // Default fallback
 
 
+  useEffect(() => {
+    setLanguage(getLanguageFromLocalStorage());  // Set language based on localStorage
+    setMBTI(localStorage.getItem('MBTI'));
+    setNameID(userFirstName + "0001");
 
-  const handleOptionClick = () => {
+  }, []);
+
+  const handleOptionClick = async () => {
     
-    // Send response to the backend
-    fetch('/api/question-response', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        userId: getUniqueUserId(),
-        questionId: 'If you have the opportunity to participate in an activity with your dog, what interests you the most?'
-      }),
-    });
+    const email = (document.getElementById("emailInput") as HTMLInputElement)?.value;
 
+    if (!email || !email.includes("@")) {
+      alert("Please enter a valid email address.");
+      return;
+    }
+
+      // Send the email to the backend for processing
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+              email, 
+              userFirstName, 
+              imageSrc 
+        }),
+      });
+
+      if (response.ok) {
+        alert("An email has been sent to your address.");
+      } else {
+        alert("Failed to send email. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error sending email:", error);
+      alert("An error occurred. Please try again.");
+    }
 
     router.push("/result");
   };
@@ -141,10 +156,10 @@ const QuizPage: React.FC = () => {
             </div>
 
             <input
-              id="nameInput"
+              id="emailInput"
               type="text"
               className="flex shrink-0 self-stretch mx-5 my-5 bg-white rounded-xl py-5 px-4"
-              aria-label="Enter your name"
+              aria-label="Enter your email"
             />
             
             <div 

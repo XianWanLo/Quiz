@@ -6,6 +6,7 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import translations from "../components/translations";
 import { usePageTracking } from "../hooks/usePageTracking";
+import AudioPlayer from "../components/audioPlayer";
 
 const getLanguageFromLocalStorage = () => {
   if (typeof window !== 'undefined') {
@@ -65,7 +66,8 @@ const QuizPage: React.FC = () => {
         />
       </Head>
       {/* Main container*/}
-      <div className="flex overflow-hidden flex-col mx-auto w-full bg-white max-w-[480px]">
+      <div className="relative flex overflow-hidden flex-col mx-auto w-full bg-white max-w-[480px]">
+
         {/* image */}
         <div className="h-[630px]">
           <img

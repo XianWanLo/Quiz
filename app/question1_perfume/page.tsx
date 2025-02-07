@@ -5,6 +5,7 @@ import { wendyone, stintultra, patrickhand } from "../components/font";
 import { useEffect, useState } from "react";
 import translations from "../components/translations";
 import { usePageTracking } from "../hooks/usePageTracking";
+import AudioPlayer from '../components/audioPlayer';
 
 
 const getLanguageFromLocalStorage = () => {
@@ -37,6 +38,13 @@ const QuizPage: React.FC = () => {
       }
       // Update MBTI scores in localStorage
       localStorage.setItem('mbtiScores', JSON.stringify(mbtiScores));
+
+      // Save the audio current time to localStorage
+      const audioRef = document.querySelector('audio'); // Get the audio element
+      if (audioRef) {
+        localStorage.setItem('audioCurrentTime', JSON.stringify(audioRef.currentTime));
+      }
+
     }
     
 
@@ -62,7 +70,8 @@ const QuizPage: React.FC = () => {
         />
       </Head>
       {/*Main Container*/}
-      <div className="flex overflow-hidden flex-col mx-auto w-full bg-white min-h-screen max-w-[480px]">
+      <div className="relative flex overflow-hidden flex-col mx-auto w-full bg-white min-h-screen max-w-[480px]">
+      
         {/* image */}
         <div className="h-[630px]">
           <img
@@ -75,7 +84,7 @@ const QuizPage: React.FC = () => {
         {/* Question container with option background */}
         <div className="relative pt-5 pr-5 pl-2.5 w-full bg-slate-900">
           {/* Layer 1: Option background image (positioned absolutely) */}
-          <div className="absolute inset-y-2 left-2 w-2/5">
+          <div className="absolute z-0 inset-y-2 left-2 w-2/5">
             <img
               src="/images_perfume/question1/option1.png"
               className="object-cover w-full h-full"
