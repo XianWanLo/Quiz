@@ -119,22 +119,79 @@ export const imageMapAfterShare: Record<"English" | "Traditional_Chinese" | "Sim
 
 // Array of image objects containing image source and corresponding text
 export const perfumes: Record<string, string[]> = {
-    "ENFJ": ["/recommendation/ENFJ_1.webp", "/recommendation/ENFJ_2.webp", "/recommendation/ENFJ_3.webp", "/recommendation/ENFJ_4.webp"],
-    "ENFP": ["/recommendation/ENFP_1.webp"],
-    "ENTJ": ["/recommendation/ENTJ_1.webp"],
-    "ENTP": ["/recommendation/ENTP_1.webp", "/recommendation/ENTP_2.webp"],
-    "ESFJ": ["/recommendation/ESFJ_1.webp"],
-    "ESFP": ["/recommendation/ESFP_1.webp", "/recommendation/ESFP_2.webp", "/recommendation/ESFP_3.webp"],
-    "ESTJ": ["/recommendation/ESTJ_1.webp"],
-    "ESTP": ["/recommendation/ESTP_1.webp", "/recommendation/ESTP_2.webp"],
-    "INFJ": ["/recommendation/INFJ_1.webp", "/recommendation/INFJ_2.webp", "/recommendation/INFJ_3.webp", "/recommendation/INFJ_4.webp"],
-    "INFP": ["/recommendation/INFP_1.webp", "/recommendation/INFP_2.webp", "/recommendation/INFP_3.webp"],
-    "INTJ": ["/recommendation/INTJ_1.webp"],
-    "INTP": ["/recommendation/INTP_1.webp"],
-    "ISFJ": ["/recommendation/ISFJ_1.webp", "/recommendation/ISFJ_2.webp"],
-    "ISFP": ["/recommendation/ISFP_1.webp", "/recommendation/ISFP_2.webp", "/recommendation/ISFP_3.webp", "/recommendation/ISFP_4.webp"],
-    "ISTJ": ["/recommendation/ISTJ_1.webp", "/recommendation/ISTJ_2.webp", "/recommendation/ISTJ_3.webp"],
-    "ISTP": ["/recommendation/ISTP_1.webp", "/recommendation/ISTP_2.webp", "/recommendation/ISTP_3.webp", "/recommendation/ISTP_4.webp"],
+        "ENFJ": ["/recommendation/ENFJ - 1. Hermes Terre D_Hermès Eau De Toilette Natural Spray For Men.webp", 
+                "/recommendation/ENFJ - 2. Yves Saint Laurent Libre Eau De Parfum 90ml.webp", 
+                "/recommendation/ENFJ - 3. Chanel Chance Eau Tendre Eau De Parfum Spray 100ML.webp", 
+                "/recommendation/ENFJ - 4. Marc Jacobs Daisy Eau De Parfum 100ML.webp"
+        ],
+        "ENFP":  ["/recommendation/ENFP - 1. Elizabeth Arden Green Tea Lychee Lime EDT 100ML.webp", 
+                "/recommendation/ENFP - 2. Coach Open Road Eau De Toilette.webp", 
+                "/recommendation/ENFP - 3. Tous More More Pink Eau de Toilette 90ml.webp"
+        ],
+        "ENTJ": ["/recommendation/ENTJ - 1. Trussardi Ruby Red Eau de Parfum 90ml.webp",
+                "/recommendation/ENTJ - 2. Bentley for Men Silverlake Eau de Parfum 100ml.webp",
+                "/recommendation/ENTJ - 3. Chanel Bleu De Chanel Eau De Toilette 100ML.webp",
+        ],
+        "ENTP": ["/recommendation/ENTP - 1. Gucci Bloom Eau De Parfum 100ML.webp", 
+                "/recommendation/ENTP - 2. Marc Jacobs Daisy Eau De Parfum 100ML.webp",
+                "/recommendation/ENTP - 3. Hermès Un Jardin Sur Le Nil Eau De Toilette 100ML.webp",
+                "/recommendation/ENTP - 4. Byredo Gypsy Water Eau De Parfum 100ML.webp"
+        ],
+        "ESFJ": ["/recommendation/ESFJ - 1. Gucci Flora Gorgeous Jasmine Eau De Parfum.webp", 
+                "/recommendation/ESFJ - 2. Christian Dior Miss Dior Rose N_ Roses Eau de Toilette 5ml.webp",
+                "/recommendation/ESFJ - 3. Tous LoveMe The Silver Parfum 50ml.webp",
+                "/recommendation/ESFJ - 4. Tous Your Powers Edt 90ML.webp"
+        ],
+        "ESFP": ["/recommendation/ESFP - 1. Versace Dylan Turquoise Eau De Toilette 100ML.webp", 
+                "/recommendation/ESFP - 2. Gucci Bloom Eau De Parfum 100ML.webp",
+                "/recommendation/ESFP - 3. Marc Jacobs Daisy Eau De Parfum 100ML.webp"
+        ],
+        "ESTJ": ["/recommendation/ESTJ - 1. Trussardi Uomo For Men Edt 200ml.webp", 
+                "/recommendation/ESTJ - 2. Authentic Self Eau De Toilette 100ml.webp",
+                "/recommendation/ESTJ - 3. Mercedes Benz Sign Your Attitude Eau De Toilette for Men 100ML.webp"
+        ],
+        "ESTP": ["/recommendation/ESTP - 1. Cristiano Ronaldo Fearless Eau de Toilette 100ml.png", 
+                "/recommendation/ESTP - 2. Abercrombie & Fitch Away For Women Edp 100ML.webp",
+                "/recommendation/ESTP - 3. Versace Eros Eau De Toilette 100ML.webp",
+                "/recommendation/ESTP - 4. Burberry Hero Eau De Toilette.webp"
+        ],
+        "INFJ": ["/recommendation/INFJ - 1.Chanel Eau De Parfum Spray 50ML.webp", 
+                "/recommendation/INFJ - 2. Gucci Flora Gorgeous Jasmine Eau De Parfum 100ML.webp",
+                "/recommendation/INFJ - 3. Diptyque Eau Rose Eau De Toilette 100ML.webp",
+                "/recommendation/INFJ - 4. Maison Margiela Replica Lazy Sunday Morning Eau de Toilette 100ml.webp"
+        ],
+        "INFP": ["/recommendation/INFP - 1. Narciso Rodriguez Fleur Musc Eau De Parfum 100MLMorning Eau de Toilette 100ml.webp", 
+                "/recommendation/INFP - 2. Maison Margiela Replica Lazy Sunday Morning Eau de Toilette 100ml.webp",
+                "/recommendation/INFP - 3. Chance Eau Tendre Eau De Parfum Spray 100ML.webp"
+        ],
+        "INTJ": ["/recommendation/INTJ - 1.  Issey Miyake L’Eau D’Issey Eau De Toilette 100ML.webp",
+                "/recommendation/INTJ - 2. Loewe 001 Woman Edt 30ml.webp",
+                "/recommendation/INTJ - 3. Tom Ford Oud Wood Eau De Perfume 100ML.webp"
+        ],
+        "INTP": ["/recommendation/INTP - 1. Diptyque Philosykos Eau De Toilette.webp",
+                "/recommendation/INTP - 2. Issey Miyake A Drop D_Issey Eau de Parfum Fraiche 90ml.webp",
+                "/recommendation/INTP - 3. Maison Margiela Replica By The Fireplace Eau De Toilette 100ml.webp",
+                "/recommendation/INTP - 4. Jo Malone Wood Sage & Sea Salt Cologne 100ml.webp"
+        ],
+        "ISFJ": ["/recommendation/ISFJ - 1. Elizabeth Arden Green Tea Lavender Eau de Toilette Spray 100ml.webp", 
+                "/recommendation/ISFJ - 2. Bvlgari Petits Et Mamans For Women Edt Spray 100ML.webp",
+                "/recommendation/ISFJ - 3. Hermes Un Jardin Sur Le Nil Eau De Toilette 100ML.webp",
+                "/recommendation/ISFJ - 4. Burberry Brit Sheer Eau De Toilette 100ML.webp"
+        ],
+        "ISFP": ["/recommendation/ISFP - 1. Christian Dior Miss Dior Rose N_ Roses Eau de Toilette 100ML.webp", 
+                "/recommendation/ISFP - 2. Trussardi Pure Jasmine Eau De Parfum 90ML.webp",
+                "/recommendation/ISFP - 3. Marc Jacobs Daisy Eau De Parfum 100ML.webp",
+                "/recommendation/ISFP - 4. Gucci Bloom Eau De Parfum 100ML.webp"
+        ],
+        "ISTJ": ["/recommendation/ISTJ - 1. Mercedes Benz Eau De Toilette for Men 100ML.webp", 
+                "/recommendation/ISTJ - 2. Abercrombie & Fitch Authentic Self Eau de Toilette 100ml.webp",
+                "/recommendation/ISTJ - 3. Burberry Brit Sheer Eau De Toilette 100ML.webp"
+        ],
+        "ISTP": ["/recommendation/ISTP - 1. Davidoff Eau De Toilette Spray 125ML.webp", 
+                "/recommendation/ISTP - 2. Bvlgari Aqva Pour Homme Marine Men_s EDT 100ml.webp",
+                "/recommendation/ISTP - 3. Issey Miyake L’Eau D’Issey Eau De Toilette 100ML.webp",
+                "/recommendation/ISTP - 4. Hermes Terre D_Hermès Eau De Toilette Natural Spray For Men.webp"
+        ],
   };
 
 

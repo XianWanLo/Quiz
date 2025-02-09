@@ -138,7 +138,7 @@ const QuizPage: React.FC = () => {
 
               <div 
                 onClick={() => handleOptionClick("Option 1")}
-                className="px-14 py-6 bg-[#9B80B4] hover:bg-[#8A71A3] rounded-[35px] cursor-pointer text-white text-sm text-center transition-colors"
+                className={`mx-4 py-6 bg-[#9B80B4] hover:bg-[#8A71A3] rounded-[35px] cursor-pointer text-white ${language=='English' ?'text-sm':'text-l'}  text-center transition-colors`}
               >
                 {translations[language].quiz7.option1}
               </div>
@@ -153,7 +153,7 @@ const QuizPage: React.FC = () => {
 
               <div 
                 onClick={() => handleOptionClick("Option 2")}
-                className="px-14 py-6 bg-[#9B80B4] hover:bg-[#8A71A3] rounded-[35px] cursor-pointer text-white text-sm text-center transition-colors"
+                className={`mx-4 py-6 bg-[#9B80B4] hover:bg-[#8A71A3] rounded-[35px] cursor-pointer text-white ${language=='English' ?'text-sm':'text-l'}  text-center transition-colors`}
               >
                 {translations[language].quiz7.option2}
               </div>

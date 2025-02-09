@@ -238,7 +238,7 @@ const QuizPage: React.FC = () => {
             <div
               onClick={() => finishClick()}
               className="mt-20 text-center text-xl text-white cursor-pointer">
-                <pre className={`text-5xl font-bold text-center text-white ${whisper.className} hover:bg-opacity-10 rounded-full hover:bg-purple-300 hover:backdrop-blur-md hover:shadow-lg`}>
+                <pre className={`mx-4 py-4 ${language=='English' ?'text-5xl':'text-3xl'} font-bold text-center text-white ${whisper.className} hover:bg-opacity-10 rounded-full hover:bg-purple-300 hover:backdrop-blur-md hover:shadow-lg`}>
                 {translations[language].quiz8.finishButton}
                 </pre>
             </div>

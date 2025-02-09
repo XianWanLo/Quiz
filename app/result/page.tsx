@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import Head from "next/head";
-import { Wendy_One } from "next/font/google";
+import { wendyone, waterfall } from "../components/font";
 import { useRouter } from "next/navigation";
 //import { usePageTracking } from "../hooks/usePageTracking";
 import { listeners } from "process";
@@ -250,9 +250,9 @@ const ResultPage: React.FC = () => {
               </div>
 
               {/* Display images and text, one image per row */}
-              <div className="relative my-10 flex flex-col gap-10 justify-center">
+              <div className={`relative mb-10 flex flex-col justify-center`}>
 
-                <div className="absolute z-0 w-full inset-y-1/4">
+                <div className="absolute z-0 w-full mt-10 inset-y-0">
                   <img
                     src="/images_perfume/namePage/background.png"
                     className="object-cover"
@@ -260,27 +260,37 @@ const ResultPage: React.FC = () => {
                   />
                 </div>
 
-                {recommendPerfume.map((src, index) => (
-                    <div key={index} className="relative flex flex-col gap-2 mx-14 items-center rounded-2xl bg-purple-300 bg-opacity-20">
+                <div className="relative mt-12 mb-12 text-center font-bold text-red-500">
+                  <pre className={`${language=='English' ?'text-5xl':'text-3xl'} ${waterfall.className}`}>
+                  {translations[language].output.valentine}
+                  </pre>
+                </div>
+
+                <div className={`relative flex flex-col justify-center ${recommendPerfume.length === 4 ? 'grid grid-cols-2 mx-2 gap-4' : 'mx-16 gap-8'}`}>
+
+                  {recommendPerfume.map((src, index) => (
+                    <div key={index} className="relative flex flex-col items-center rounded-2xl bg-purple-300 bg-opacity-20 hover:bg-red-400 hover:bg-opacity-40">
                       {/* Image: Full width, position relative to contain text */}
                       <img
                         src={src}
                         alt={`Recommended_Perfume ${index + 1}`}
-                        className="w-full object-cover rounded-lg"
+                        className="w-3/4 h-full object-cover rounded-lg mb-2"
                       />
                       <a
                         href={perfume_link[index]} // Use the corresponding link for each perfume
                         target="_blank" // Open link in a new tab
                         rel="noopener noreferrer" // Security best practice
-                        className="mb-2 w-full text-center"
+                        className="mb-4 w-full text-center"
                       >
                         {/* Add text or button for the link */}
-                        <span className="border border-gray-300 text-l text-white px-4 py-1 rounded-full hover:bg-gray-200 transition-colors"
+                        <span className="border border-gray-300 text-l text-white px-4 py-1 rounded-full hover:bg-gray-200 hover:text-black transition-colors"
                           >Learn more
                         </span>
                       </a>
                     </div>
-                  ))}            
+                  ))}
+
+                </div>            
               </div>
 
             

@@ -111,6 +111,7 @@ const translations = {
         shareOnTwitter: "Share on Twitter",
         shareOnInstagram: "Share on Instagram",
         cancelButton: "Cancel",
+        valentine: "Something Special \n For You"
       },
       moreresults: {
         backButton: "Back",
@@ -173,8 +174,8 @@ const translations = {
       },
       quiz5: {
         question: "店員忽然走過來，問你：你在選擇日常使用香水時，你更注重",
-        option1: "A. 選擇富有創意的香氣，喜歡新穎和不尋常的組合",
-        option2: "B. 選擇經典的香氣，偏好熟悉和舒適的味道"
+        option1: "A. 選擇富有創意\n的香氣，喜歡新穎\n和不尋常的組合",
+        option2: "B. 選擇經典的香氣，\n偏好熟悉和舒適\n的味道"
       },
       quiz6: {
         question: "突然，你在店裡嗅到了一種引起你注意的香氣，原因是",
@@ -230,7 +231,8 @@ const translations = {
         shareOnFacebook: "分享到 Facebook",
         shareOnTwitter: "分享到 Twitter",
         shareOnInstagram: "分享到 Instagram",
-        cancelButton: "取消"
+        cancelButton: "取消",
+        valentine:"找出心宜的情人節禮物"
       },
       moreresults: {
         backButton: "返回",
@@ -294,8 +296,8 @@ const translations = {
       },
       quiz5: {
         question: "店员忽然走过来，问你：你在选择日常使用香水时，你更注重",
-        option1: "A. 选择独具创意的香气，喜欢新颖和不寻常的组合",
-        option2: "B. 选择经典的香气，偏好熟悉和舒适的味道"
+        option1: "A. 选择独具创意\n的香气，喜欢新颖\n和不寻常的组合",
+        option2: "B. 选择经典的\n香气，偏好熟悉\n和舒适的味道"
       },
       quiz6: {
         question: "突然，你在店里嗅到了一种引起你注意的香气，原因是",
@@ -351,7 +353,8 @@ const translations = {
         shareOnFacebook: "分享到 Facebook",
         shareOnTwitter: "分享到 Twitter",
         shareOnInstagram: "分享到 Instagram",
-        cancelButton: "取消"
+        cancelButton: "取消",
+        valentine:"找出心宜的情人节礼物"
       },
       moreresults: {
         backButton: "返回",
