@@ -51,17 +51,77 @@ body {
 
 .poetsen-one-regular {
   font-family: "Poetsen One", sans-serif;
-  font-weight: 600;
+  font-weight: 400;
   font-style: normal;
 }
 
-.option-button{
+.bg-image-responsive {
+  height:60vh;
+}
 
-    width: 170px;
-    height: 120px;    
-    font-size: 0.9rem;
-    margin-bottom: 20px;
-    border: 1px solid #ffe3ab;
-    border-radius: 35px;
-   
+.bg-image-shift {
+  position: 'absolute';
+  top: '-100px';
+}
+
+.question-text {
+  color: white;
+  text-align: center; /* Aligns text to the center */
+  padding-left: 1rem; /* px-4 */
+  padding-right: 1rem; /* px-4 */
+}
+
+.horizontal-option-button{
+    margin-top: 0.5rem; /* mt-2 */
+    margin-bottom: 0.5rem; /* mb-2 */
+    display: flex; /* flex */
+    align-items: center; /* items-center */
+    padding-left: 1rem; /* px-4 */
+    padding-right: 1rem; /* px-4 */
+    padding-top: 1rem; /* py-4 */
+    padding-bottom: 1rem; /* py-4 */
+    font-family: 'Noto Sans', sans-serif; /* noto_sans_sc */
+    background-color: #9B80B4; /* bg-[#9B80B4] */
+    border-radius: 35px; /* rounded-[35px] */
+    cursor: pointer; /* cursor-pointer */
+    width: 50%; /* w-1/2 */
+    transition: background-color 0.3s; /* transition-colors */
+    color: white;
+    font-size: 0.85rem;
+    text-align: center;
+  }
+  
+.horizontal-option-button:hover {
+  background-color: #8A71A3; /* hover:bg-[#8A71A3] */
+}
+
+.vertical-option-button {
+  padding-left: 1.5rem; /* px-6 */
+  padding-right: 1.5rem; /* px-6 */
+  padding-top: 0.6rem; /* py-4 */
+  padding-bottom: 0.6rem; /* py-4 */
+  background-color: rgba(155, 128, 180, 0.6); /* bg-[#9B80B4] with 0.6 opacity */
+  border-radius: 35px; /* rounded-[35px] */
+  cursor: pointer; /* cursor-pointer */
+  color: white; /* text-white */
+  text-align: center; /* text-center */
+  transition: background-color 0.3s; /* transition-colors */
+}
+
+.vertical-option-button:hover {
+  background-color: #8A71A3; /* hover:bg-[#8A71A3] */
+}
+
+.white-shadow {
+  text-shadow: none; /* No shadow by default */
+}
+
+.white-shadow:hover {
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.7), 0 0 30px rgba(255, 255, 255, 0.5); /* White shadow on hover */
+}
+
+
+/* Media query for larger screens */
+@media (min-width: 768px) {
+  
 }

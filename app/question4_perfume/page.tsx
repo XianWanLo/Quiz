@@ -4,18 +4,11 @@ import { useRouter } from "next/navigation";
 import Head from "next/head";
 import { wendyone, stintultra, patrickhand } from "../components/font";
 import { useEffect, useState } from "react";
-//import { usePageTracking } from "../hooks/usePageTracking";
+import { usePageTracking } from "../hooks/usePageTracking";
 import translations from "../components/translations";  // Import translations
+import Footer from "../components/footer";
+import Image from 'next/image';
 
-
-const getUniqueUserId = () => {
-  if (typeof window !== 'undefined') {
-    return localStorage.getItem('uniqueUserId');
-  }
-  return null; // Return null or a default value if not in the browser
-};
-
-const userId = getUniqueUserId();  // Get or create a unique user ID
 
 const getLanguageFromLocalStorage = () => {
   if (typeof window !== 'undefined') {
@@ -32,7 +25,13 @@ const QuizPage: React.FC = () => {
     setLanguage(getLanguageFromLocalStorage());  // Set language based on localStorage
   }, []);
 
-  //usePageTracking('/question4');  // This tracks the question4 page
+  const questionFont = language === 'English' ? 'poetsen-one-regular' : 'noto_sans_sc';
+  const questionFontSize = language === 'English' ? 'text-xl' : 'text-2xl';
+  const optionFontSize = language === 'English' ? 'text-sm' : 'text-l';
+
+
+  // Page view & response time tracking
+  usePageTracking("Question 4 Page")
 
   const handleOptionClick = (option: string) => {
     
@@ -50,64 +49,23 @@ const QuizPage: React.FC = () => {
       // Update MBTI scores in localStorage
       localStorage.setItem('mbtiScores', JSON.stringify(mbtiScores));
     }
-
-    // Send response to the backend
+    
+    let selectedAnswers = [];
+    selectedAnswers.push(option==='Option 1' ? translations["English"].quiz4.option1:translations["English"].quiz4.option2)
+    
     fetch('/api/question-response', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
-        userId,
-        questionId: 'If the dog gradually becomes independent and no longer hides behind you when scared, how do you feel?',
-        selectedAnswer: option
+          userId: localStorage.getItem('uniqueUserId'),
+          questionId: '4',
+          questionContent: translations["English"].quiz4.question,
+          selectedAnswer: selectedAnswers
       }),
     });
 
     router.push("/question5_perfume");
   };
-
-  // Page view tracking
-  // useEffect(() => {
-  //   const userId = getUniqueUserId();  
-  //   const deviceType = navigator.userAgent.includes('Mobi') ? 'mobile' : 'desktop';
-  //   const channel = document.referrer.includes('google') ? 'organic' : 'direct';
-    
-  //   // Measure page load response time
-  //   const startTime = performance.now();
-
-  //   const sendPageView = () => {
-  //     const responseTime = performance.now() - startTime;  // Calculate response time
-  //     fetch('/api/page-views', {
-  //       method: 'POST',
-  //       headers: { 'Content-Type': 'application/json' },
-  //       body: JSON.stringify({
-  //         userId,
-  //         page: 'Question 4 Page',
-  //         deviceType,
-  //         channel,
-  //         responseTime,  // Include the response time
-  //       }),
-  //     });
-
-  //     fetch('/api/page-response', {
-  //       method: 'POST',
-  //       headers: { 'Content-Type': 'application/json' },
-  //       body: JSON.stringify({
-  //         userId,
-  //         page: 'Question 4 Page',
-  //         deviceType,
-  //         channel,
-  //         responseTime,  // Include the response time
-  //       }),
-  //     });
-  //   };
-
-  //   // Debounce the call to avoid multiple requests
-  //   const timeoutId = setTimeout(sendPageView, 300);
-
-  //   return () => {
-  //     clearTimeout(timeoutId);
-  //   };
-  // }, []);
 
   return (
     <>
@@ -117,10 +75,11 @@ const QuizPage: React.FC = () => {
           rel="stylesheet"
         />
       </Head>
+
+      <div className="bg-slate-900">
+
       {/*Main Container*/}
-      <div className="flex overflow-hidden flex-col mx-auto w-full bg-white max-w-[480px]">
-        
-        <div className="relative w-full bg-slate-900">
+      <div className="relative flex overflow-hidden flex-col mx-auto w-full max-w-[480px]">
             
           <div className="absolute z-0 w-full">
             <img
@@ -130,20 +89,20 @@ const QuizPage: React.FC = () => {
             />
           </div>
 
-          <div className="relative z-10 pt-5 pr-5 pl-2.5 mt-4">
+          <div className="h-[90vh] relative z-10 flex-col mx-6">
 
             {/* Question at the top - added fixed width/height container */}
-            <div className="w-[400px] h-[94px] mx-auto flex items-center justify-center mb-12">
-              <h1 className={`text-3xl font-bold text-center text-white ${patrickhand.className}`}>
+            <div className="h-[15vh] flex items-center justify-center">
+              <h1 className={`question-text ${questionFont} ${questionFontSize}`}>
                 {translations[language].quiz4.question}
               </h1>
             </div>
 
             {/* Options container*/}
-            <div className="flex flex-col justify-center gap-8 mb-6">
+            <div className="h-[75vh] flex flex-col items-center justify-center gap-4">
               
               {/* Option 1 */}
-              <div className="flex items-center justify-center">
+              <div>
                 <img
                   src="/images_perfume/question4/option1.png"
                   alt="Option 1"
@@ -152,13 +111,13 @@ const QuizPage: React.FC = () => {
 
               <div 
                 onClick={() => handleOptionClick("Option 1")}
-                className={`mx-4 py-6 bg-[#9B80B4] hover:bg-[#8A71A3] rounded-[35px] cursor-pointer text-white ${language=='English' ?'text-sm':'text-l'}  text-center transition-colors`}
+                className={`vertical-option-button ${optionFontSize}`}
               >
                 {translations[language].quiz4.option1}
               </div>
 
               {/* Option 2 */}
-              <div className="flex items-center justify-center mt-4">
+              <div>
                 <img
                   src="/images_perfume/question4/option2.png"
                   alt="Option 2"
@@ -167,21 +126,16 @@ const QuizPage: React.FC = () => {
 
               <div 
                 onClick={() => handleOptionClick("Option 2")}
-                className={`mx-4 py-6 bg-[#9B80B4] hover:bg-[#8A71A3] rounded-[35px] cursor-pointer text-white ${language=='English' ?'text-sm':'text-l'}  text-center transition-colors`}
+                className={`vertical-option-button ${optionFontSize}`}
               >
                 {translations[language].quiz4.option2}
               </div>
             </div>
-
-            {/* Question counter - aligned to bottom right */}
-            <div className="flex justify-end text-7xl leading-none text-white">
-                  <span className={`text-purple-300 ${stintultra.className}`}>4
-                  </span>
-                  <span className={` ${stintultra.className}`}>/8
-                  </span>
-            </div>
           </div>
-        </div>
+
+          {/* Footer - aligned to bottom right */}
+          <Footer pageNum={4} totalPages={8}/>
+    </div>
     </div>
     </>
   );

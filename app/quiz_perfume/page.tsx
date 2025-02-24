@@ -5,25 +5,9 @@ import Head from "next/head";
 import { wendyone, waterfall } from "../components/font";
 import { useEffect, useState } from "react";
 import translations from "../components/translations"; // Import translations
-//import { usePageTracking } from "../hooks/usePageTracking";
+import { usePageTracking } from "../hooks/usePageTracking";
 import LanguageSelector from "../components/languageselector";
-import AudioPlayer from '../components/audioPlayer';
 
-
-// Utility to get or generate a unique user ID
-function getUniqueUserId() {
-  if (typeof window !== 'undefined') {
-    let userId = localStorage.getItem('uniqueUserId');
-  
-    if (!userId) {
-      userId = crypto.randomUUID();  // Generate a new UUID if it doesn't exist
-      localStorage.setItem('uniqueUserId', userId);
-    }
-  
-    return userId;
-  }
-  return null; // Default to null for SSR
-}
 
 // Helper function to get language from localStorage
 function getLanguageFromLocalStorage() {
@@ -37,10 +21,28 @@ const QuizPage: React.FC = () => {
   const router = useRouter();
   const [language, setLanguage] = useState<'English' | 'Traditional_Chinese' | 'Simplified_Chinese'>('English'); // Default language
 
-  //usePageTracking('/quiz');  // This tracks the quiz page
+  // Page view & response time tracking
+  usePageTracking("Start Page")
 
+  // Language components
   useEffect(() => {
-  
+    //setLanguage(getLanguageFromLocalStorage()); // Get the selected language from localStorage
+
+     // Listen for language change events
+     const handleLanguageChange = () => {
+      const selectedLanguage = getLanguageFromLocalStorage();
+      setLanguage(selectedLanguage);
+    };
+
+    window.addEventListener('languageChange', handleLanguageChange);
+
+    return () => {
+      window.removeEventListener('languageChange', handleLanguageChange);
+    };
+  }, []);
+
+  // Initialise MBTI Scores for each player
+  useEffect(() => {
     const initialScores = {
       E: 0, // Extraversion
       I: 0, // Introversion
@@ -51,92 +53,25 @@ const QuizPage: React.FC = () => {
       J: 0, // Judging
       P: 0  // Perceiving
     };
-    localStorage.setItem('mbtiScores', JSON.stringify(initialScores));
-    
-    localStorage.setItem('audioPlaying', 'false'); // Update local storage
-    localStorage.setItem('audioCurrentTime',JSON.stringify(0)); // Update local storage
-   
-    // Only access localStorage after the component has mounted
-    if (typeof window !== 'undefined') {
-      const storedLanguage = getLanguageFromLocalStorage();
-      setLanguage(storedLanguage);
-    }
-
-    // Listen for language change events
-    const handleLanguageChange = () => {
-      const selectedLanguage = getLanguageFromLocalStorage();
-      setLanguage(selectedLanguage);
-    };
-
-    window.addEventListener('languageChange', handleLanguageChange);
-
-    return () => {
-      window.removeEventListener('languageChange', handleLanguageChange);
-    };
-
+    localStorage.setItem('mbtiScores', JSON.stringify(initialScores));  
   }, []);
 
+  // Audio Components
+  useEffect(() => {
+    localStorage.setItem('audioPlaying', 'false'); // Update local storage
+    localStorage.setItem('audioCurrentTime',JSON.stringify(0)); // Update local storage
+  }, []);
 
   const handleClick = () => {
-    
+      
     // Save the audio current time to localStorage
     const audioRef = document.querySelector('audio'); // Get the audio element
     if (audioRef) {
       localStorage.setItem('audioCurrentTime', JSON.stringify(audioRef.currentTime));
     }
-
     router.push("/question1_perfume"); // Navigates to /question1
   };
 
-  // useEffect(() => {
-  //   const userId = getUniqueUserId();  // Get or create a unique user ID
-
-  //   if (userId) {
-  //     // Track game start
-  //     const startTime = new Date().toISOString();
-  //     localStorage.setItem('gameStartTime', startTime);  // Save the game start time in localStorage
-  //   }
-
-  //   const deviceType = navigator.userAgent.includes('Mobi') ? 'mobile' : 'desktop';
-  //   const channel = document.referrer.includes('google') ? 'organic' : 'direct';
-    
-  //   // Measure page load response time
-  //   const startTime = performance.now();
-
-  //   const sendPageView = () => {
-  //     const responseTime = performance.now() - startTime; // Calculate response time
-  //     fetch('/api/page-views', {
-  //       method: 'POST',
-  //       headers: { 'Content-Type': 'application/json' },
-  //       body: JSON.stringify({
-  //         userId,
-  //         page: 'Start Game Page',
-  //         deviceType,
-  //         channel,
-  //         responseTime, // Include the response time
-  //       }),
-  //     });
-
-  //     fetch('/api/page-response', {
-  //       method: 'POST',
-  //       headers: { 'Content-Type': 'application/json' },
-  //       body: JSON.stringify({
-  //         userId,
-  //         page: 'Start Game Page',
-  //         deviceType,
-  //         channel,
-  //         responseTime, // Include the response time
-  //       }),
-  //     });
-  //   };
-
-  //   // Debounce the call to avoid multiple requests
-  //   const timeoutId = setTimeout(sendPageView, 300);
-
-  //   return () => {
-  //     clearTimeout(timeoutId);
-  //   };
-  // }, []);
 
   return (
     <>
@@ -146,16 +81,14 @@ const QuizPage: React.FC = () => {
           rel="stylesheet"
         />
       </Head>
-      <div className="relative flex overflow-hidden flex-col mx-auto w-full min-h-screen bg-slate-900 max-w-[480px]">
-        
-        {/* Language Selector */}
-        <div className="absolute flex z-10 mt-4 ml-4 justify-between">
-            <LanguageSelector />
-        </div>
+
+      <div className="bg-slate-900">
+
+      <div className="relative overflow-hidden flex flex-col mx-auto w-full max-w-[480px]">
        
-        <div className="relative h-[550px] w-full">
+        <div className="relative h-[60vh]">
         {/* image */}
-          <div className="absolute">
+          <div className="absolute z-0">
             <img
               src="/images_perfume/quiz/valentine_background.png"
               alt="Perfume quiz"
@@ -163,19 +96,28 @@ const QuizPage: React.FC = () => {
             />
           </div>
 
-          <div className="absolute bottom-5 left-0 right-0 text-center font-bold text-white">
-            <pre className={`text-7xl ${waterfall.className}`}>
-            {translations[language].quiz.valentine}
-            </pre>
-            <pre className={`text-3xl ${waterfall.className}`}>
-            {translations[language].quiz.year}
-            </pre>
+          <div className="relative z-10">
+
+            {/* Language Selector */}
+            <div className="relative h-[10vh] flex justify-start">
+                <LanguageSelector/>
+            </div>
+
+            <div className="relative h-[50vh] flex flex-col justify-end items-center font-bold text-white">
+              <pre className={`text-7xl ${waterfall.className}`}>
+              {translations[language].quiz.valentine}
+              </pre>
+              <pre className={`text-3xl ${waterfall.className}`}>
+              {translations[language].quiz.year}
+              </pre>
+            </div>
+
           </div>
           
         </div>
 
 
-        <div className="relative w-full bg-slate-900">
+        <div className="relative h-[40vh] bg-slate-900">
           
           {/* Layer 1 */}
           {/* Background image 1 */}
@@ -217,19 +159,21 @@ const QuizPage: React.FC = () => {
 
 
           {/* Layer 2: Question Container */}
-          <div className="relative z-10 px-10 pt-14 pb-4">
+          <div className="relative z-10 mx-14">
             
-            {/* Question */}
-            <h1 className={`${language=='English' ?'text-5xl':'text-7xl'} text-center font-bold text-white ${wendyone.className}`}>
-              {translations[language].quiz.title}
-            </h1>
+            <div className="h-[20vh] flex flex-col items-center justify-center text-center font-bold text-white">
+              {/* Question */}
+              <h1 className={`${language=='English' ?'text-4xl':'text-6xl'} ${wendyone.className}`}>
+                {translations[language].quiz.title}
+              </h1>
 
-            <h1 className={`mt-2 mb-14 text-xl text-center font-bold text-white ${wendyone.className}`}>
-              {translations[language].quiz.subtitle}
-            </h1>
+              <h1 className={`text-xl ${wendyone.className}`}>
+                {translations[language].quiz.subtitle}
+              </h1>
+            </div>
 
             {/* Start button with background */}
-            <div className="relative flex justify-center items-center ">
+            <div className="h-[15vh] flex justify-center items-center ">
                 
                 {/* Button background*/}
                 <img
@@ -250,13 +194,19 @@ const QuizPage: React.FC = () => {
                   {translations[language].quiz.startButton}
                 </p>
               </div>
+
+              {/* Copyright */}  
+              <div className="h-[5vh] flex items-end justify-center">
+                  <h1 className="mb-2 text-xs opacity-75 text-white">
+                    Copyright © {translations[language].quiz.copyright}. All rights reserved.
+                  </h1>
+              </div>
+
           </div>
 
-          {/* Copyright */}  
-          <div className="mt-14 mb-6 text-xs opacity-75 text-center text-white">
-              Copyright © {translations[language].quiz.copyright}. All rights reserved.
-          </div>
         </div> 
+      </div>
+
       </div>
     </>
   );

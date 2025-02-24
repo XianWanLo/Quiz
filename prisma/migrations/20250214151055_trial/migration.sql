@@ -42,6 +42,7 @@ CREATE TABLE "PageResponseTimes" (
 CREATE TABLE "QuestionResponses" (
     "id" SERIAL NOT NULL,
     "questionId" TEXT NOT NULL,
+    "questionContent" TEXT NOT NULL,
     "selectedAnswer" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -57,17 +58,6 @@ CREATE TABLE "Admin" (
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     CONSTRAINT "Admin_pkey" PRIMARY KEY ("id")
-);
-
--- CreateTable
-CREATE TABLE "OutputRepetitions" (
-    "id" SERIAL NOT NULL,
-    "output_id" INTEGER NOT NULL,
-    "output_name" TEXT NOT NULL DEFAULT '',
-    "count" INTEGER NOT NULL DEFAULT 0,
-    "updated_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-
-    CONSTRAINT "OutputRepetitions_pkey" PRIMARY KEY ("id")
 );
 
 -- CreateIndex

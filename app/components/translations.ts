@@ -1,3 +1,4 @@
+
 const translations = {
     English: {
       main: {
@@ -78,7 +79,7 @@ const translations = {
         option5: "Celebrity\nendorsements",
         option6: "Mood and\nemotions",
         finishButton: "Tap to\nfinish your perfume"
-      },
+      }, 
 
       namePage:{
         prompt: "Please\nenter your name",
@@ -369,6 +370,20 @@ const translations = {
       }
     }
   };
+
+  interface Quiz8 {
+    [key: string]: string;
+  }
+  
+  export const quiz8 = {
+    option1: "Personal preference",
+    option2: "Seasonal changes",
+    option3: "Cultural background",
+    option4: "Current fashion trends",
+    option5: "Celebrity endorsements",
+    option6: "Mood and emotions",
+  } as Quiz8
+  
   
   export default translations;
   

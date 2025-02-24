@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import Head from "next/head";
 import { wendyone, stintultra, patrickhand } from "../components/font";
 import { useEffect, useState } from "react";
-//import { usePageTracking } from "../hooks/usePageTracking";
+import { usePageTracking } from "../hooks/usePageTracking";
 import translations from "../components/translations"; // Import translations
 
 
@@ -19,18 +19,20 @@ const getLanguageFromLocalStorage = () => {
 const QuizPage: React.FC = () => {
   const [language, setLanguage] = useState<'English' | 'Traditional_Chinese' | 'Simplified_Chinese'>('English');  // State to store selected language
   const router = useRouter();
-  //usePageTracking('/question8');  // This tracks the question8 page
 
   useEffect(() => {
     setLanguage(getLanguageFromLocalStorage());  // Set language based on localStorage
   }, []);
+
+  // Page view & response time tracking
+  usePageTracking("Name Page")
 
   const handleOptionClick = (option: string) => {
 
     const nameInput = (document.getElementById("nameInput") as HTMLInputElement).value; // Get the input value
     localStorage.setItem('userName', nameInput); // Save the name to local storage
     
-    // // Send response to the backend
+    // Send response to the backend
     // fetch('/api/question-response', {
     //   method: 'POST',
     //   headers: { 'Content-Type': 'application/json' },
@@ -44,45 +46,6 @@ const QuizPage: React.FC = () => {
     router.push("/question_loadingPage");
   };
   
-  // Page view tracking
-  // useEffect(() => {
-  //   const userId = getUniqueUserId();
-  //   const deviceType = navigator.userAgent.includes('Mobi') ? 'mobile' : 'desktop';
-  //   const channel = document.referrer.includes('google') ? 'organic' : 'direct';
-
-  //   const startTime = performance.now();
-
-  //   const sendPageView = () => {
-  //     const responseTime = performance.now() - startTime;
-  //     fetch('/api/page-views', {
-  //       method: 'POST',
-  //       headers: { 'Content-Type': 'application/json' },
-  //       body: JSON.stringify({
-  //         userId,
-  //         page: 'Question 8 Page',
-  //         deviceType,
-  //         channel,
-  //         responseTime,
-  //       }),
-  //     });
-
-  //     fetch('/api/page-response', {
-  //       method: 'POST',
-  //       headers: { 'Content-Type': 'application/json' },
-  //       body: JSON.stringify({
-  //         userId,
-  //         page: 'Question 8 Page',
-  //         deviceType,
-  //         channel,
-  //         responseTime,
-  //       }),
-  //     });
-  //   };
-
-  //   const timeoutId = setTimeout(sendPageView, 300);
-  //   return () => clearTimeout(timeoutId);
-  // }, []);
-
   return (
     <>
       <Head>
@@ -91,12 +54,15 @@ const QuizPage: React.FC = () => {
           rel="stylesheet"
         />
       </Head>
+
+      <div className="bg-slate-900">
+
       {/*Main Container*/}
-      <div className="flex overflow-hidden flex-col mx-auto w-full h-[1000px] bg-white max-w-[480px]">
+      <div className="relative flex overflow-hidden flex-col mx-auto w-full max-w-[480px]">
         
-        <div className="relative flex items-center justify-center w-full h-full bg-slate-900">
+        <div className="h-[100vh] flex items-center justify-center">
             
-          <div className="absolute z-0 w-full h-full">
+          <div className="absolute z-0">
             <img
               src="/images_perfume/namePage/background.png"
               className="object-cover w-full h-full"
@@ -104,7 +70,7 @@ const QuizPage: React.FC = () => {
             />
           </div>
 
-          <div className="relative flex flex-col items-center justify-center px-8 py-6 mx-20 rounded-2xl border-2 border-purple-300 bg-purple-300 bg-opacity-40">
+          <div className="relative z-10 px-8 py-6 mx-20 rounded-2xl border-2 border-purple-300 bg-purple-300 bg-opacity-40">
 
             <pre 
               className={`text-3xl font-bold text-center text-white ${patrickhand.className}`}>
@@ -127,6 +93,7 @@ const QuizPage: React.FC = () => {
 
           </div>
         </div>
+      </div>
     </div>
     </>
   );

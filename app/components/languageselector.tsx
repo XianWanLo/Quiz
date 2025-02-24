@@ -19,7 +19,7 @@ const LanguageSelector: React.FC = () => {
 
   return (
     <div className="relative">
-      <div className="flex bg-[#E2B9F4] bg-opacity-46 border border-[#E2B9F4] rounded-full overflow-hidden text-sm">
+      <div className="flex mt-4 ml-4 bg-[#E2B9F4] bg-opacity-46 border border-[#E2B9F4] rounded-full overflow-hidden text-sm">
         <button
           onClick={() => handleLanguageChange('English')}
           className={`flex-1 px-3 py-1 border-r rounded-l-full ${

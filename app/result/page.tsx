@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import Head from "next/head";
 import { wendyone, waterfall } from "../components/font";
 import { useRouter } from "next/navigation";
-//import { usePageTracking } from "../hooks/usePageTracking";
+import { usePageTracking } from "../hooks/usePageTracking";
 import { listeners } from "process";
 import translations from "../components/translations";
 import {imageMapByLanguage, perfumes, purchase_link} from "../components/perfumes_info";
@@ -40,7 +40,9 @@ const ResultPage: React.FC = () => {
   };
 
   const router = useRouter();
-  //usePageTracking('/result');  // Track page view
+ 
+  // Page view & response time tracking
+  usePageTracking("Result Page")
 
   useEffect(() => {
     // const userId = getUniqueUserId();  // Get user ID
@@ -113,21 +115,6 @@ const ResultPage: React.FC = () => {
       // Clear the game start time after completion
       // localStorage.removeItem('gameStartTime');
     // }  
-
-    // const sendPageView = () => {
-    //   const responseTime = performance.now() - startTime; // Calculate response time
-    //   fetch('/api/page-views', {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify({
-    //       userId,
-    //       page: 'Result Page',
-    //       deviceType,
-    //       channel,
-    //       responseTime, // Include the response time
-    //     }),
-    //   });
-    //};
 
     // Debounce the call to avoid multiple requests
     // const timeoutId = setTimeout(sendPageView, 300);

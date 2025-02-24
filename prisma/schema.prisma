@@ -1,51 +1,64 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
 generator client {
   provider = "prisma-client-js"
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("POSTGRES_URL")
 }
 
 model GameMetrics {
   id          Int      @id @default(autoincrement())
-  userId      String
+  userId      String   
   startTime   DateTime
   endTime     DateTime
   timeSpent   Float
   deviceType  String
   channel     String
-  createdAt   DateTime @default(now())
+  createdAt   DateTime @default(now())  
+  @@index([userId, createdAt])  // Creates an index 
 }
 
 model PageViews {
   id           Int      @id @default(autoincrement())
-  userId       String
-  page         String
+  userId       String   
+  pageName     String   
   views        Int      @default(0)
   deviceType   String
   channel      String
   createdAt    DateTime @default(now())
 
-  @@unique([page, userId, deviceType, channel])  // Composite unique constraint
+  @@unique([userId, pageName, deviceType, channel])
+  @@index([pageName, userId])  // Creates an index 
 }
 
 model PageResponseTimes {
   id           Int      @id @default(autoincrement())
   userId       String   // User ID to track response times per user
-  page         String   // The page name (e.g., '/main', '/result')
+  pageName     String   // The page name (e.g., '/main', '/result')
   responseTime Float    // Response time in milliseconds
   deviceType   String   // Device type (e.g., 'mobile', 'desktop')
   channel      String   // Channel (e.g., 'organic', 'direct')
   createdAt    DateTime @default(now())
+
+  @@index([pageName, userId])  // Creates an index 
 }
 
 model QuestionResponses {
   id              Int      @id @default(autoincrement())
-  questionId      String
+  questionId      String   
+  questionContent String
   selectedAnswer  String
-  userId          String
+  userId          String   
   createdAt       DateTime @default(now())
+
+  @@index([userId, questionId])  // Creates an index for the 'userId' field
 }
 
 model Admin {
@@ -53,13 +66,16 @@ model Admin {
   email     String   @unique
   password  String   // Store hashed passwords
   createdAt DateTime @default(now())
-}
 
+  @@index([id])  // Creates an index for the 'userId' field
+}
 
 model OutputRepetitions {
   id         Int      @id @default(autoincrement())
   output_id  Int      @unique // Make this unique to use it in the upsert
   output_name String   @default("")
   count      Int      @default(0)
-  updated_at DateTime @default(now())
+  updated_at DateTime @default(now())   
+
+  @@index([output_id, updated_at])  // Creates an index 
 }

@@ -4,14 +4,16 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && next build",
-    "start": "next start"
+    "build": "next build",
+    "start": "next start",
+    "vercel build": "prisma generate && prisma migrate deploy && next build"
   },
   "dependencies": {
-    "@prisma/client": "^5.19.1",
+    "@prisma/client": "^6.3.0",
     "argon2": "^0.41.1",
     "bcrypt": "^5.1.1",
     "chart.js": "^4.4.4",
+    "chartjs-plugin-datalabels": "^2.2.0",
     "next": "^14.2.6",
     "postgresql": "^0.0.1",
     "react": "^18.3.1",
@@ -25,14 +27,15 @@
     "swiper": "^11.1.12"
   },
   "devDependencies": {
-    "@types/node": "^20",
+    "@types/node": "^22",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "autoprefixer": "^10.4.20",
     "eslint": "^8",
     "eslint-config-next": "14.2.6",
-    "postcss": "^8",
-    "prisma": "^5.19.1",
-    "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "postcss": "^8.5.3",
+    "prisma": "^6.3.1",
+    "tailwindcss": "^3.4.17",
+    "typescript": "^5.1.0"
   }
 }
