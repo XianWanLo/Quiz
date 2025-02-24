@@ -74,7 +74,7 @@ const QuizPage: React.FC = () => {
     <>
       <Head>
         <link
-          href="https://fonts.googleapis.com/css2?family=Wendy+One&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap"
           rel="stylesheet"
         />
       </Head>
