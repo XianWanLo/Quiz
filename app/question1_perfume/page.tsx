@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import translations from "../components/translations";
 import {usePageTracking} from "../hooks/usePageTracking";
 import Footer from "../components/footer";
+import Image from 'next/image';
 
 
 const getLanguageFromLocalStorage = () => {
@@ -78,11 +79,13 @@ const QuizPage: React.FC = () => {
       
         {/* image */}
         <div className="relative h-[60vh]">
-          <img
-            src="/images_perfume/question1/background.png"
-            alt="Perfume quiz"
-            className="object-cover w-full h-full"
-          />
+        <Image
+          src="/images_perfume/question1/background.png"
+          alt="Perfume quiz"
+          layout="fill" // Ensures the image covers its container
+          objectFit="cover" // Equivalent to `className="object-cover"`
+          priority // Ensures faster loading if it's an important image
+        />
         </div>
 
         {/* Question container with option background */}

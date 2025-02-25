@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import translations from "../components/translations"; // Import translations
 import { usePageTracking } from "../hooks/usePageTracking";
 import LanguageSelector from "../components/languageselector";
-
+import Image from 'next/image';
 
 // Helper function to get language from localStorage
 function getLanguageFromLocalStorage() {
@@ -88,11 +88,13 @@ const QuizPage: React.FC = () => {
        
         <div className="relative h-[60vh]">
         {/* image */}
-          <div className="absolute z-0">
-            <img
+          <div className="absolute z-0 h-full w-full">
+            <Image
               src="/images_perfume/quiz/valentine_background.png"
               alt="Perfume quiz"
-              className="object-cover"
+              layout="fill"  // Ensures the image covers its container
+              objectFit ="cover"
+              priority
             />
           </div>
 
@@ -121,7 +123,7 @@ const QuizPage: React.FC = () => {
           
           {/* Layer 1 */}
           {/* Background image 1 */}
-          <div className="absolute top-4 right-0">
+          <div className="absolute top-0 right-0">
             <img
               src="/images_perfume/quiz/image 17.png"
               className="object-cover"

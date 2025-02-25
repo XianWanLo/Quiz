@@ -135,18 +135,17 @@ const StatsPage: React.FC = () => {
       plugins: {
         legend: {
           display: true,   // Show the legend beside the chart
-          position: 'right', // Move legend to the right
         },
         datalabels: {
           display: true, // Always show data labels
           formatter: (value: number) => percentageFormatter(value),
           color: '#fff', // Ensure visibility on any background
           font: {
-            weight: 'bold',
+            weight: 700,
             size: 14,
           },
         },
-      }
+      },
     };
 
     const pieChartOptions = {
