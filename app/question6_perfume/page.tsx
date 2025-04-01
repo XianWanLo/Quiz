@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { usePageTracking } from "../hooks/usePageTracking";
 import translations from "../components/translations"; // Import translations
 import Footer from "../components/footer";
+import Image from 'next/image';
 
 
 const getUniqueUserId = () => {
@@ -80,12 +81,14 @@ const QuizPage: React.FC = () => {
 
       {/* Main container*/}
       <div className="relative flex overflow-hidden flex-col mx-auto w-full max-w-[480px]">
-        {/* image */}
-        <div className="h-[60vh]">
-          <img
+        
+        <div className="relative h-[60vh]">
+          <Image
             src="/images_perfume/question6/background.png"
             alt="Perfume quiz"
-            className="object-cover w-full h-full"
+            layout="fill"
+            objectFit="cover"
+            priority
           />
         </div>
         

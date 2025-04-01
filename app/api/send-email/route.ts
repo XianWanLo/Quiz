@@ -1,6 +1,8 @@
 import { EmailTemplate } from '../../components/emailTemplate';
 import { NextResponse } from 'next/server';
 import { Resend } from 'resend';
+import fs from 'fs';
+import path from 'path';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -17,11 +19,23 @@ export async function POST(req: Request) {
       return NextResponse.json({ error: "Missing image name" }, { status: 400 });
     }
 
+    // Resolve the image path
+    const imagePath = path.join(process.cwd(), 'public', imageSrc);
+    // Read the image file
+    const imageBuffer = fs.readFileSync(imagePath);
+
     const data = await resend.emails.send({
-      from: 'YourApp <noreply@yourdomain.com>',
+      from: 'MBTI Perfume Quiz <noreply@mail.vision-verse.tech>', 
       to: email,
       subject: 'MBTI Perfume Quiz Result',
-      react: EmailTemplate({ firstName, imageSrc }),
+      react: EmailTemplate({ firstName }),
+      attachments: [
+        {
+          filename: path.basename(imageSrc),
+          content: imageBuffer.toString('base64'),
+          contentType: 'image/png', // Ensure the correct content type
+        },
+      ],
     });
 
     return NextResponse.json({ success: true, data }, { status: 200 });

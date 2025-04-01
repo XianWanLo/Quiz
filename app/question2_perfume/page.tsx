@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import translations from "../components/translations";
 import Footer from "../components/footer";
 import { usePageTracking } from "../hooks/usePageTracking";
+import Image from 'next/image';
 import "../globals.css"
 
 
@@ -83,26 +84,30 @@ const QuizPage: React.FC = () => {
       {/* Main container*/}
       <div className="relative flex overflow-hidden flex-col mx-auto w-full max-w-[480px]">
 
-        {/* image */}
-        <div className="relative h-[60vh]">
-          <img
-            src="/images_perfume/question2/background.png"
-            alt="Perfume quiz"
-            className="object-cover w-full h-full"
-          />
-        </div>
+        
+          <div className="relative h-[60vh]">
+            <Image
+              src="/images_perfume/question2/background.png"
+              alt="Perfume quiz"
+              layout="fill" // Ensures the image covers its container
+              objectFit="cover" // Equivalent to `className="object-cover"`
+              priority // Ensures faster loading if it's an important image
+            />
+          </div>
+        
 
         {/* Question container with option background */}
         <div className="relative h-[30vh] pr-5 pl-5 bg-slate-900">
-          {/* Layer 1: Option background image (positioned absolutely) */}
+    
           <div className="absolute inset-y-2 left-2 w-2/5">
-            <img
-              src="/images_perfume/question1/option1.png"
-              className="object-cover w-full h-full"
-              alt="Option background"
-            />
+          <Image
+            src="/images_perfume/question1/option1.png"
+            alt="Option background"
+            layout="fill"
+            objectFit="cover"
+          />
           </div>
-
+          
           {/* Layer 2: Content (positioned relatively to appear above background) */}
           <div className="relative z-10">
             {/* Question at the top - added fixed width/height container */}

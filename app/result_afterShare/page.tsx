@@ -26,12 +26,6 @@ const QuizPage: React.FC = () => {
   const router = useRouter();
   //usePageTracking('/question8');  // This tracks the question8 page
 
-  // Determine the result image based on the highest occurrence number and language
-  const imageSrc = MBTI
-  ? imageMapAfterShare[language][MBTI]
-  : "/images_perfume/result/result_en/ESFP_after_en.png"; // Default fallback
-
-
   useEffect(() => {
     setLanguage(getLanguageFromLocalStorage());  // Set language based on localStorage
     setMBTI(localStorage.getItem('MBTI'));
@@ -40,6 +34,12 @@ const QuizPage: React.FC = () => {
     setNameID(userFirstName + "0001");
 
   }, []);
+
+  // Determine the result image based on the highest occurrence number and language
+  const imageSrc = MBTI
+  ? imageMapAfterShare[language][MBTI]
+  : "/images_perfume/result/result_en/ESFP_after_en.png"; // Default fallback
+
 
   const handleOptionClick = async () => {
     
@@ -76,43 +76,31 @@ const QuizPage: React.FC = () => {
   };
   
   // Page view tracking
-  // useEffect(() => {
-  //   const userId = getUniqueUserId();
-  //   const deviceType = navigator.userAgent.includes('Mobi') ? 'mobile' : 'desktop';
-  //   const channel = document.referrer.includes('google') ? 'organic' : 'direct';
+  useEffect(() => {
+    const userId = getUniqueUserId();
+    const deviceType = navigator.userAgent.includes('Mobi') ? 'mobile' : 'desktop';
+    const channel = document.referrer.includes('google') ? 'organic' : 'direct';
 
-  //   const startTime = performance.now();
+    const startTime = performance.now();
 
-  //   const sendPageView = () => {
-  //     const responseTime = performance.now() - startTime;
-  //     fetch('/api/page-views', {
-  //       method: 'POST',
-  //       headers: { 'Content-Type': 'application/json' },
-  //       body: JSON.stringify({
-  //         userId,
-  //         page: 'Question 8 Page',
-  //         deviceType,
-  //         channel,
-  //         responseTime,
-  //       }),
-  //     });
+    const sendPageView = () => {
+      const responseTime = performance.now() - startTime;
+      fetch('/api/page-views', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          userId,
+          page: 'Result(After Share) Page',
+          deviceType,
+          channel,
+          responseTime,
+        }),
+      });
+    };
 
-  //     fetch('/api/page-response', {
-  //       method: 'POST',
-  //       headers: { 'Content-Type': 'application/json' },
-  //       body: JSON.stringify({
-  //         userId,
-  //         page: 'Question 8 Page',
-  //         deviceType,
-  //         channel,
-  //         responseTime,
-  //       }),
-  //     });
-  //   };
-
-  //   const timeoutId = setTimeout(sendPageView, 300);
-  //   return () => clearTimeout(timeoutId);
-  // }, []);
+    const timeoutId = setTimeout(sendPageView, 300);
+    return () => clearTimeout(timeoutId);
+  }, []);
 
   return (
     <>
@@ -128,13 +116,13 @@ const QuizPage: React.FC = () => {
         {/* Top section */}
         <div className="relative flex w-full items-center justify-between">
           <h1
-            className="mt-4 ml-8 text-l text-gray-500 hover:bg-gray-200"
+            className="mt-4 ml-4 text-l text-gray-500 hover:bg-gray-200"
           >
             No. {nameID}
           </h1>
 
           <h1
-            className="mt-4 mr-8 text-l text-gray-500 font-bold hover:bg-gray-200"
+            className="mt-4 mr-4 text-l text-gray-500 font-bold hover:bg-gray-200"
           >
            {translations[language].resultPage.prompt}
           </h1>

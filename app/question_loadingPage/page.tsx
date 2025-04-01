@@ -5,7 +5,7 @@ import { wendyone, stintultra, patrickhand, whisper } from "../components/font";
 import { useEffect, useState } from "react";
 //import { usePageTracking } from "../hooks/usePageTracking";
 import translations from "../components/translations"; // Import translations
-
+import Image from 'next/image';
 
 const getUniqueUserId = () => {
   let userId = localStorage.getItem('uniqueUserId');
@@ -51,10 +51,12 @@ const QuizPage: React.FC = () => {
         <div className="h-[100vh] flex flex-col items-center justify-center">
 
               <div className="z-0 inset-y-1/2">
-                <img
+                <Image
                   src="/images_perfume/loadingPage/background.png"
-                  className="object-cover"
-                  alt="Loading background"
+                  alt="Option background"
+                  width={181}
+                  height={212}
+                  priority
                 />
               </div>
 

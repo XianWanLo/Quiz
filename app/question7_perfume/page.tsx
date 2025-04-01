@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import { usePageTracking } from "../hooks/usePageTracking";
 import translations from "../components/translations"; // Import translations
 import Footer from "../components/footer";
+import Image from 'next/image';
+
 
 const getLanguageFromLocalStorage = () => {
   return localStorage.getItem('language') as ('English' | 'Traditional_Chinese' | 'Simplified_Chinese') || 'English';  // Default to English if not set
@@ -78,11 +80,13 @@ const QuizPage: React.FC = () => {
       {/*Main Container*/}
       <div className="relative flex overflow-hidden flex-col mx-auto w-full max-w-[480px]">
             
-          <div className="absolute z-0 w-full">
-            <img
+          <div className="absolute z-0 w-full h-full">
+          <Image
               src="/images_perfume/question7/background.png"
-              className="object-cover w-full h-full"
+              className="object-cover"
               alt="Option background"
+              layout="fill"
+              priority
             />
           </div>
 
@@ -100,9 +104,11 @@ const QuizPage: React.FC = () => {
               
               {/* Option 1 */}
               <div>
-                <img
+              <Image
                   src="/images_perfume/question7/option1.png"
                   alt="Option 1"
+                  width={185}
+                  height={187}
                 />
               </div>
 
@@ -114,10 +120,12 @@ const QuizPage: React.FC = () => {
               </div>
 
               {/* Option 2 */}
-              <div>
-                <img
+              <div className="mt-8">
+              <Image
                   src="/images_perfume/question7/option2.png"
                   alt="Option 2"
+                  width={185}
+                  height={187}
                 />
               </div>
 

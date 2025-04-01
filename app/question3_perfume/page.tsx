@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import translations from "../components/translations"; // Import translations
 import Footer from "../components/footer";
 import { usePageTracking } from "../hooks/usePageTracking";
-
+import Image from 'next/image';
 
 
 const getUniqueUserId = () => {
@@ -88,14 +88,15 @@ const QuizPage: React.FC = () => {
 
       <div className="bg-slate-900">
 
-      {/*Main Container*/}
-      <div className="relative flex overflow-hidden flex-col mx-auto w-full max-w-[480px]">
-          
-          <div className="absolute z-0 w-full">
-            <img
+        <div className="relative flex overflow-hidden flex-col mx-auto w-full max-w-[480px]">
+            
+          <div className="absolute z-0 w-full h-full">
+            <Image
               src="/images_perfume/question3/background.png"
-              className="object-cover w-full h-full"
+              className="object-cover"
               alt="Option background"
+              layout="fill"
+              priority
             />
           </div>
 
@@ -108,14 +109,13 @@ const QuizPage: React.FC = () => {
               </h1>
             </div>
 
-            {/* Options container*/}
             <div className="h-[75vh] flex flex-col items-center justify-center gap-4">
-              
-              {/* Option 1 */}
               <div>
-                <img
+                <Image
                   src="/images_perfume/question3/option1.png"
                   alt="Option 1"
+                  width={185}
+                  height={187}
                 />
               </div>
 
@@ -127,10 +127,12 @@ const QuizPage: React.FC = () => {
               </div>
 
               {/* Option 2 */}
-              <div>
-                <img
+              <div className="mt-8">
+                <Image
                   src="/images_perfume/question3/option2.png"
                   alt="Option 2"
+                  width={185}
+                  height={187}
                 />
               </div>
 

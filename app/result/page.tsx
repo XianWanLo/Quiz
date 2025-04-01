@@ -7,6 +7,7 @@ import { usePageTracking } from "../hooks/usePageTracking";
 import { listeners } from "process";
 import translations from "../components/translations";
 import {imageMapByLanguage, perfumes, purchase_link} from "../components/perfumes_info";
+import Image from 'next/image';
 
 
 const getUniqueUserId = () => {
@@ -45,12 +46,11 @@ const ResultPage: React.FC = () => {
   usePageTracking("Result Page")
 
   useEffect(() => {
-    // const userId = getUniqueUserId();  // Get user ID
-    // const gameStartTime = localStorage.getItem('gameStartTime');  // Retrieve start time
-    // const endTime = new Date().toISOString();  // Get current time for game completion
-    // const deviceType = navigator.userAgent.includes('Mobi') ? 'mobile' : 'desktop';
-    // const channel = document.referrer.includes('google') ? 'organic' : 'direct';
-    // const startTime = performance.now();
+    const userId = getUniqueUserId();  // Get user ID
+    const gameStartTime = localStorage.getItem('gameStartTime');  // Retrieve start time
+    const endTime = new Date().toISOString();  // Get current time for game completion
+    const deviceType = navigator.userAgent.includes('Mobi') ? 'mobile' : 'desktop';
+    const channel = document.referrer.includes('google') ? 'organic' : 'direct';
 
     const userFirstName = localStorage.getItem('userName')?.split(' ')[0] || ''; // Save the name to local storage
     setNameID(userFirstName + "0001");
@@ -94,34 +94,34 @@ const ResultPage: React.FC = () => {
     
     localStorage.setItem('MBTI', bestMatch||'{}');
 
-    // Send game completion data to the server if gameStartTime exists
-    // if (gameStartTime && userId) {
-    //   const timeSpent = (new Date(endTime).getTime() - new Date(gameStartTime).getTime()) / 1000; // Calculate time spent in seconds
+    //Send game completion data to the server if gameStartTime exists
+    if (gameStartTime && userId) {
+      const timeSpent = (new Date(endTime).getTime() - new Date(gameStartTime).getTime()) / 1000; // Calculate time spent in seconds
 
-    //   // Send game completion metrics
-    //   fetch('/api/game-complete', {
-    //     method: 'POST',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify({
-    //       userId,
-    //       startTime: gameStartTime,
-    //       endTime,
-    //       timeSpent,
-    //       deviceType,
-    //       channel,
-    //     }),
-    //   });
+      // Send game completion metrics
+      fetch('/api/game-complete', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          userId,
+          startTime: gameStartTime,
+          endTime,
+          timeSpent,
+          deviceType,
+          channel,
+        }),
+      });
 
-      // Clear the game start time after completion
-      // localStorage.removeItem('gameStartTime');
-    // }  
+    //Clear the game start time after completion
+      localStorage.removeItem('gameStartTime');
+    }  
 
-    // Debounce the call to avoid multiple requests
-    // const timeoutId = setTimeout(sendPageView, 300);
+    //Debounce the call to avoid multiple requests
+    //const timeoutId = setTimeout(sendPageView, 300);
 
-    // return () => {
-    //   clearTimeout(timeoutId);
-    // };
+    return () => {
+      //clearTimeout(timeoutId);
+    };
    }, []);
 
 
@@ -192,13 +192,13 @@ const ResultPage: React.FC = () => {
           {/* Top section */}
           <div className="relative flex w-full items-center justify-between">
             <h1
-              className="mt-4 ml-8 text-l text-gray-500 hover:bg-gray-200"
+              className="mt-4 ml-4 text-l text-gray-500 hover:bg-gray-200"
             >
               No. {nameID}
             </h1>
 
             <h1
-              className="mt-4 mr-8 text-l text-gray-500 font-bold hover:bg-gray-200"
+              className="mt-4 mr-4 text-l text-gray-500 font-bold hover:bg-gray-200"
             >
             {translations[language].resultPage.prompt}
             </h1>
@@ -206,10 +206,12 @@ const ResultPage: React.FC = () => {
           
           {/* Result image */}
           <div className="relative w-full flex flex-col">
-            <img
+            <Image
               src={imageSrc} // Set the result image dynamically
               alt="Quiz"
-              className="w-full h-full"
+              width={860}
+              height={1600}
+              priority
             />
           </div>
 
@@ -239,12 +241,14 @@ const ResultPage: React.FC = () => {
               {/* Display images and text, one image per row */}
               <div className={`relative mb-10 flex flex-col justify-center`}>
 
-                <div className="absolute z-0 w-full mt-10 inset-y-0">
-                  <img
-                    src="/images_perfume/namePage/background.png"
-                    className="object-cover"
-                    alt="Option background"
-                  />
+                <div className="absolute z-0 w-full h-full mt-10 inset-y-0">
+                <Image
+                  src="/images_perfume/namePage/background.png"
+                  className="object-cover"
+                  alt="Background"
+                  layout="fill"
+                  priority
+                />
                 </div>
 
                 <div className="relative mt-12 mb-12 text-center font-bold text-red-500">

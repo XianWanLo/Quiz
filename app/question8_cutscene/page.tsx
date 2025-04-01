@@ -5,6 +5,7 @@ import { wendyone, stintultra, patrickhand } from "../components/font";
 import { useEffect, useState } from "react";
 import { usePageTracking } from "../hooks/usePageTracking";
 import translations from "../components/translations"; // Import translations
+import Image from 'next/image';
 
 
 const getUniqueUserId = () => {
@@ -50,11 +51,13 @@ const QuizPage: React.FC = () => {
         
         <div className="h-[100vh]">
             
-          <div className="absolute z-0 w-full">
-            <img
+          <div className="absolute z-0 w-full h-full">
+            <Image
               src="/images_perfume/question7/background.png"
-              className="object-cover w-full h-full"
+              className="object-cover"
               alt="Option background"
+              layout="fill"
+              priority
             />
           </div>
 

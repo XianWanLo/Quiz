@@ -90,14 +90,17 @@ const QuizPage: React.FC = () => {
 
         {/* Question container with option background */}
         <div className="relative h-[30vh] pr-5 pl-5 bg-slate-900">
-          {/* Layer 1: Option background image (positioned absolutely) */}
+          
           <div className="absolute z-0 inset-y-2 left-2 w-2/5">
-            <img
-              src="/images_perfume/question1/option1.png"
-              className="object-cover w-full h-full"
-              alt="Option background"
-            />
+          <Image
+            src="/images_perfume/question1/option1.png"
+            alt="Option background"
+            layout="fill"
+            objectFit="cover"
+            loading="lazy"
+          />
           </div>
+          
 
           {/* Layer 2: Content (positioned relatively to appear above background) */}
           <div className="relative z-10">

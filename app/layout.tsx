@@ -18,7 +18,7 @@ export default function RootLayout({
 
   useEffect(() => {
     // Update the theme based on the current page
-    if (pathname === '/login' || pathname === '/dashboard') {
+    if (pathname === '/login' || pathname === '/dashboard' || pathname === '/result_afterShare') {
       setTheme('light');
     } else {
       setTheme('dark'); // Default theme

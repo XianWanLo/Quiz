@@ -7,6 +7,8 @@ import { usePageTracking } from "../hooks/usePageTracking";
 import translations from "../components/translations"; // Import translations
 import { quiz8 } from "../components/translations";
 import Footer from "../components/footer";
+import Image from 'next/image';
+
 
 const getUniqueUserId = () => {
   let userId = localStorage.getItem('uniqueUserId');
@@ -125,11 +127,13 @@ const QuizPage: React.FC = () => {
       <div className="relative flex overflow-hidden flex-col mx-auto w-full max-w-[480px]">
             
         <div className="absolute z-0 w-full h-full">
-          <img
-            src="/images_perfume/question8/background.png"
-            className="object-cover w-full h-full"
-            alt="Option background"
-          />
+          <Image
+              src="/images_perfume/question8/background.png"
+              className="object-cover"
+              alt="Option background"
+              layout="fill"
+              priority
+            />
         </div>
 
         <div className="h-[90vh] relative flex-col z-10 mx-6">

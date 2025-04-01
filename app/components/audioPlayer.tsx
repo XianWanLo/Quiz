@@ -46,7 +46,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({ theme }) => {
         Your browser does not support the audio element.
       </audio>
       <div onClick={toggleAudio} style={{ cursor: 'pointer' }}>
-      <img src={getIcon()} alt={isPlaying ? "Play" : "Pause"} width="40" height="40" />
+      <img src={getIcon()} alt={isPlaying ? "Play" : "Pause"} width="30" height="30" />
       </div>
     </div>
   );
