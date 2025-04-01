@@ -5,6 +5,7 @@ import Head from "next/head";
 import { wendyone, waterfall } from "../components/font";
 import { useEffect, useState } from "react";
 import translations from "../components/translations"; // Import translations
+import { useGameTimeTracking } from "../hooks/useGameTimeTracking";
 import { usePageTracking } from "../hooks/usePageTracking";
 import LanguageSelector from "../components/languageselector";
 import Image from 'next/image';
@@ -23,7 +24,8 @@ const QuizPage: React.FC = () => {
 
   // Page view & response time tracking
   usePageTracking("Start Page")
-
+  useGameTimeTracking("Start Page");
+  
   // Language components
   useEffect(() => {
     //setLanguage(getLanguageFromLocalStorage()); // Get the selected language from localStorage

@@ -1,7 +1,11 @@
 "use client"; // Add this line to mark the component as a Client Component
 import React, { useEffect, useRef, useState } from 'react';
 
-const AudioPlayer =   () => {
+interface AudioPlayerProps {
+  theme: 'light' | 'dark';
+}
+
+const AudioPlayer: React.FC<AudioPlayerProps> = ({ theme }) => {
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
 
@@ -27,18 +31,22 @@ const AudioPlayer =   () => {
     setIsPlaying((prev) => !prev);
   };
 
+  const getIcon = () => {
+    if (isPlaying) {
+      return theme === 'light' ? '/images_perfume/music/volume-dark.png' : '/images_perfume/music/volume.png';
+    } else {
+      return theme === 'light' ? '/images_perfume/music/volume-mute-dark.png' : '/images_perfume/music/volume-mute.png';
+    }
+  };
+
   return (
-    <div className="absolute z-10 mt-4 right-4">
+    <div className="absolute z-10 mt-4 left-4">
       <audio ref={audioRef} loop>
         <source src="/website_bgm.mp3" type="audio/mpeg" />
         Your browser does not support the audio element.
       </audio>
       <div onClick={toggleAudio} style={{ cursor: 'pointer' }}>
-        {isPlaying ? (
-          <img src="/images_perfume/music/unmute.png" alt="Play" width="40" height="40" />
-        ) : (
-          <img src="/images_perfume/music/mute.png" alt="Pause" width="40" height="40" />
-        )}
+      <img src={getIcon()} alt={isPlaying ? "Play" : "Pause"} width="40" height="40" />
       </div>
     </div>
   );

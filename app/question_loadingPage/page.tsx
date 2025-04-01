@@ -43,9 +43,12 @@ const QuizPage: React.FC = () => {
         />
       </Head>
       {/*Main Container*/}
-      <div className="flex overflow-hidden flex-col mx-auto w-full h-[1000px] bg-white max-w-[480px]">
+
+      <div className="bg-slate-900">
+
+      <div className="relative overflow-hidden mx-auto w-full max-w-[480px]">
         
-        <div className="relative flex flex-col items-center justify-center w-full h-full bg-slate-900">
+        <div className="h-[100vh] flex flex-col items-center justify-center">
 
               <div className="z-0 inset-y-1/2">
                 <img
@@ -56,14 +59,13 @@ const QuizPage: React.FC = () => {
               </div>
 
               <div
-                className="mt-5 text-center text-xl text-white cursor-pointer">
+                className="mt-5 cursor-pointer">
                 <pre className={`text-4xl font-bold text-center text-white ${whisper.className}`}>
                 {translations[language].loadingPage.prompt}
                 </pre>
               </div>
-
-          
         </div>
+    </div>
     </div>
     </>
   );

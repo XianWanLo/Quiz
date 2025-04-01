@@ -41,10 +41,10 @@ const LoginPage: React.FC = () => {
 
         <form onSubmit={handleLogin}>
           <div className="mb-4">
-            <label htmlFor="adminID" className="block text-gray-700">Admin ID:</label>
+            <label htmlFor="adminEmail" className="block text-gray-700">Admin Email:</label>
             <input 
-              type="adminID"
-              id="adminID"
+              type="adminEmail"
+              id="adminEmail"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               className="w-full px-4 py-2 mt-2 border rounded-lg"
