@@ -4,11 +4,8 @@ import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import "./globals.css";
 import AudioPlayer from "./components/audioPlayer";
-import { metadata } from './metadata'; // Import metadata
 
 const inter = Inter({ subsets: ["latin"] });
-
-export const getMetadata = () => metadata;
 
 export default function RootLayout({
   children,
