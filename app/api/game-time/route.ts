@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'; // Updated import
-import { prisma } from '@/lib/prisma';
+import prisma from '../../utils/prisma';
 
 // Named export for POST method
 export async function POST(req: NextRequest) { // Changed to NextRequest

@@ -1,6 +1,6 @@
 // File: api/page-response/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';  // Adjust the path based on your project structure
+import prisma from '../../utils/prisma';  // Adjust the path based on your project structure
 
 // Handle POST requests to log page response times
 export async function POST(req: NextRequest) {

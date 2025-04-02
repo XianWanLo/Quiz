@@ -109,6 +109,7 @@ const QuizPage: React.FC = () => {
                   alt="Option 1"
                   width={185}
                   height={187}
+                  priority
                 />
               </div>
 
@@ -120,12 +121,13 @@ const QuizPage: React.FC = () => {
               </div>
 
               {/* Option 2 */}
-              <div className="mt-8">
+              <div>
               <Image
                   src="/images_perfume/question7/option2.png"
                   alt="Option 2"
                   width={185}
                   height={187}
+                  priority
                 />
               </div>
 

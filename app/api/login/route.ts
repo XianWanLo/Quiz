@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';  // Adjust the path to your Prisma client
+import prisma from '../../utils/prisma'; // Adjust the path to your Prisma client
 
 export async function POST(req: Request) {
   try {

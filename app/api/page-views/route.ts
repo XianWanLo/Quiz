@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';  // Adjust the path to your Prisma client
-import { PageViews } from '@prisma/client'; // Import the generated Prisma types
+import prisma from '../../utils/prisma';  // Adjust the path to your Prisma client
+
 
 // Handle POST requests
 export async function POST(req: NextRequest) {

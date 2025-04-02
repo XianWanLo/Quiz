@@ -97,7 +97,6 @@ const QuizPage: React.FC = () => {
             alt="Option background"
             layout="fill"
             objectFit="cover"
-            loading="lazy"
           />
           </div>
           
