@@ -10,6 +10,14 @@ import { usePageTracking } from "../hooks/usePageTracking";
 import LanguageSelector from "../components/languageselector";
 import Image from 'next/image';
 
+
+const getUniqueUserId = () => {
+  if (typeof window !== 'undefined') {
+    return localStorage.getItem('uniqueUserId');
+  }
+  return null; // Return null or a default value if not in the browser
+};
+
 // Helper function to get language from localStorage
 function getLanguageFromLocalStorage() {
   if (typeof window !== 'undefined') {
@@ -25,7 +33,7 @@ const QuizPage: React.FC = () => {
   // Page view & response time tracking
   usePageTracking("Start Page")
   useGameTimeTracking("Start Page");
-  
+
   // Language components
   useEffect(() => {
     //setLanguage(getLanguageFromLocalStorage()); // Get the selected language from localStorage
@@ -64,6 +72,8 @@ const QuizPage: React.FC = () => {
     localStorage.setItem('audioCurrentTime',JSON.stringify(0)); // Update local storage
   }, []);
 
+
+  
   const handleClick = () => {
       
     // Save the audio current time to localStorage

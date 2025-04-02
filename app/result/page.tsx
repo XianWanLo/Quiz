@@ -103,12 +103,12 @@ const ResultPage: React.FC = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          userId,
+          userId: userId,
           startTime: gameStartTime,
-          endTime,
-          timeSpent,
-          deviceType,
-          channel,
+          endTime: endTime,
+          timeSpent: timeSpent,
+          deviceType: deviceType,
+          channel: channel,
         }),
       });
 

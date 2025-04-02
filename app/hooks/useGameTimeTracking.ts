@@ -20,6 +20,7 @@ export const useGameTimeTracking = (page: string) => {
     
     // Record the start time when the user enters the page
     const startTime = new Date();
+    localStorage.setItem('gameStartTime', startTime.toISOString());
 
     const handleBeforeUnload = () => {
       const endTime = new Date();
