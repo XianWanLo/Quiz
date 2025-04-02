@@ -1,22 +1,13 @@
 // File: pages/quiz.tsx
 "use client";
+import { Suspense, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Head from "next/head";
-import { wendyone, stintultra, patrickhand } from "../components/font";
-import { useEffect, useState } from "react";
 import translations from "../components/translations"; // Import translations
 import Footer from "../components/footer";
 import { usePageTracking } from "../hooks/usePageTracking";
 import Image from 'next/image';
-
-
-const getUniqueUserId = () => {
-  if (typeof window !== 'undefined') {
-    let userId = localStorage.getItem('uniqueUserId');
-    return userId;
-  }
-  return null;
-};
+import Loading from '../components/loading'; 
 
 
 const getLanguageFromLocalStorage = () => {
@@ -26,17 +17,19 @@ const getLanguageFromLocalStorage = () => {
   return 'English';
 };
 
-const QuizPage: React.FC = () => {
+// This is a simple fallback for data fetching or component loading
+function QuizContent() {
   const [language, setLanguage] = useState<'English' | 'Traditional_Chinese' | 'Simplified_Chinese'>('English'); // State for language
   const router = useRouter();
+  const questionFont = language === 'English' ? 'poetsen-one-regular' : 'noto_sans_sc';
+  const questionFontSize = language === 'English' ? 'text-xl' : 'text-2xl';
+  const optionFontSize = language === 'English' ? 'text-sm' : 'text-l';
+  
   
   useEffect(() => {
     setLanguage(getLanguageFromLocalStorage()); // Get the selected language from localStorage
   }, []);
 
-  const questionFont = language === 'English' ? 'poetsen-one-regular' : 'noto_sans_sc';
-  const questionFontSize = language === 'English' ? 'text-xl' : 'text-2xl';
-  const optionFontSize = language === 'English' ? 'text-sm' : 'text-l';
 
   // Page view & response time tracking
   usePageTracking("Question 3 Page")
@@ -85,7 +78,7 @@ const QuizPage: React.FC = () => {
           rel="stylesheet"
         />
       </Head>
-
+      
       <div className="bg-slate-900">
 
         <div className="relative flex overflow-hidden flex-col mx-auto w-full max-w-[480px]">
@@ -151,7 +144,26 @@ const QuizPage: React.FC = () => {
           {/* Footer - aligned to bottom right */}
           <Footer pageNum={3} totalPages={8}/>
         </div> 
-    </div>
+      </div>
+    </>
+  );
+};
+
+
+const QuizPage = () => {
+  return (
+    <>
+      <Head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
+
+      {/* Suspense for lazy loading components */}
+      <Suspense fallback={<Loading />}>
+        <QuizContent />
+      </Suspense>
     </>
   );
 };

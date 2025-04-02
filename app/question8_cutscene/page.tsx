@@ -1,17 +1,12 @@
 "use client";
 import { useRouter } from "next/navigation";
 import Head from "next/head";
-import { wendyone, stintultra, patrickhand } from "../components/font";
 import { useEffect, useState } from "react";
 import { usePageTracking } from "../hooks/usePageTracking";
 import translations from "../components/translations"; // Import translations
 import Image from 'next/image';
 
 
-const getUniqueUserId = () => {
-  let userId = localStorage.getItem('uniqueUserId');
-  return userId;
-};
 
 const getLanguageFromLocalStorage = () => {
   return localStorage.getItem('language') as ('English' | 'Traditional_Chinese' | 'Simplified_Chinese') || 'English';  // Default to English if not set
@@ -84,5 +79,7 @@ const QuizPage: React.FC = () => {
     </>
   );
 };
+
+
 
 export default QuizPage;

@@ -3,20 +3,15 @@
 import { useRouter } from "next/navigation";
 import Head from "next/head";
 import { wendyone, waterfall } from "../components/font";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import translations from "../components/translations"; // Import translations
 import { useGameTimeTracking } from "../hooks/useGameTimeTracking";
 import { usePageTracking } from "../hooks/usePageTracking";
 import LanguageSelector from "../components/languageselector";
 import Image from 'next/image';
+import Loading from '../components/loading'; 
 
 
-const getUniqueUserId = () => {
-  if (typeof window !== 'undefined') {
-    return localStorage.getItem('uniqueUserId');
-  }
-  return null; // Return null or a default value if not in the browser
-};
 
 // Helper function to get language from localStorage
 function getLanguageFromLocalStorage() {
@@ -26,7 +21,7 @@ function getLanguageFromLocalStorage() {
   return 'English'; // Fallback for SSR
 };
 
-const QuizPage: React.FC = () => {
+function QuizContent() {
   const router = useRouter();
   const [language, setLanguage] = useState<'English' | 'Traditional_Chinese' | 'Simplified_Chinese'>('English'); // Default language
 
@@ -225,5 +220,24 @@ const QuizPage: React.FC = () => {
     </>
   );
 };
+
+const QuizPage = () => {
+  return (
+    <>
+      <Head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
+
+      {/* Suspense for lazy loading components */}
+      <Suspense fallback={<Loading />}>
+        <QuizContent />
+      </Suspense>
+    </>
+  );
+};
+
 
 export default QuizPage;

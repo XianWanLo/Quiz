@@ -1,14 +1,14 @@
 // File: pages/quiz.tsx
 "use client";
 import { useRouter } from "next/navigation";
-import { wendyone, stintultra, patrickhand } from "../components/font";
 import Head from "next/head";
-import { useEffect, useState } from "react";
+import {  Suspense,useEffect, useState } from "react";
 import translations from "../components/translations";
 import Footer from "../components/footer";
 import { usePageTracking } from "../hooks/usePageTracking";
 import Image from 'next/image';
 import "../globals.css"
+import Loading from '../components/loading'; 
 
 
 const getLanguageFromLocalStorage = () => {
@@ -18,7 +18,7 @@ const getLanguageFromLocalStorage = () => {
   return 'English';
 };
 
-const QuizPage: React.FC = () => {
+function QuizContent() {
   const router = useRouter();
   const [language, setLanguage] = useState<'English' | 'Traditional_Chinese' | 'Simplified_Chinese'>('English');
   
@@ -146,6 +146,24 @@ const QuizPage: React.FC = () => {
         <Footer pageNum={2} totalPages={8}/>
       </div>
       </div>
+    </>
+  );
+};
+
+const QuizPage = () => {
+  return (
+    <>
+      <Head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
+
+      {/* Suspense for lazy loading components */}
+      <Suspense fallback={<Loading />}>
+        <QuizContent />
+      </Suspense>
     </>
   );
 };
