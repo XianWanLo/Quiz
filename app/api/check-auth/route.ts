@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 
+export const dynamic = "force-dynamic"; // Ensure this API route runs dynamically
+
 export async function GET() {
   try {
     // Get the cookies from the request
