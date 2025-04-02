@@ -72,13 +72,7 @@ function QuizContent() {
 
   return (
     <>
-      <Head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
-      
+    
       <div className="bg-slate-900">
 
         <div className="relative flex overflow-hidden flex-col mx-auto w-full max-w-[480px]">

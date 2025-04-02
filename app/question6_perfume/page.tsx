@@ -67,12 +67,6 @@ function QuizContent() {
 
   return (
     <>
-      <Head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Wendy+One&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
       
       <div className="bg-slate-900">
 
