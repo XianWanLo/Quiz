@@ -112,7 +112,7 @@ const QuizPage = () => {
             </div>
 
             {/* Options container - side by side */}
-            <div className="h-[15vh] flex mx-4 gap-4">
+            <div className="h-[15vh] flex mx-2 gap-4">
               {/* Option 1 */}
               <div 
                 onClick={() => handleOptionClick("Option 1")}
