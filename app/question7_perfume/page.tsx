@@ -84,7 +84,7 @@ function QuizContent() {
             />
           </div>
 
-          <div className="h-[95vh] relative z-10 flex-col mx-6">
+          <div className="h-[95vh] relative z-10 flex-col mx-2">
 
             {/* Question at the top - added fixed width/height container */}
             <div className="h-[15vh] flex items-center justify-center">
@@ -94,7 +94,7 @@ function QuizContent() {
             </div>
 
             {/* Options container*/}
-            <div className="h-[80vh] flex flex-col items-center justify-center mx-4 gap-4">
+            <div className="h-[80vh] flex flex-col items-center justify-center mx-2 gap-4">
               
               {/* Option 1 */}
               <div>
