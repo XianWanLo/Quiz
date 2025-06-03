@@ -31,12 +31,12 @@ function QuizContent() {
 
   // Language components
   useEffect(() => {
-    //setLanguage(getLanguageFromLocalStorage()); // Get the selected language from localStorage
+    setLanguage(getLanguageFromLocalStorage()); // Get the selected language from localStorage
 
-     // Listen for language change events
-     const handleLanguageChange = () => {
-      const selectedLanguage = getLanguageFromLocalStorage();
-      setLanguage(selectedLanguage);
+    // Listen for language change events
+    const handleLanguageChange = () => {
+    const selectedLanguage = getLanguageFromLocalStorage();
+    setLanguage(selectedLanguage);
     };
 
     window.addEventListener('languageChange', handleLanguageChange);
