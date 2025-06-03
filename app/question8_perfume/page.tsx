@@ -126,7 +126,7 @@ const QuizPage = () => {
             />
         </div>
 
-        <div className="h-[90vh] relative flex-col z-10 mx-6">
+        <div className="h-[95vh] relative flex-col z-10 mx-6">
 
             {/* Question at the top - added fixed width/height container */}
             <div className="h-[20vh] flex items-center justify-center">
@@ -135,10 +135,10 @@ const QuizPage = () => {
               </h1>
             </div>
 
-            <div className="h-[55vh] flex-col">
+            <div className="h-[60vh] flex-col">
 
                 {/* Options container*/}
-                <div className="h-[18vh] flex relative items-center justify-center gap-4 text-white text-center text-2xl ">
+                <div className="h-[20vh] flex relative items-center justify-center gap-4 text-white text-center text-2xl ">
 
                   <div 
                       onClick={() => handleOptionClick("Option1")}
@@ -160,7 +160,7 @@ const QuizPage = () => {
 
                 </div>
 
-                <div className="h-[18vh] flex relative items-center justify-center gap-4 text-white text-center text-2xl">
+                <div className="h-[20vh] flex relative items-center justify-center gap-4 text-white text-center text-2xl">
 
                   <div 
                       onClick={() => handleOptionClick("Option3")}
@@ -182,7 +182,7 @@ const QuizPage = () => {
 
                 </div>
 
-                <div className="h-[18vh] flex relative items-center justify-between gap-4 text-white text-center text-2xl">
+                <div className="h-[20vh] flex relative items-center justify-between gap-4 text-white text-center text-2xl">
 
                   <div 
                       onClick={() => handleOptionClick("Option5")}

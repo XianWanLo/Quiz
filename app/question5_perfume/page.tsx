@@ -88,10 +88,10 @@ function QuizContent() {
             </div>
 
             {/* Options container*/}
-            <div className="h-[70vh] md:mx-10">
+            <div className="h-[75vh] md:mx-10">
               
               {/* Option 1 */}
-              <div className="relative h-[30vh] flex items-center">
+              <div className="relative h-[32vh] flex items-center">
                 
                 <img
                     src="/images_perfume/question5/option1.png"
@@ -111,7 +111,7 @@ function QuizContent() {
               </div>
 
               {/* Option 2 */}
-              <div className="relative h-[30vh] flex items-center">
+              <div className="relative h-[32vh] flex items-center">
                 
                 <img
                   src="/images_perfume/question5/option2.png"

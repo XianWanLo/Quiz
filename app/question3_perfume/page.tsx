@@ -87,7 +87,7 @@ function QuizContent() {
             />
           </div>
 
-          <div className="h-[90vh] relative z-10 flex-col mx-6 ">
+          <div className="h-[95vh] relative z-10 flex-col mx-6 ">
 
             {/* Question at the top - added fixed width/height container */}
             <div className="h-[15vh] flex items-center justify-center">
@@ -96,7 +96,7 @@ function QuizContent() {
               </h1>
             </div>
 
-            <div className="h-[75vh] flex flex-col items-center justify-center mx-4 gap-4">
+            <div className="h-[80vh] flex flex-col items-center justify-center mx-4 gap-4">
               <div>
                 <Image
                   src="/images_perfume/question3/option1.png"

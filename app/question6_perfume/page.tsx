@@ -85,7 +85,7 @@ function QuizContent() {
         </div>
         
         {/* Question container\*/}
-        <div className="h-[30vh] relative pr-5 pl-5 bg-slate-900">
+        <div className="h-[35vh] relative pr-5 pl-5 bg-slate-900">
 
             {/* Question at the top - added fixed width/height container */}
             <div className="h-[12vh] flex items-center justify-center">
@@ -95,7 +95,7 @@ function QuizContent() {
             </div>
 
             {/* Options container - side by side */}
-            <div className="h-[18vh] flex mx-2 gap-4">
+            <div className="h-[23vh] flex mx-2 gap-4">
               {/* Option 1 */}
               <div 
                 onClick={() => handleOptionClick("Option 1")}

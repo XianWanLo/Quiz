@@ -91,7 +91,7 @@ const QuizPage = () => {
         
 
         {/* Question container with option background */}
-        <div className="relative h-[30vh] pr-5 pl-5 bg-slate-900">
+        <div className="relative h-[35vh] pr-5 pl-5 bg-slate-900">
     
           <div className="absolute inset-y-2 left-2 w-2/5">
           <Image
@@ -112,7 +112,7 @@ const QuizPage = () => {
             </div>
 
             {/* Options container - side by side */}
-            <div className="h-[15vh] flex mx-2 gap-4">
+            <div className="h-[20vh] flex mx-2 gap-4">
               {/* Option 1 */}
               <div 
                 onClick={() => handleOptionClick("Option 1")}
