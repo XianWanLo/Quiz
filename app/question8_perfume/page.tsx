@@ -143,7 +143,7 @@ function QuizContent() {
 
                   <div 
                       onClick={() => handleOptionClick("Option1")}
-                      className={`w-1/2 flex items-center justify-center rounded-[50px] px-6 py-6 ${selectedOption1 ? 'bg-[#8A71A3]' : 'bg-[#9B80B4] bg-opacity-50'} ${selectedOption1 ? 'hover:bg-[#9B80B4]' : 'hover:bg-[#8A71A3]'} cursor-pointer transition-colors`}>
+                      className={`w-1/2 flex items-center justify-center rounded-[50px] px-6 py-8 ${selectedOption1 ? 'bg-[#8A71A3]' : 'bg-[#9B80B4] bg-opacity-50'} ${selectedOption1 ? 'hover:bg-[#9B80B4]' : 'hover:bg-[#8A71A3]'} cursor-pointer transition-colors`}>
                       <pre
                         className={`${patrickhand.className}`}> 
                         {translations[language].quiz8.option1}
@@ -152,7 +152,7 @@ function QuizContent() {
 
                   <div 
                       onClick={() => handleOptionClick("Option2")}
-                      className={`w-1/2 flex items-center justify-center rounded-[50px] px-6 py-6 ${selectedOption2 ? 'bg-[#8A71A3]' : 'bg-[#9B80B4] bg-opacity-50'}  ${selectedOption2 ? 'hover:bg-[#9B80B4]' : 'hover:bg-[#8A71A3]'}  cursor-pointer transition-colors`}>
+                      className={`w-1/2 flex items-center justify-center rounded-[50px] px-6 py-8 ${selectedOption2 ? 'bg-[#8A71A3]' : 'bg-[#9B80B4] bg-opacity-50'}  ${selectedOption2 ? 'hover:bg-[#9B80B4]' : 'hover:bg-[#8A71A3]'}  cursor-pointer transition-colors`}>
                       <pre
                         className={`${patrickhand.className}`}> 
                         {translations[language].quiz8.option2}
@@ -165,7 +165,7 @@ function QuizContent() {
 
                   <div 
                       onClick={() => handleOptionClick("Option3")}
-                      className={`w-1/2 flex items-center justify-center rounded-[50px] px-6 py-6 ${selectedOption3 ? 'bg-[#8A71A3]' : 'bg-[#9B80B4] bg-opacity-50 '}  ${selectedOption3 ? 'hover:bg-[#9B80B4]' : 'hover:bg-[#8A71A3]'}  cursor-pointer transition-colors`}>
+                      className={`w-1/2 flex items-center justify-center rounded-[50px] px-6 py-8 ${selectedOption3 ? 'bg-[#8A71A3]' : 'bg-[#9B80B4] bg-opacity-50 '}  ${selectedOption3 ? 'hover:bg-[#9B80B4]' : 'hover:bg-[#8A71A3]'}  cursor-pointer transition-colors`}>
                       <pre
                         className={` ${patrickhand.className}`}> 
                         {translations[language].quiz8.option3}
@@ -174,7 +174,7 @@ function QuizContent() {
 
                   <div 
                       onClick={() => handleOptionClick("Option4")}
-                      className={`w-1/2 flex items-center justify-center rounded-[50px] px-6 py-6 ${selectedOption4 ? 'bg-[#8A71A3]' : 'bg-[#9B80B4] bg-opacity-50 '}  ${selectedOption4 ? 'hover:bg-[#9B80B4]' : 'hover:bg-[#8A71A3]'}  cursor-pointer transition-colors`}>
+                      className={`w-1/2 flex items-center justify-center rounded-[50px] px-6 py-8 ${selectedOption4 ? 'bg-[#8A71A3]' : 'bg-[#9B80B4] bg-opacity-50 '}  ${selectedOption4 ? 'hover:bg-[#9B80B4]' : 'hover:bg-[#8A71A3]'}  cursor-pointer transition-colors`}>
                       <pre
                         className={`${patrickhand.className}`}> 
                         {translations[language].quiz8.option4}
@@ -187,7 +187,7 @@ function QuizContent() {
 
                   <div 
                       onClick={() => handleOptionClick("Option5")}
-                      className={`w-1/2 flex items-center justify-center rounded-[50px] px-6 py-6 ${selectedOption5 ? 'bg-[#8A71A3]' : 'bg-[#9B80B4] bg-opacity-50 '}  ${selectedOption4 ? 'hover:bg-[#9B80B4]' : 'hover:bg-[#8A71A3]'}  cursor-pointer transition-colors`}>
+                      className={`w-1/2 flex items-center justify-center rounded-[50px] px-6 py-8 ${selectedOption5 ? 'bg-[#8A71A3]' : 'bg-[#9B80B4] bg-opacity-50 '}  ${selectedOption4 ? 'hover:bg-[#9B80B4]' : 'hover:bg-[#8A71A3]'}  cursor-pointer transition-colors`}>
                       <pre
                         className={`${patrickhand.className}`}> 
                         {translations[language].quiz8.option5}
@@ -196,7 +196,7 @@ function QuizContent() {
 
                   <div 
                       onClick={() => handleOptionClick("Option6")}
-                      className={`w-1/2 flex items-center justify-center rounded-[50px] px-6 py-6 ${selectedOption6 ? 'bg-[#8A71A3]' : 'bg-[#9B80B4] bg-opacity-50 '}  ${selectedOption5 ? 'hover:bg-[#9B80B4]' : 'hover:bg-[#8A71A3]'}  cursor-pointer transition-colors`}>
+                      className={`w-1/2 flex items-center justify-center rounded-[50px] px-6 py-8 ${selectedOption6 ? 'bg-[#8A71A3]' : 'bg-[#9B80B4] bg-opacity-50 '}  ${selectedOption5 ? 'hover:bg-[#9B80B4]' : 'hover:bg-[#8A71A3]'}  cursor-pointer transition-colors`}>
                       <pre
                         className={`${patrickhand.className}`}> 
                         {translations[language].quiz8.option6}

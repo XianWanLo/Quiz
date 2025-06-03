@@ -91,7 +91,11 @@ const translations = {
       },
 
       resultPage:{
-        prompt: "Your Scent Style"
+        prompt: "Your Scent Style",
+        share:"Share",
+        play_again:"Play Again",
+        more_results:"More Results",
+        learn_more: "Learn More"
       },
 
       afterSharePage:{
@@ -114,6 +118,7 @@ const translations = {
         cancelButton: "Cancel",
         valentine: "Something Special \n For You"
       },
+
       moreresults: {
         backButton: "Back",
         imageAlt: "More Results Background",
@@ -125,6 +130,15 @@ const translations = {
         letsTryButton: "Let’s Try",
         perfumeAdAlt: "Perfume Ad",
       },
+
+      share_results: {
+        share_result: "Share your result",
+        choose_platform: "Choose a platform to share your quiz result:",
+        share_fb: "Share on Facebook",
+        share_twitter: "Share on Twitter",
+        share_ig: "Share on Instagram",
+        share_cancel: "Cancel"
+      }
     },
     Traditional_Chinese: {
       main: {
@@ -214,7 +228,11 @@ const translations = {
         prompt: "你的香水正在準備中..."
       },
       resultPage: {
-        prompt: "你的氣味風格"
+        prompt: "你的氣味風格",
+        share: "分享",
+        play_again: "重新測試",
+        more_results: "更多結果",
+        learn_more: "了解更多"
       },
       afterSharePage: {
         prompt: "請輸入您的郵箱地址，我們將發送給您獨家簽名詩。",
@@ -245,7 +263,16 @@ const translations = {
         trainingDifficultyText: "以及你的訓練難度是",
         letsTryButton: "讓我們嘗試",
         perfumeAdAlt: "香水廣告"
+      },
+      share_results: {
+        share_result: "分享你的結果",
+        choose_platform: "選擇一個平台來分享你的測驗結果：",
+        share_fb: "分享到 Facebook",
+        share_twitter: "分享到 Twitter",
+        share_ig: "分享到 Instagram",
+        share_cancel: "取消"
       }
+      
     },
 
     Simplified_Chinese: {
@@ -336,7 +363,11 @@ const translations = {
         prompt: "你的香水正在准备中..."
       },
       resultPage:{
-        prompt: "你的气味风格"
+        prompt: "你的气味风格",
+        share: "分享",
+        play_again: "重新测试",
+        more_results: "更多结果",
+        learn_more: "了解更多"
       },
       afterSharePage: {
         prompt: "请输入您的邮箱地址，我们将发送给您独家签名诗。",
@@ -367,7 +398,16 @@ const translations = {
         trainingDifficultyText: "以及你的训练难度是",
         letsTryButton: "让我们尝试",
         perfumeAdAlt: "香水广告"
+      },
+      share_results: {
+        share_result: "分享你的结果",
+        choose_platform: "选择一个平台来分享你的测验结果：",
+        share_fb: "分享到 Facebook",
+        share_twitter: "分享到 Twitter",
+        share_ig: "分享到 Instagram",
+        share_cancel: "取消"
       }
+      
     }
   };
 

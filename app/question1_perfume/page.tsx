@@ -65,6 +65,7 @@ function QuizContent() {
 
   return (
     <>
+
       <div className="bg-slate-900">
 
       {/*Main Container*/}

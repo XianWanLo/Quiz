@@ -29,7 +29,6 @@ const getLanguage = () => {
 const ResultPage: React.FC = () => {
   
   const [highestOccurrenceMBTI, setHighestOccurrenceMBTI] = useState<string | null>(null);
-  const [showMoreResults, setShowMoreResults] = useState<boolean>(false);
   const [showModal, setShowModal] = useState<boolean>(false);
   const [nameID, setNameID] = useState<string | null>(null); 
 
@@ -53,7 +52,11 @@ const ResultPage: React.FC = () => {
     const channel = document.referrer.includes('google') ? 'organic' : 'direct';
 
     const userFirstName = localStorage.getItem('userName')?.split(' ')[0] || ''; // Save the name to local storage
-    setNameID(userFirstName + "0001");
+    const currentID = localStorage.getItem('currentID') || '01000'; // Get the current ID or default to 01000
+    const newID = parseInt(currentID) + 1; // Increment the current ID
+    const paddedNewID = newID.toString().padStart(5, '0'); 
+    localStorage.setItem('currentID', paddedNewID); 
+    setNameID(userFirstName + paddedNewID); // Set the name ID with the new ID
 
     // Retrieve current MBTI scores from LocalStorage
     let mbtiScores = JSON.parse(localStorage.getItem('mbtiScores')||'{}')
@@ -222,19 +225,19 @@ const ResultPage: React.FC = () => {
                   onClick={() => setShowModal(true)}
                   className="border border-gray-300 text-white px-4 py-2 rounded-full hover:bg-gray-200 transition-colors"
                 >
-                  Share
+                  {translations[language].resultPage.share}
                 </button>
                 <button
                   onClick={handleRestart}
                   className="border border-gray-300 text-white px-4 py-2 rounded-full hover:bg-gray-200 transition-colors"
                 >
-                  Play Again
+                  {translations[language].resultPage.play_again}
                 </button>
                 <button
                   onClick={() => router.push("/more-results_perfume")}
                   className="border border-gray-300 text-white px-4 py-2 rounded-full hover:bg-gray-200 transition-colors"
                 >
-                  {showMoreResults ? "Hide Results" : "More Results"}
+                  {translations[language].resultPage.more_results}
                 </button>
               </div>
 
@@ -275,7 +278,7 @@ const ResultPage: React.FC = () => {
                       >
                         {/* Add text or button for the link */}
                         <span className="border border-gray-300 text-l text-white px-4 py-1 rounded-full hover:bg-gray-200 hover:text-black transition-colors"
-                          >Learn more
+                          >{translations[language].resultPage.learn_more}
                         </span>
                       </a>
                     </div>
@@ -291,31 +294,31 @@ const ResultPage: React.FC = () => {
             {showModal && (
               <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
                 <div className="bg-white rounded-lg shadow-lg p-6 w-80">
-                  <h3 className="text-xl font-bold mb-4">Share your result</h3>
-                  <p className="text-gray-700 mb-6">Choose a platform to share your quiz result:</p>
+                  <h3 className="text-xl font-bold mb-4">{translations[language].share_results.share_result}</h3>
+                  <p className="text-gray-700 mb-6">{translations[language].share_results.choose_platform}</p>
                   <button
                     onClick={() => handleShare("facebook")}
                     className="bg-blue-600 text-white w-full py-2 rounded-full mb-2"
                   >
-                    Share on Facebook
+                    {translations[language].share_results.share_fb}
                   </button>
                   <button
                     onClick={() => handleShare("twitter")}
                     className="bg-blue-400 text-white w-full py-2 rounded-full mb-2"
                   >
-                    Share on Twitter
+                    {translations[language].share_results.share_twitter}
                   </button>
                   <button
                     onClick={() => handleShare("instagram")}
                     className="bg-pink-600 text-white w-full py-2 rounded-full"
                   >
-                    Share on Instagram
+                    {translations[language].share_results.share_ig}
                   </button>
                   <button
                     onClick={() => setShowModal(false)}
                     className="mt-4 w-full py-2 border border-gray-400 text-gray-700 rounded-full hover:bg-gray-100"
                   >
-                    Cancel
+                    {translations[language].share_results.share_cancel}
                   </button>
                 </div>
               </div>
