@@ -89,7 +89,7 @@ const QuizPage: React.FC = () => {
             
             <div 
                 onClick={() => handleOptionClick("Confirm")}
-                className="mt-10 px-14 py-4 bg-purple-200 hover:bg-purple-400 rounded-[35px] cursor-pointer text-purple-700 text-2xl text-center transition-colors"
+                className={`mt-10 px-14 py-4 bg-purple-200 hover:bg-purple-400 rounded-[35px] cursor-pointer text-purple-700 ${language=='English' ?'text-3xl':'text-2xl'} ${patrickhand.className} text-center transition-colors`}
               >
                 {translations[language].namePage.button}
             </div>

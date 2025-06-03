@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { usePageTracking } from "../hooks/usePageTracking";
 import translations from "../components/translations"; // Import translations
 import Image from 'next/image';
-
+import { patrickhand } from "../components/font";
 
 
 const getLanguageFromLocalStorage = () => {
@@ -67,7 +67,7 @@ const QuizPage: React.FC = () => {
 
             <div 
                 onClick={() => handleOptionClick()}
-                className="vertical-option-button text-3xl"
+                className={`vertical-option-button text-3xl ${patrickhand.className}`}
               >
                 {translations[language].cutscene.content2}
             </div>

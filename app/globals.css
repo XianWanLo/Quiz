@@ -87,7 +87,6 @@ body {
     width: 50%; /* w-1/2 */
     transition: background-color 0.3s; /* transition-colors */
     color: white;
-    font-size: 0.85rem;
     text-align: center;
   }
   

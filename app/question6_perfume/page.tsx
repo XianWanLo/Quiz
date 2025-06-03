@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import Head from "next/head";
 import { Suspense, useEffect, useState } from "react";
 import { usePageTracking } from "../hooks/usePageTracking";
+import { patrickhand } from "../components/font";
 import translations from "../components/translations"; // Import translations
 import Footer from "../components/footer";
 import Image from 'next/image';
@@ -24,6 +25,7 @@ function QuizContent() {
 
   const questionFont = language === 'English' ? 'poetsen-one-regular' : 'noto_sans_sc';
   const questionFontSize = language === 'English' ? 'text-xl' : 'text-2xl';
+  const optionFontSize = language === 'English' ? 'text-m' : 'text-l';
 
   // Page view & response time tracking
   usePageTracking("Question 6 Page")
@@ -98,7 +100,7 @@ function QuizContent() {
               {/* Option 1 */}
               <div 
                 onClick={() => handleOptionClick("Option 1")}
-                className="horizontal-option-button"
+                className={`horizontal-option-button ${optionFontSize} ${patrickhand.className}`}
               >
                 <h1>
                 {translations[language].quiz6.option1}
@@ -108,7 +110,7 @@ function QuizContent() {
               {/* Option 2 */}
               <div 
                 onClick={() => handleOptionClick("Option 2")}
-                className="horizontal-option-button"
+                className={`horizontal-option-button ${optionFontSize} ${patrickhand.className}`}
               >
                <h1>
                   {translations[language].quiz6.option2}

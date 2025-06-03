@@ -12,7 +12,6 @@ import Image from 'next/image';
 import Loading from '../components/loading'; 
 
 
-
 // Helper function to get language from localStorage
 function getLanguageFromLocalStorage() {
   if (typeof window !== 'undefined') {
@@ -21,7 +20,7 @@ function getLanguageFromLocalStorage() {
   return 'English'; // Fallback for SSR
 };
 
-function QuizContent() {
+const QuizPage = () => {
   const router = useRouter();
   const [language, setLanguage] = useState<'English' | 'Traditional_Chinese' | 'Simplified_Chinese'>('English'); // Default language
 
@@ -106,7 +105,7 @@ function QuizContent() {
                 <LanguageSelector/>
             </div>
 
-            <div className="relative h-[50vh] flex flex-col justify-end items-center font-bold text-white">
+            <div className="relative h-[50vh] flex flex-col justify-end items-center text-white">
               <pre className={`text-7xl ${waterfall.className}`}>
               {translations[language].quiz.valentine}
               </pre>
@@ -165,7 +164,6 @@ function QuizContent() {
           <div className="relative z-10 mx-14">
             
             <div className="h-[20vh] flex flex-col items-center justify-center text-center font-bold text-white">
-              {/* Question */}
               <h1 className={`${language=='English' ?'text-4xl':'text-6xl'} ${wendyone.className}`}>
                 {translations[language].quiz.title}
               </h1>
@@ -215,23 +213,7 @@ function QuizContent() {
   );
 };
 
-const QuizPage = () => {
-  return (
-    <>
-      <Head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
 
-      {/* Suspense for lazy loading components */}
-      <Suspense fallback={<Loading />}>
-        <QuizContent />
-      </Suspense>
-    </>
-  );
-};
 
 
 export default QuizPage;

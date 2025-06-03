@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import Head from "next/head";
 import {  Suspense,useEffect, useState } from "react";
 import translations from "../components/translations";
+import { patrickhand } from "../components/font";
 import Footer from "../components/footer";
 import { usePageTracking } from "../hooks/usePageTracking";
 import Image from 'next/image';
@@ -24,6 +25,7 @@ function QuizContent() {
   
   const questionFont = language === 'English' ? 'poetsen-one-regular' : 'noto_sans_sc';
   const questionFontSize = language === 'English' ? 'text-xl' : 'text-2xl';
+  const optionFontSize = language === 'English' ? 'text-m' : 'text-l';
 
   // Page view & response time tracking
   usePageTracking("Question 2 Page")
@@ -111,11 +113,11 @@ function QuizContent() {
             </div>
 
             {/* Options container - side by side */}
-            <div className="h-[15vh] flex mx-4 gap-10 option-text">
+            <div className="h-[15vh] flex mx-4 gap-10">
               {/* Option 1 */}
               <div 
                 onClick={() => handleOptionClick("Option 1")}
-                className="horizontal-option-button"
+                className={`horizontal-option-button ${optionFontSize} ${patrickhand.className}`}
               >
                 <h1>
                 {translations[language].quiz2.option1}
@@ -125,7 +127,7 @@ function QuizContent() {
               {/* Option 2 */}
               <div 
                 onClick={() => handleOptionClick("Option 2")}
-                className="horizontal-option-button"
+                className={`horizontal-option-button ${optionFontSize} ${patrickhand.className}`}
               >
                <h1>
                   {translations[language].quiz2.option2}

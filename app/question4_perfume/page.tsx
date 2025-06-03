@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import Head from "next/head";
 import { Suspense, useEffect, useState } from "react";
+import { patrickhand } from "../components/font";
 import { usePageTracking } from "../hooks/usePageTracking";
 import translations from "../components/translations";  // Import translations
 import Footer from "../components/footer";
@@ -27,7 +28,7 @@ function QuizContent() {
 
   const questionFont = language === 'English' ? 'poetsen-one-regular' : 'noto_sans_sc';
   const questionFontSize = language === 'English' ? 'text-xl' : 'text-2xl';
-  const optionFontSize = language === 'English' ? 'text-sm' : 'text-l';
+  const optionFontSize = language === 'English' ? 'text-m' : 'text-l';
 
 
   // Page view & response time tracking
@@ -109,7 +110,7 @@ function QuizContent() {
 
               <div 
                 onClick={() => handleOptionClick("Option 1")}
-                className={`vertical-option-button ${optionFontSize}`}
+                className={`vertical-option-button ${optionFontSize} ${patrickhand.className}`}
               >
                 {translations[language].quiz4.option1}
               </div>
@@ -127,7 +128,7 @@ function QuizContent() {
 
               <div 
                 onClick={() => handleOptionClick("Option 2")}
-                className={`vertical-option-button ${optionFontSize}`}
+                className={`vertical-option-button ${optionFontSize} ${patrickhand.className}`}
               >
                 {translations[language].quiz4.option2}
               </div>

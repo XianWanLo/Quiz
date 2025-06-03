@@ -4,6 +4,7 @@ import Head from "next/head";
 import { Suspense, useEffect, useState } from "react";
 import { usePageTracking } from "../hooks/usePageTracking";
 import translations from "../components/translations"; // Import translations
+import { patrickhand } from "../components/font";
 import Footer from "../components/footer";
 import Image from 'next/image';
 import Loading from '../components/loading'; 
@@ -109,7 +110,7 @@ function QuizContent() {
 
               <div 
                 onClick={() => handleOptionClick("Option 1")}
-                className={`vertical-option-button ${optionFontSize}`}
+                className={`vertical-option-button ${optionFontSize} ${patrickhand.className}`}
               >
                 {translations[language].quiz7.option1}
               </div>
@@ -127,7 +128,7 @@ function QuizContent() {
 
               <div 
                 onClick={() => handleOptionClick("Option 2")}
-                className={`vertical-option-button ${optionFontSize}`}
+                className={`vertical-option-button ${optionFontSize} ${patrickhand.className}`}
               >
                 {translations[language].quiz7.option2}
               </div>

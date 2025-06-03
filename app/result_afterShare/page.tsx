@@ -30,8 +30,8 @@ const QuizPage: React.FC = () => {
     setLanguage(getLanguageFromLocalStorage());  // Set language based on localStorage
     setMBTI(localStorage.getItem('MBTI'));
     const userFirstName = localStorage.getItem('userName')?.split(' ')[0] || ''; // Save the name to local storage
-    setFirstName(userFirstName);
-    setNameID(userFirstName + "0001");
+    const currentID = localStorage.getItem('currentID') || '01000'; // Get the current ID or default to 01000
+    setNameID(userFirstName + currentID); // Set the name ID with the new ID
 
   }, []);
 
@@ -154,7 +154,7 @@ const QuizPage: React.FC = () => {
             
             <div 
                 onClick={() => handleOptionClick()}
-                className={`px-10 py-4 bg-purple-200 hover:bg-purple-400 rounded-[35px] cursor-pointer text-purple-700 ${language=='English' ?'text-3xl':'text-2xl'} text-center transition-colors ${patrickhand.className}`}
+                className={`px-10 py-4 bg-purple-200 hover:bg-purple-400 rounded-[35px] cursor-pointer text-purple-700 text-center transition-colors ${language=='English' ?'text-3xl':'text-2xl'} ${patrickhand.className}`}
               >
                 {translations[language].afterSharePage.button}
             </div>
@@ -166,7 +166,7 @@ const QuizPage: React.FC = () => {
         <div className="relative w-full flex justify-around items-center p-5 bg-[#EAEEFF]">
           <button
             onClick={() => router.push("/result")}
-            className="border border-gray-300 text-l text-gray-500 px-4 py-2 rounded-full hover:bg-gray-200 transition-colors"
+            className={`border border-gray-300 text-gray-500 px-4 py-2 rounded-full hover:bg-gray-200 transition-colors ${language=='English' ?'text-xl':'text-l'} ${patrickhand.className}`}
           >
             {translations[language].afterSharePage.returnButton}
           </button>
