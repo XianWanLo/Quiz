@@ -82,7 +82,7 @@ const QuizPage: React.FC = () => {
             <input
               id="nameInput"
               type="text"
-              className="flex shrink-0 self-stretch mt-7 bg-white rounded-xl py-5 px-4"
+              className="flex shrink-0 self-stretch mt-7 bg-white text-black rounded-xl py-5 px-4"
               aria-label="Enter your name"
             />
             

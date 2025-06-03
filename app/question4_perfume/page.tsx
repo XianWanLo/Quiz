@@ -94,7 +94,7 @@ function QuizContent() {
             </div>
 
             {/* Options container*/}
-            <div className="h-[75vh] flex flex-col items-center justify-center gap-4">
+            <div className="h-[75vh] flex flex-col items-center justify-center gap-4 mx-4">
               
               {/* Option 1 */}
               <div>

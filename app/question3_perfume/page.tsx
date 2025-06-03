@@ -96,7 +96,7 @@ function QuizContent() {
               </h1>
             </div>
 
-            <div className="h-[75vh] flex flex-col items-center justify-center gap-4">
+            <div className="h-[75vh] flex flex-col items-center justify-center mx-4 gap-4">
               <div>
                 <Image
                   src="/images_perfume/question3/option1.png"
@@ -109,7 +109,7 @@ function QuizContent() {
 
               <div 
                 onClick={() => handleOptionClick("Option 1")}
-                className={`vertical-option-button ${optionFontSize} patrick-hand`}
+                className={`mx-4 vertical-option-button ${optionFontSize} patrick-hand`}
               >
                 {translations[language].quiz3.option1}
               </div>
@@ -127,7 +127,7 @@ function QuizContent() {
 
               <div 
                 onClick={() => handleOptionClick("Option 2")}
-                className={`vertical-option-button ${optionFontSize} patrick-hand`}
+                className={`mx-4 vertical-option-button ${optionFontSize} patrick-hand`}
               >
                 {translations[language].quiz3.option2}
               </div>
