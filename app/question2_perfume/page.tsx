@@ -4,7 +4,6 @@ import { useRouter } from "next/navigation";
 import Head from "next/head";
 import {  Suspense,useEffect, useState } from "react";
 import translations from "../components/translations";
-import { patrickhand } from "../components/font";
 import Footer from "../components/footer";
 import { usePageTracking } from "../hooks/usePageTracking";
 import Image from 'next/image';
@@ -19,7 +18,7 @@ const getLanguageFromLocalStorage = () => {
   return 'English';
 };
 
-function QuizContent() {
+const QuizPage = () => {
   const router = useRouter();
   const [language, setLanguage] = useState<'English' | 'Traditional_Chinese' | 'Simplified_Chinese'>('English');
   
@@ -113,11 +112,11 @@ function QuizContent() {
             </div>
 
             {/* Options container - side by side */}
-            <div className="h-[15vh] flex mx-4 gap-10">
+            <div className="h-[15vh] flex mx-4 gap-6">
               {/* Option 1 */}
               <div 
                 onClick={() => handleOptionClick("Option 1")}
-                className={`horizontal-option-button ${optionFontSize} ${patrickhand.className}`}
+                className={`horizontal-option-button ${optionFontSize} patrick-hand`}
               >
                 <h1>
                 {translations[language].quiz2.option1}
@@ -127,7 +126,7 @@ function QuizContent() {
               {/* Option 2 */}
               <div 
                 onClick={() => handleOptionClick("Option 2")}
-                className={`horizontal-option-button ${optionFontSize} ${patrickhand.className}`}
+                className={`horizontal-option-button ${optionFontSize} patrick-hand`}
               >
                <h1>
                   {translations[language].quiz2.option2}
@@ -145,22 +144,5 @@ function QuizContent() {
   );
 };
 
-const QuizPage = () => {
-  return (
-    <>
-      <Head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
-
-      {/* Suspense for lazy loading components */}
-      <Suspense fallback={<Loading />}>
-        <QuizContent />
-      </Suspense>
-    </>
-  );
-};
 
 export default QuizPage;

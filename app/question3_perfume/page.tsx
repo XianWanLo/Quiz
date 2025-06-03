@@ -3,7 +3,6 @@
 import { Suspense, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Head from "next/head";
-import { patrickhand } from "../components/font";
 import translations from "../components/translations"; // Import translations
 import Footer from "../components/footer";
 import { usePageTracking } from "../hooks/usePageTracking";
@@ -110,7 +109,7 @@ function QuizContent() {
 
               <div 
                 onClick={() => handleOptionClick("Option 1")}
-                className={`vertical-option-button ${optionFontSize} ${patrickhand.className}`}
+                className={`vertical-option-button ${optionFontSize} patrick-hand`}
               >
                 {translations[language].quiz3.option1}
               </div>
@@ -128,7 +127,7 @@ function QuizContent() {
 
               <div 
                 onClick={() => handleOptionClick("Option 2")}
-                className={`vertical-option-button ${optionFontSize} ${patrickhand.className}`}
+                className={`vertical-option-button ${optionFontSize} patrick-hand`}
               >
                 {translations[language].quiz3.option2}
               </div>
@@ -150,7 +149,7 @@ const QuizPage = () => {
     <>
       <Head>
         <link
-          href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap"
+          href="https://fonts.googleapis.com/css2?https://fonts.googleapis.com/css2?family=Patrick+Hand&family=Stint+Ultra+Condensed&family=Wendy+One&family=Whisper&family=Waterfall&family=Noto+Sans+SC:wght@400&display=swap&Poetsen+One&display=swap"
           rel="stylesheet"
         />
       </Head>

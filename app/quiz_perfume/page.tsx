@@ -2,7 +2,6 @@
 "use client";
 import { useRouter } from "next/navigation";
 import Head from "next/head";
-import { wendyone, waterfall } from "../components/font";
 import { Suspense, useEffect, useState } from "react";
 import translations from "../components/translations"; // Import translations
 import { useGameTimeTracking } from "../hooks/useGameTimeTracking";
@@ -106,10 +105,10 @@ const QuizPage = () => {
             </div>
 
             <div className="relative h-[50vh] flex flex-col justify-end items-center text-white">
-              <pre className={`text-7xl ${waterfall.className}`}>
+              <pre className="text-7xl waterfall">
               {translations[language].quiz.valentine}
               </pre>
-              <pre className={`text-3xl ${waterfall.className}`}>
+              <pre className="text-3xl waterfall">
               {translations[language].quiz.year}
               </pre>
             </div>
@@ -164,11 +163,11 @@ const QuizPage = () => {
           <div className="relative z-10 mx-14">
             
             <div className="h-[20vh] flex flex-col items-center justify-center text-center font-bold text-white">
-              <h1 className={`${language=='English' ?'text-4xl':'text-6xl'} ${wendyone.className}`}>
+              <h1 className={`${language=='English' ?'text-4xl':'text-6xl'} wendyone`}>
                 {translations[language].quiz.title}
               </h1>
 
-              <h1 className={`text-xl ${wendyone.className}`}>
+              <h1 className={`text-xl wendyone`}>
                 {translations[language].quiz.subtitle}
               </h1>
             </div>
@@ -190,7 +189,7 @@ const QuizPage = () => {
                 {/* Let's Start Button */}
                 <p
                   onClick={handleClick}
-                  className={`relative text-3xl text-black px-6 py-2 font-bold h-12 ${wendyone.className} hover:text-white hover:scale-110 transition-transform duration-200 cursor-pointer`}
+                  className={`relative text-3xl text-black px-6 py-2 font-bold h-12 wendyone hover:text-white hover:scale-110 transition-transform duration-200 cursor-pointer`}
                 >
                   {translations[language].quiz.startButton}
                 </p>

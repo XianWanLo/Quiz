@@ -2,7 +2,6 @@
 "use client";
 import { useRouter } from "next/navigation";
 import Head from "next/head";
-import { patrickhand } from "../components/font";
 import { Suspense, useEffect, useState } from "react";
 import { usePageTracking } from "../hooks/usePageTracking";
 import Footer from "../components/footer";
@@ -105,7 +104,7 @@ function QuizContent() {
                     className="w-full mt-10 mx-8 px-6 py-6 bg-[#FCDDA6] hover:bg-[#FCDDA6] rounded-[50px] cursor-pointer transition-colors"
                   >
                     <pre
-                      className={`text-black text-end ${optionFontSize} ${patrickhand.className}`}> 
+                      className={`text-black text-end ${optionFontSize} patrick-hand`}> 
                     {translations[language].quiz5.option1}
                     </pre>
                 </div>
@@ -125,7 +124,7 @@ function QuizContent() {
                   className="w-full mt-16 mx-8 px-6 py-6 bg-[#FCDDA6] hover:bg-[#FCDDA6] rounded-[50px] cursor-pointer transition-colors"
                 >
                   <pre
-                    className={`text-black text-start ${optionFontSize} ${patrickhand.className}`}> 
+                    className={`text-black text-start ${optionFontSize} patrick-hand`}> 
                   {translations[language].quiz5.option2}
                   </pre>
                 </div>

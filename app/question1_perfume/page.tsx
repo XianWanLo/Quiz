@@ -4,7 +4,6 @@ import Head from "next/head";
 import {  Suspense,useEffect, useState } from "react";
 import translations from "../components/translations";
 import {usePageTracking} from "../hooks/usePageTracking";
-import { patrickhand } from "../components/font";
 import Footer from "../components/footer";
 import Image from 'next/image';
 import Loading from '../components/loading'; 
@@ -108,11 +107,11 @@ const QuizPage = () => {
             </div>
 
             {/* Options container - side by side */}
-            <div className="h-[18vh] flex mx-4 gap-10">
+            <div className="h-[18vh] flex mx-4 gap-6">
               {/* Option 1 */}
               <div 
                 onClick={() => handleOptionClick("Option 1")}
-                className={`horizontal-option-button ${optionFontSize} ${patrickhand.className}`}
+                className={`horizontal-option-button ${optionFontSize} patrick-hand`}
               >
                 <h1>
                 {translations[language].quiz1.option1}
@@ -122,7 +121,7 @@ const QuizPage = () => {
               {/* Option 2 */}
               <div 
                 onClick={() => handleOptionClick("Option 2")}
-                className={`horizontal-option-button ${optionFontSize} ${patrickhand.className}`}
+                className={`horizontal-option-button ${optionFontSize} patrick-hand`}
               >
                <h1>
                   {translations[language].quiz1.option2}

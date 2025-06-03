@@ -1,7 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
 import Head from "next/head";
-import { wendyone, whisper, patrickhand } from "../components/font";
 import { Suspense, useEffect, useState } from "react";
 import { usePageTracking } from "../hooks/usePageTracking";
 import translations from "../components/translations"; // Import translations
@@ -16,7 +15,7 @@ const getLanguageFromLocalStorage = () => {
   return localStorage.getItem('language') as ('English' | 'Traditional_Chinese' | 'Simplified_Chinese') || 'English';  // Default to English if not set
 };
 
-function QuizContent() {
+const QuizPage = () => {
   const [language, setLanguage] = useState<'English' | 'Traditional_Chinese' | 'Simplified_Chinese'>('English');  // State to store selected language
   const router = useRouter();
   const [showFinishMessage, setShowFinishMessage] = useState(false); // New state for the finish message
@@ -145,7 +144,7 @@ function QuizContent() {
                       onClick={() => handleOptionClick("Option1")}
                       className={`w-1/2 flex items-center justify-center rounded-[50px] px-6 py-8 ${selectedOption1 ? 'bg-[#8A71A3]' : 'bg-[#9B80B4] bg-opacity-50'} ${selectedOption1 ? 'hover:bg-[#9B80B4]' : 'hover:bg-[#8A71A3]'} cursor-pointer transition-colors`}>
                       <pre
-                        className={`${patrickhand.className}`}> 
+                        className="patrick-hand"> 
                         {translations[language].quiz8.option1}
                       </pre>
                   </div>
@@ -154,7 +153,7 @@ function QuizContent() {
                       onClick={() => handleOptionClick("Option2")}
                       className={`w-1/2 flex items-center justify-center rounded-[50px] px-6 py-8 ${selectedOption2 ? 'bg-[#8A71A3]' : 'bg-[#9B80B4] bg-opacity-50'}  ${selectedOption2 ? 'hover:bg-[#9B80B4]' : 'hover:bg-[#8A71A3]'}  cursor-pointer transition-colors`}>
                       <pre
-                        className={`${patrickhand.className}`}> 
+                        className="patrick-hand"> 
                         {translations[language].quiz8.option2}
                       </pre>
                   </div>
@@ -167,7 +166,7 @@ function QuizContent() {
                       onClick={() => handleOptionClick("Option3")}
                       className={`w-1/2 flex items-center justify-center rounded-[50px] px-6 py-8 ${selectedOption3 ? 'bg-[#8A71A3]' : 'bg-[#9B80B4] bg-opacity-50 '}  ${selectedOption3 ? 'hover:bg-[#9B80B4]' : 'hover:bg-[#8A71A3]'}  cursor-pointer transition-colors`}>
                       <pre
-                        className={` ${patrickhand.className}`}> 
+                        className="patrick-hand"> 
                         {translations[language].quiz8.option3}
                       </pre>
                   </div>
@@ -176,7 +175,7 @@ function QuizContent() {
                       onClick={() => handleOptionClick("Option4")}
                       className={`w-1/2 flex items-center justify-center rounded-[50px] px-6 py-8 ${selectedOption4 ? 'bg-[#8A71A3]' : 'bg-[#9B80B4] bg-opacity-50 '}  ${selectedOption4 ? 'hover:bg-[#9B80B4]' : 'hover:bg-[#8A71A3]'}  cursor-pointer transition-colors`}>
                       <pre
-                        className={`${patrickhand.className}`}> 
+                        className="patrick-hand"> 
                         {translations[language].quiz8.option4}
                       </pre>
                   </div>
@@ -189,7 +188,7 @@ function QuizContent() {
                       onClick={() => handleOptionClick("Option5")}
                       className={`w-1/2 flex items-center justify-center rounded-[50px] px-6 py-8 ${selectedOption5 ? 'bg-[#8A71A3]' : 'bg-[#9B80B4] bg-opacity-50 '}  ${selectedOption4 ? 'hover:bg-[#9B80B4]' : 'hover:bg-[#8A71A3]'}  cursor-pointer transition-colors`}>
                       <pre
-                        className={`${patrickhand.className}`}> 
+                        className="patrick-hand"> 
                         {translations[language].quiz8.option5}
                       </pre>
                   </div>
@@ -198,7 +197,7 @@ function QuizContent() {
                       onClick={() => handleOptionClick("Option6")}
                       className={`w-1/2 flex items-center justify-center rounded-[50px] px-6 py-8 ${selectedOption6 ? 'bg-[#8A71A3]' : 'bg-[#9B80B4] bg-opacity-50 '}  ${selectedOption5 ? 'hover:bg-[#9B80B4]' : 'hover:bg-[#8A71A3]'}  cursor-pointer transition-colors`}>
                       <pre
-                        className={`${patrickhand.className}`}> 
+                        className="patrick-hand"> 
                         {translations[language].quiz8.option6}
                       </pre>
                   </div>
@@ -211,7 +210,7 @@ function QuizContent() {
             <div
               onClick={() => finishClick()}
               className="h-[15vh] flex items-center justify-center text-center text-white font-bold cursor-pointer">
-                <pre className={`${language=='English' ?'text-5xl':'text-3xl'} ${whisper.className} white-shadow`}>
+                <pre className={`${language=='English' ?'text-5xl':'text-3xl'} whisper white-shadow`}>
                 {translations[language].quiz8.finishButton}
                 </pre>
             </div>
@@ -225,24 +224,6 @@ function QuizContent() {
       </div>
 
       </div>
-    </>
-  );
-};
-
-const QuizPage = () => {
-  return (
-    <>
-      <Head>
-        <link
-          href="https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
-
-      {/* Suspense for lazy loading components */}
-      <Suspense fallback={<Loading />}>
-        <QuizContent />
-      </Suspense>
     </>
   );
 };

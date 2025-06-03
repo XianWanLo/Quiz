@@ -3,7 +3,6 @@
 import { useRouter } from "next/navigation";
 import Head from "next/head";
 import { Suspense, useEffect, useState } from "react";
-import { patrickhand } from "../components/font";
 import { usePageTracking } from "../hooks/usePageTracking";
 import translations from "../components/translations";  // Import translations
 import Footer from "../components/footer";
@@ -110,7 +109,7 @@ function QuizContent() {
 
               <div 
                 onClick={() => handleOptionClick("Option 1")}
-                className={`vertical-option-button ${optionFontSize} ${patrickhand.className}`}
+                className={`vertical-option-button ${optionFontSize} patrick-hand`}
               >
                 {translations[language].quiz4.option1}
               </div>
@@ -128,7 +127,7 @@ function QuizContent() {
 
               <div 
                 onClick={() => handleOptionClick("Option 2")}
-                className={`vertical-option-button ${optionFontSize} ${patrickhand.className}`}
+                className={`vertical-option-button ${optionFontSize} patrick-hand`}
               >
                 {translations[language].quiz4.option2}
               </div>

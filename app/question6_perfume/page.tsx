@@ -3,7 +3,6 @@ import { useRouter } from "next/navigation";
 import Head from "next/head";
 import { Suspense, useEffect, useState } from "react";
 import { usePageTracking } from "../hooks/usePageTracking";
-import { patrickhand } from "../components/font";
 import translations from "../components/translations"; // Import translations
 import Footer from "../components/footer";
 import Image from 'next/image';
@@ -96,11 +95,11 @@ function QuizContent() {
             </div>
 
             {/* Options container - side by side */}
-            <div className="h-[18vh] flex mx-4 gap-10">
+            <div className="h-[18vh] flex mx-4 gap-6">
               {/* Option 1 */}
               <div 
                 onClick={() => handleOptionClick("Option 1")}
-                className={`horizontal-option-button ${optionFontSize} ${patrickhand.className}`}
+                className={`horizontal-option-button ${optionFontSize} patrick-hand`}
               >
                 <h1>
                 {translations[language].quiz6.option1}
@@ -110,7 +109,7 @@ function QuizContent() {
               {/* Option 2 */}
               <div 
                 onClick={() => handleOptionClick("Option 2")}
-                className={`horizontal-option-button ${optionFontSize} ${patrickhand.className}`}
+                className={`horizontal-option-button ${optionFontSize} patrick-hand`}
               >
                <h1>
                   {translations[language].quiz6.option2}

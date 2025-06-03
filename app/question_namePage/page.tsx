@@ -1,7 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
 import Head from "next/head";
-import { wendyone, stintultra, patrickhand } from "../components/font";
 import { useEffect, useState } from "react";
 import { usePageTracking } from "../hooks/usePageTracking";
 import translations from "../components/translations"; // Import translations
@@ -76,7 +75,7 @@ const QuizPage: React.FC = () => {
           <div className="relative z-10 px-8 py-6 mx-20 rounded-2xl border-2 border-purple-300 bg-purple-300 bg-opacity-40">
 
             <pre 
-              className={`text-3xl font-bold text-center text-white ${patrickhand.className}`}>
+              className="text-3xl font-bold text-center text-white patrick-hand">
               {translations[language].namePage.prompt}
             </pre>
 
@@ -89,7 +88,7 @@ const QuizPage: React.FC = () => {
             
             <div 
                 onClick={() => handleOptionClick("Confirm")}
-                className={`mt-10 px-14 py-4 bg-purple-200 hover:bg-purple-400 rounded-[35px] cursor-pointer text-purple-700 ${language=='English' ?'text-3xl':'text-2xl'} ${patrickhand.className} text-center transition-colors`}
+                className={`mt-10 px-14 py-4 bg-purple-200 hover:bg-purple-400 rounded-[35px] cursor-pointer text-purple-700 ${language=='English' ?'text-3xl':'text-2xl'} patrick-hand text-center transition-colors`}
               >
                 {translations[language].namePage.button}
             </div>
