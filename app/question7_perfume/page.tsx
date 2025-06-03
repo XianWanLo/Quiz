@@ -19,7 +19,7 @@ function QuizContent() {
 
   const questionFont = language === 'English' ? 'poetsen-one-regular' : 'noto_sans_sc';
   const questionFontSize = language === 'English' ? 'text-xl' : 'text-2xl';
-  const optionFontSize = language === 'English' ? 'text-sm' : 'text-l';
+  const optionFontSize = 'text-l';
 
   
   // Page view & response time tracking
