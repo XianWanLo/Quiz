@@ -172,6 +172,7 @@ body {
     padding-right: 1rem; /* px-4 */
     padding-top: 1rem; /* py-4 */
     padding-bottom: 1rem; /* py-4 */
+    font-size: 1.1rem;
     background-color: #9B80B4; /* bg-[#9B80B4] */
     border-radius: 35px; /* rounded-[35px] */
     cursor: pointer; /* cursor-pointer */
@@ -190,6 +191,7 @@ body {
   padding-right: 1.5rem; /* px-6 */
   padding-top: 0.6rem; /* py-4 */
   padding-bottom: 0.6rem; /* py-4 */
+  font-size: 1.1rem;
   background-color: rgba(155, 128, 180, 0.6); /* bg-[#9B80B4] with 0.6 opacity */
   border-radius: 35px; /* rounded-[35px] */
   cursor: pointer; /* cursor-pointer */
