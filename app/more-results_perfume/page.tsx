@@ -23,7 +23,6 @@ const getLanguageFromLocalStorage = () => {
   return localStorage.getItem('language') as ('English' | 'Traditional_Chinese' | 'Simplified_Chinese') || 'English';  // Default to English if not set
 };
 
-
 const MoreResultPage: React.FC = () => {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [language, setLanguage] = useState<'English' | 'Traditional_Chinese' | 'Simplified_Chinese'>('English'); // Default language
@@ -31,53 +30,58 @@ const MoreResultPage: React.FC = () => {
   const router = useRouter();
   //usePageTracking('/more-results');  // Track page view
 
+  useEffect(() => {
+    setLanguage(getLanguageFromLocalStorage());  // Set language based on localStorage
+  }, []);
+
   // useEffect(() => {
-  //   const userId = getUniqueUserId();  // Get user ID
-  //   const gameStartTime = localStorage.getItem('gameStartTime');  // Retrieve start time
-  //   const endTime = new Date().toISOString();  // Get current time for game completion
-  //   const deviceType = navigator.userAgent.includes('Mobi') ? 'mobile' : 'desktop';
-  //   const channel = document.referrer.includes('google') ? 'organic' : 'direct';
-  //   const startTime = performance.now();
-  //   const storedLanguage = getLanguageFromLocalStorage();
-  //   setLanguage(storedLanguage);
-  //   // Send game completion data to the server if gameStartTime exists
-  //   if (gameStartTime && userId) {
-  //     const timeSpent = (new Date(endTime).getTime() - new Date(gameStartTime).getTime()) / 1000; // Calculate time spent in seconds
 
-  //     // Send game completion metrics
-  //     fetch('/api/game-complete', {
-  //       method: 'POST',
-  //       headers: { 'Content-Type': 'application/json' },
-  //       body: JSON.stringify({
-  //         userId,
-  //         startTime: gameStartTime,
-  //         endTime,
-  //         timeSpent,
-  //         deviceType,
-  //         channel,
-  //       }),
-  //     });
+    // const userId = getUniqueUserId();  // Get user ID
+    // const gameStartTime = localStorage.getItem('gameStartTime');  // Retrieve start time
+    // const endTime = new Date().toISOString();  // Get current time for game completion
+    // const deviceType = navigator.userAgent.includes('Mobi') ? 'mobile' : 'desktop';
+    // const channel = document.referrer.includes('google') ? 'organic' : 'direct';
+    // const startTime = performance.now();
+    
 
-  //     // Clear the game start time after completion
-  //     localStorage.removeItem('gameStartTime');
-  //   }
+    // // Send game completion data to the server if gameStartTime exists
+    // if (gameStartTime && userId) {
+    //   const timeSpent = (new Date(endTime).getTime() - new Date(gameStartTime).getTime()) / 1000; // Calculate time spent in seconds
 
-  //   // Collect user answers for questions
-  //   const options: number[][] = [];
-  //   let numberCount: Record<number, number> = {};
+    //   // Send game completion metrics
+    //   fetch('/api/game-complete', {
+    //     method: 'POST',
+    //     headers: { 'Content-Type': 'application/json' },
+    //     body: JSON.stringify({
+    //       userId,
+    //       startTime: gameStartTime,
+    //       endTime,
+    //       timeSpent,
+    //       deviceType,
+    //       channel,
+    //     }),
+    //   });
 
-  //   for (let i = 1; i <= 8; i++) {
-  //     const option = localStorage.getItem(`question${i}`);
-  //     if (option) {
-  //       const parsedOption = JSON.parse(option);
-  //       options.push(parsedOption);
+    //   // Clear the game start time after completion
+    //   localStorage.removeItem('gameStartTime');
+    // }
 
-  //       // Count occurrences of each answer
-  //       parsedOption.forEach((num: number) => {
-  //         numberCount[num] = (numberCount[num] || 0) + 1;
-  //       });
-  //     }
-  //   }
+    // // Collect user answers for questions
+    // const options: number[][] = [];
+    // let numberCount: Record<number, number> = {};
+
+    // for (let i = 1; i <= 8; i++) {
+    //   const option = localStorage.getItem(`question${i}`);
+    //   if (option) {
+    //     const parsedOption = JSON.parse(option);
+    //     options.push(parsedOption);
+
+    //     // Count occurrences of each answer
+    //     parsedOption.forEach((num: number) => {
+    //       numberCount[num] = (numberCount[num] || 0) + 1;
+    //     });
+    //   }
+    // }
 
   // }, []);
 
@@ -132,7 +136,6 @@ const MoreResultPage: React.FC = () => {
           <div className="">
               <img
                 src="images_perfume/result/more_result_ch.png"
-                alt={ translations[language].moreresults.imageAlt}
               />
           </div>
 

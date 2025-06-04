@@ -119,18 +119,6 @@ const translations = {
         valentine: "Something Special \n For You"
       },
 
-      moreresults: {
-        backButton: "Back",
-        imageAlt: "More Results Background",
-        dogBeautyTitle: "If I entered a dog beauty pageant, I would be...",
-        dogBreedLabel: "Dog Breed",
-        willFindYour: "Will Find Your ...",
-        trainingDifficultyAlt: "Training Difficulty Image",
-        trainingDifficultyText: "And Training Difficulty you are",
-        letsTryButton: "Let’s Try",
-        perfumeAdAlt: "Perfume Ad",
-      },
-
       share_results: {
         share_result: "Share your result",
         choose_platform: "Choose a platform to share your quiz result:",
@@ -249,17 +237,7 @@ const translations = {
         cancelButton: "取消",
         valentine:"找出心宜的情人節禮物"
       },
-      moreresults: {
-        backButton: "返回",
-        imageAlt: "更多結果背景",
-        dogBeautyTitle: "如果我參加狗狗選美大賽，我會是...",
-        dogBreedLabel: "狗品種",
-        willFindYour: "找到你的 ...",
-        trainingDifficultyAlt: "訓練難度圖片",
-        trainingDifficultyText: "以及你的訓練難度是",
-        letsTryButton: "讓我們嘗試",
-        perfumeAdAlt: "香水廣告"
-      },
+      
       share_results: {
         share_result: "分享你的結果",
         choose_platform: "選擇一個平台來分享你的測驗結果：",
@@ -380,17 +358,7 @@ const translations = {
         cancelButton: "取消",
         valentine:"找出心宜的情人节礼物"
       },
-      moreresults: {
-        backButton: "返回",
-        imageAlt: "更多结果背景",
-        dogBeautyTitle: "如果我参加狗狗选美大赛，我会是...",
-        dogBreedLabel: "狗品种",
-        willFindYour: "找到你的...",
-        trainingDifficultyAlt: "训练难度图片",
-        trainingDifficultyText: "以及你的训练难度是",
-        letsTryButton: "让我们尝试",
-        perfumeAdAlt: "香水广告"
-      },
+      
       share_results: {
         share_result: "分享你的结果",
         choose_platform: "选择一个平台来分享你的测验结果：",
